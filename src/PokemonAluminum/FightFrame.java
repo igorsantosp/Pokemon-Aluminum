@@ -239,13 +239,15 @@ h.usaSkill(a.getHabilidades()[i]);
 h1.usaSkill(b.getHabilidades()[(int)(Math.random()*3)]);
         if(a.getLife()<=0){
      JOptionPane.showMessageDialog(null, "Você morreu");
+     a.setLose(a.getWl()[1]+1);
      a.reset();
      b.reset();
      this.dispose();
      }else{
      if(b.getLife()<=0){
          a.setNivel(a.getNivel()+1);
-          JOptionPane.showMessageDialog(null, "Você Venceu!\n Seu"+a.getNome()+" Upou! Está agora nivel "+a.getNivel());
+          JOptionPane.showMessageDialog(null, "Você Venceu!\n Seu "+a.getNome()+" Upou! Está agora nivel "+a.getNivel());
+         a.setWin(a.getWl()[0]+1);
          a.reset();
          b.reset();
          this.dispose();

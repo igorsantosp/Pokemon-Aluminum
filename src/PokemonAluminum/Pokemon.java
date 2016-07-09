@@ -14,8 +14,19 @@ public class Pokemon {
     private int nivel=0, life, xp, ataque, defesa, dano,lifeFixo,id;
     private int[] atrBase=new int[3];
     private int[] habilidades= new int[4];
+    private int[] wl= new int[2];
 
-    
+    public int[] getWl() {
+        return wl;
+    }
+
+    public void setWin(int w) {
+        this.wl[0] = w;
+    }
+
+    public void setLose(int l) {
+        this.wl[1] = l;
+    }    
     
     public int getId() {
         return id;

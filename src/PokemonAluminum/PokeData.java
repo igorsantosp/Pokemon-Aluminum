@@ -36,6 +36,7 @@ public class PokeData {
         bulba.setLifeFixo(attrib1[2]);
         bulba.setLife(attrib1[2]);
         bulba.setHabilidades(habil1);
+        bulba.setElemento("Planta");
 		
 	charmander.setId(2);
         charmander.setNome("Charmander");
@@ -45,7 +46,8 @@ public class PokeData {
         charmander.setLifeFixo(attrib2[2]);
         charmander.setLife(attrib2[2]);
         charmander.setHabilidades(habil2);
-
+        charmander.setElemento("Fogo");
+        
 	squirtle.setId(3);
         squirtle.setNome("Squirtle");
         squirtle.setAtrBase(attrib3);
@@ -54,7 +56,7 @@ public class PokeData {
         squirtle.setLifeFixo(attrib3[2]);
         squirtle.setLife(attrib3[2]);
         squirtle.setHabilidades(habil3);
-
+        squirtle.setElemento("Água");
 	
 	
 	caterpie.setId(4);
@@ -65,6 +67,7 @@ public class PokeData {
         caterpie.setLifeFixo(attrib4[2]);
         caterpie.setLife(attrib4[2]);
         caterpie.setHabilidades(habil4);
+        caterpie.setElemento("Inseto");
 
 	
 	
@@ -76,6 +79,7 @@ public class PokeData {
         pidgey.setLifeFixo(attrib5[2]);
         pidgey.setLife(attrib5[2]);
         pidgey.setHabilidades(habil5);
+        pidgey.setElemento("Voador");
 
 	poke[0]=bulba;
         poke[1]=charmander;

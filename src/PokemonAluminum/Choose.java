@@ -36,11 +36,13 @@ PokeData data = new PokeData();
         pidbutton = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         buttonGroup1.add(bulbabutton);
         bulbabutton.setText("Bulbassauro");
         bulbabutton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         bulbabutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pokemons/1.png"))); // NOI18N
+        getContentPane().add(bulbabutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, -1, -1));
 
         buttonGroup1.add(charbutton);
         charbutton.setText("Charmander");
@@ -50,10 +52,12 @@ PokeData data = new PokeData();
                 charbuttonActionPerformed(evt);
             }
         });
+        getContentPane().add(charbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, -1, -1));
 
         buttonGroup1.add(sqbutton);
         sqbutton.setText("Squirtle");
         sqbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pokemons/3.png"))); // NOI18N
+        getContentPane().add(sqbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, -1, -1));
 
         jButton1.setText("Escolher");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -61,6 +65,7 @@ PokeData data = new PokeData();
                 jButton1ActionPerformed(evt);
             }
         });
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(372, 244, -1, -1));
 
         buttonGroup1.add(pidbutton);
         pidbutton.setText("Pidgey");
@@ -70,39 +75,7 @@ PokeData data = new PokeData();
                 pidbuttonActionPerformed(evt);
             }
         });
-
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
-        getContentPane().setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(bulbabutton)
-                .addGap(27, 27, 27)
-                .addComponent(charbutton)
-                .addGap(35, 35, 35)
-                .addComponent(sqbutton)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 45, Short.MAX_VALUE)
-                .addComponent(pidbutton)
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                .addComponent(jButton1)
-                .addGap(294, 294, 294))
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addGap(111, 111, 111)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(bulbabutton)
-                    .addComponent(charbutton)
-                    .addComponent(sqbutton)
-                    .addComponent(pidbutton))
-                .addGap(28, 28, 28)
-                .addComponent(jButton1)
-                .addContainerGap(33, Short.MAX_VALUE))
-        );
+        getContentPane().add(pidbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 110, 180, -1));
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
@@ -125,7 +98,7 @@ if(sqbutton.isSelected()){
     s=data.getPoke(3);
 }
 if(pidbutton.isSelected()){
-    System.out.println("Squirtle escolhido");
+    System.out.println("Pidgey escolhido");
     s=data.getPoke(5);
 }
 GameMainFrame j = new GameMainFrame(s);

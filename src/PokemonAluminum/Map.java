@@ -37,7 +37,8 @@ public class Map extends javax.swing.JFrame {
         monsterimg.setText("                ");
         fightbutton.setVisible(false);
         leaveButton.setVisible(false);
-   	
+   	i = new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\character\\down0.png", "");
+        personagem.setIcon(i);
     }
 
     private Map() {
@@ -65,7 +66,7 @@ public class Map extends javax.swing.JFrame {
         fightbutton = new javax.swing.JButton();
         leaveButton = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(213, 213, 253));
         setResizable(false);
 
