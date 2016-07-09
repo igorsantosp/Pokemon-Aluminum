@@ -11,7 +11,7 @@ package PokemonAluminum;
  */
 public class Pokemon {
     private String  elemento,nome;
-    private int nivel, life, xp, ataque, defesa, dano,lifeFixo,id;
+    private int nivel=0, life, xp, ataque, defesa, dano,lifeFixo,id;
     private int[] atrBase=new int[3];
     private int[] habilidades= new int[4];
 
@@ -114,8 +114,14 @@ public class Pokemon {
     }
     
     void reset(){
-    this.ataque=atrBase[0];
+      
+this.ataque= (int) (this.atrBase[0] + (this.atrBase[0]*0.1*this.nivel) ) ;
+this.defesa= (int) (this.atrBase[1] + (this.atrBase[1]*0.1*this.nivel ) );
+this.lifeFixo= (int) (this.atrBase[2] + (this.atrBase[2]*0.1*this.nivel ) );
+this.life= (int) (this.atrBase[2] + (this.atrBase[2]*0.1*this.nivel ) ) ;
+
+    /*this.ataque=atrBase[0];
     this.defesa=atrBase[1];
     this.life=atrBase[2];
-    }
+    */}
 }

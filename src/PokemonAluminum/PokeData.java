@@ -89,4 +89,7 @@ public class PokeData {
       Pokemon getPoke(int id){
           return poke[id-1];
       }
+      int getNumPoke(){
+          return poke.length;
+      }
 }

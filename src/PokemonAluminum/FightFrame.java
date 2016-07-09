@@ -5,12 +5,7 @@
  */
 package PokemonAluminum;
 
-import java.awt.image.BufferedImage;
-import java.io.File;
-import java.io.IOException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
+
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -249,7 +244,8 @@ h1.usaSkill(b.getHabilidades()[(int)(Math.random()*3)]);
      this.dispose();
      }else{
      if(b.getLife()<=0){
-         JOptionPane.showMessageDialog(null, "Você Venceu!");
+         a.setNivel(a.getNivel()+1);
+          JOptionPane.showMessageDialog(null, "Você Venceu!\n Seu"+a.getNome()+" Upou! Está agora nivel "+a.getNivel());
          a.reset();
          b.reset();
          this.dispose();

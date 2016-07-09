@@ -1,19 +1,9 @@
 package PokemonAluminum;
 
 
-import java.awt.Color;
-import java.awt.Graphics;
-import java.awt.image.BufferedImage;
+
 import java.io.File;
-import java.io.IOException;
-import static java.lang.Thread.State.WAITING;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-import javax.imageio.ImageIO;
-import javax.swing.Icon;
 import javax.swing.ImageIcon;
-import javax.swing.JLabel;
-import javax.swing.border.EtchedBorder;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -35,22 +25,7 @@ public class Map extends javax.swing.JFrame {
    Habilidades h;
   Habilidades h1;
   FightFrame f1;
-  Pokemon[] poke= new Pokemon[5];
-        Pokemon bulba= new Pokemon();
-	int[]attrib1 = {80,70,160};
-	int[]habil1={1,2,3,7};
-        Pokemon charmander = new Pokemon();
-	int[]attrib2={100,50,140};
-	int[]habil2={1,2,3,4};
-        Pokemon weedle = new Pokemon();
-	int[]attrib5={50,50,140};
-	int[]habil5={1,2,3,6};
-        Pokemon squirtle = new Pokemon();
-	int[]attrib3={70,80,130};
-	int[]habil3={1,2,3,5};
-        Pokemon caterpie = new Pokemon();
-	int[]attrib4={30,30,150};
-	int[]habil4={1,2,3,7};
+  PokeData data = new PokeData();
     /**
      * Creates new form Map
      */
@@ -63,60 +38,6 @@ public class Map extends javax.swing.JFrame {
         fightbutton.setVisible(false);
         leaveButton.setVisible(false);
    	
-	bulba.setId(1);
-        bulba.setNome("bulbassauro");
-        bulba.setAtrBase(attrib1);
-        bulba.setAtaque(attrib1[0]);
-        bulba.setDefesa(attrib1[1]);
-        bulba.setLifeFixo(attrib1[2]);
-        bulba.setLife(attrib1[2]);
-        bulba.setHabilidades(habil1);
-		
-	charmander.setId(2);
-        charmander.setNome("Charmander");
-        charmander.setAtrBase(attrib2);
-        charmander.setAtaque(attrib2[0]);
-        charmander.setDefesa(attrib2[1]);
-        charmander.setLifeFixo(attrib2[2]);
-        charmander.setLife(attrib2[2]);
-        charmander.setHabilidades(habil2);
-
-	squirtle.setId(3);
-        squirtle.setNome("Squirtle");
-        squirtle.setAtrBase(attrib3);
-        squirtle.setAtaque(attrib3[0]);
-        squirtle.setDefesa(attrib3[1]);
-        squirtle.setLifeFixo(attrib3[2]);
-        squirtle.setLife(attrib3[2]);
-        squirtle.setHabilidades(habil3);
-
-	
-	
-	caterpie.setId(4);
-        caterpie.setNome("Caterpie");
-        caterpie.setAtrBase(attrib4);
-        caterpie.setAtaque(attrib4[0]);
-        caterpie.setDefesa(attrib4[1]);
-        caterpie.setLifeFixo(attrib4[2]);
-        caterpie.setLife(attrib4[2]);
-        caterpie.setHabilidades(habil4);
-
-	
-	
-	weedle.setId(5);
-        weedle.setNome("Weedle");
-        weedle.setAtrBase(attrib5);
-        weedle.setAtaque(attrib5[0]);
-        weedle.setDefesa(attrib5[1]);
-        weedle.setLifeFixo(attrib5[2]);
-        weedle.setLife(attrib5[2]);
-        weedle.setHabilidades(habil5);
-
-	poke[0]=bulba;
-        poke[1]=charmander;
-        poke[2]=squirtle;
-        poke[3]=caterpie;
-        poke[4]=weedle;
     }
 
     private Map() {
@@ -392,7 +313,7 @@ personagem.repaint();    }//GEN-LAST:event_rightButtonActionPerformed
             count= (int)Math.round(Math.random()*count);}
             while(count==0 || count==file.listFiles().length);
             System.out.println(file.toString()+"\\"+count+".png");
-            b=poke[count-1];
+            b=data.getPoke(count);
             monst=new ImageIcon(file.toString()+"\\"+count+".png");
             monsterimg.setIcon(monst);
             fightbutton.setVisible(true);
