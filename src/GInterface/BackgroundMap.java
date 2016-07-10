@@ -1,4 +1,4 @@
-package PokemonAluminum;
+package GInterface;
 
 
 import java.awt.Graphics;

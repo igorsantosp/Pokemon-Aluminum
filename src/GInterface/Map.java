@@ -1,7 +1,10 @@
-package PokemonAluminum;
+package GInterface;
 
 
 
+import PokemonAluminum.Habilidades;
+import PokemonAluminum.PokeData;
+import PokemonAluminum.Pokemon;
 import java.io.File;
 import javax.swing.ImageIcon;
 
@@ -165,10 +168,11 @@ public class Map extends javax.swing.JFrame {
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void upButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upButtonActionPerformed
-    
+
         n = (short) Math.abs(n - 1);
         i = new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\character\\up" + String.valueOf(n) + ".png", "");
         personagem.setIcon(i);
@@ -184,12 +188,12 @@ personagem.repaint();    }//GEN-LAST:event_upButtonActionPerformed
 
     private void downButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downButtonActionPerformed
         // TODO add your handling code here:
-    
+
         n = (short) Math.abs(n - 1);
         i = new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\character\\down"  + String.valueOf(n) + ".png", "");
         personagem.setIcon(i);
         personagem.setLocation((int) personagem.getLocation().getX(), (int) personagem.getLocation().getY() + 10);
-        
+
         searchMonster();
          if(found){
                leftButton.setEnabled(false);
@@ -197,16 +201,16 @@ personagem.repaint();    }//GEN-LAST:event_upButtonActionPerformed
                upButton.setEnabled(false);
                downButton.setEnabled(false);
        }
-           
+
     }//GEN-LAST:event_downButtonActionPerformed
 
     private void leftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftButtonActionPerformed
-      
+
         n = (short) Math.abs(n - 1);
         i = new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\character\\left" + String.valueOf(n) + ".png", "");
         personagem.setIcon(i);
         personagem.setLocation((int) personagem.getLocation().getX() - 10, (int) personagem.getLocation().getY());
-      
+
         searchMonster();
         if(found){
                leftButton.setEnabled(false);
@@ -217,12 +221,12 @@ personagem.repaint();    }//GEN-LAST:event_upButtonActionPerformed
 personagem.repaint();    }//GEN-LAST:event_leftButtonActionPerformed
 
     private void rightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightButtonActionPerformed
-     
+
         n = (short) Math.abs(n - 1);
         i = new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\character\\right" + String.valueOf(n) + ".png", "");
         personagem.setIcon(i);
         personagem.setLocation((int) personagem.getLocation().getX() + 10, (int) personagem.getLocation().getY());
-        
+
         searchMonster();
         if(found){
                leftButton.setEnabled(false);
@@ -242,12 +246,12 @@ personagem.repaint();    }//GEN-LAST:event_rightButtonActionPerformed
     }//GEN-LAST:event_leaveButtonActionPerformed
 
     private void fightbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fightbuttonActionPerformed
-        
+
         f1= new FightFrame(a, b);
         h= new Habilidades(f1);
         h1= new Habilidades(f1);
-        h.ad=b;
-        h.pl=a;
+        h.setAd(b);
+        h.setPl(a);
         h1.setAd(a);
         h1.setPl(b);
         f1.h=h;
@@ -263,7 +267,7 @@ personagem.repaint();    }//GEN-LAST:event_rightButtonActionPerformed
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
+         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
          */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
@@ -307,7 +311,7 @@ personagem.repaint();    }//GEN-LAST:event_rightButtonActionPerformed
 
 
     void searchMonster() {
-        if (Math.random() > 0.95) {
+        if (Math.random() > 0.85) {
             headerEvento.setText(".!:.!:.Monstro encontrado:.!.:!.");
             int count = file.listFiles().length;
             do{

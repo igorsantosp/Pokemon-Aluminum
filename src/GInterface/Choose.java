@@ -3,19 +3,29 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package PokemonAluminum;
+package GInterface;
+
+import PokemonAluminum.PokeData;
+import PokemonAluminum.Pokemon;
+import javafx.scene.paint.Color;
+import static javax.swing.BorderFactory.createRaisedBevelBorder;
+import javax.swing.border.Border;
 
 /**
  *
  * @author Igor
  */
 public class Choose extends javax.swing.JFrame {
-Pokemon s;
-PokeData data = new PokeData();
+
+    Pokemon s;
+    PokeData data = new PokeData();
+    Border border;
+
     /**
      * Creates new form Choose
      */
     public Choose() {
+        border = createRaisedBevelBorder();
         initComponents();
     }
 
@@ -36,17 +46,35 @@ PokeData data = new PokeData();
         pidbutton = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setResizable(false);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         buttonGroup1.add(bulbabutton);
+        bulbabutton.setSelected(true);
         bulbabutton.setText("Bulbassauro");
         bulbabutton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
         bulbabutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pokemons/1.png"))); // NOI18N
+        bulbabutton.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                bulbabuttonFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                bulbabuttonFocusLost(evt);
+            }
+        });
         getContentPane().add(bulbabutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, -1, -1));
 
         buttonGroup1.add(charbutton);
         charbutton.setText("Charmander");
         charbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pokemons/2.png"))); // NOI18N
+        charbutton.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                charbuttonFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                charbuttonFocusLost(evt);
+            }
+        });
         charbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 charbuttonActionPerformed(evt);
@@ -57,7 +85,15 @@ PokeData data = new PokeData();
         buttonGroup1.add(sqbutton);
         sqbutton.setText("Squirtle");
         sqbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pokemons/3.png"))); // NOI18N
-        getContentPane().add(sqbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, -1, -1));
+        sqbutton.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                sqbuttonFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                sqbuttonFocusLost(evt);
+            }
+        });
+        getContentPane().add(sqbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, 160, -1));
 
         jButton1.setText("Escolher");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -65,11 +101,30 @@ PokeData data = new PokeData();
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(372, 244, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 240, -1, -1));
 
         buttonGroup1.add(pidbutton);
         pidbutton.setText("Pidgey");
         pidbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pokemons/5.png"))); // NOI18N
+        pidbutton.addFocusListener(new java.awt.event.FocusAdapter() {
+            public void focusGained(java.awt.event.FocusEvent evt) {
+                pidbuttonFocusGained(evt);
+            }
+            public void focusLost(java.awt.event.FocusEvent evt) {
+                pidbuttonFocusLost(evt);
+            }
+        });
+        pidbutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                pidbuttonMouseClicked(evt);
+            }
+            public void mouseEntered(java.awt.event.MouseEvent evt) {
+                pidbuttonMouseEntered(evt);
+            }
+            public void mouseReleased(java.awt.event.MouseEvent evt) {
+                pidbuttonMouseReleased(evt);
+            }
+        });
         pidbutton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 pidbuttonActionPerformed(evt);
@@ -78,6 +133,7 @@ PokeData data = new PokeData();
         getContentPane().add(pidbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 110, 180, -1));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void charbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_charbuttonActionPerformed
@@ -85,32 +141,83 @@ PokeData data = new PokeData();
     }//GEN-LAST:event_charbuttonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-if(bulbabutton.isSelected()){
-    System.out.println("Bulbassauro escolhido");
-    s= data.getPoke(1);
-}   
-if(charbutton.isSelected()){
-    System.out.println("Charmander escolhido");
-    s=data.getPoke(2);
-} 
-if(sqbutton.isSelected()){
-    System.out.println("Squirtle escolhido");
-    s=data.getPoke(3);
-}
-if(pidbutton.isSelected()){
-    System.out.println("Pidgey escolhido");
-    s=data.getPoke(5);
-}
-GameMainFrame j = new GameMainFrame(s);
-j.setData(s);
-j.setVisible(true);
-this.dispose();
+        if (bulbabutton.isSelected()) {
+            s = data.getPoke(1);
+        }
+        if (charbutton.isSelected()) {
+            s = data.getPoke(2);
+        }
+        if (sqbutton.isSelected()) {
+            s = data.getPoke(3);
+        }
+        if (pidbutton.isSelected()) {
+            s = data.getPoke(5);
+        }
+        GameMainFrame j = new GameMainFrame(s);
+        s.setFrame(j);
+        j.setData(s);
+        j.setVisible(true);
+        this.dispose();
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void pidbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pidbuttonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_pidbuttonActionPerformed
+
+    private void pidbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pidbuttonMouseClicked
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_pidbuttonMouseClicked
+
+    private void pidbuttonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pidbuttonMouseReleased
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_pidbuttonMouseReleased
+
+    private void pidbuttonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pidbuttonMouseEntered
+        // TODO add your handling code here:
+    }//GEN-LAST:event_pidbuttonMouseEntered
+
+    private void pidbuttonFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pidbuttonFocusGained
+        pidbutton.setForeground(java.awt.Color.white);
+        pidbutton.setBorder(border);// TODO add your handling code here:
+    }//GEN-LAST:event_pidbuttonFocusGained
+
+    private void pidbuttonFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pidbuttonFocusLost
+        pidbutton.setForeground(java.awt.Color.black);
+        pidbutton.setBorder(null);// TODO add your handling code here:
+    }//GEN-LAST:event_pidbuttonFocusLost
+
+    private void sqbuttonFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_sqbuttonFocusGained
+        sqbutton.setForeground(java.awt.Color.white);
+        sqbutton.setBorder(border);// TODO add your handling code here:
+    }//GEN-LAST:event_sqbuttonFocusGained
+
+    private void sqbuttonFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_sqbuttonFocusLost
+        sqbutton.setForeground(java.awt.Color.black);
+        sqbutton.setBorder(null);// TODO add your handling code here:
+    }//GEN-LAST:event_sqbuttonFocusLost
+
+    private void charbuttonFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_charbuttonFocusGained
+        charbutton.setForeground(java.awt.Color.white);
+        charbutton.setBorder(border);// TODO add your handling code here:
+    }//GEN-LAST:event_charbuttonFocusGained
+
+    private void charbuttonFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_charbuttonFocusLost
+        charbutton.setForeground(java.awt.Color.black);
+        charbutton.setBorder(null);// TODO add your handling code here:
+    }//GEN-LAST:event_charbuttonFocusLost
+
+    private void bulbabuttonFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_bulbabuttonFocusGained
+        bulbabutton.setForeground(java.awt.Color.white);
+        bulbabutton.setBorder(border);// TODO add your handling code here:
+    }//GEN-LAST:event_bulbabuttonFocusGained
+
+    private void bulbabuttonFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_bulbabuttonFocusLost
+        bulbabutton.setForeground(java.awt.Color.black);
+        bulbabutton.setBorder(null);// TODO add your handling code here:
+    }//GEN-LAST:event_bulbabuttonFocusLost
 
     /**
      * @param args the command line arguments

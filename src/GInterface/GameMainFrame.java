@@ -3,31 +3,36 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package PokemonAluminum;
+package GInterface;
 
+import PokemonAluminum.Pokemon;
 import javax.swing.ImageIcon;
-
 
 /**
  *
  * @author Igor
  */
 public class GameMainFrame extends javax.swing.JFrame {
-ImageIcon icon;    
+
+    ImageIcon icon;
 //Pokemon charmander = new Pokemon();
 //Pokemon bulba = new Pokemon();
-int[]attrb1={100,50,80};
-int[] habil1={1,2,3,4};
-Pokemon c;
-Map map;
+    int[] attrb1 = {100, 50, 80};
+    int[] habil1 = {1, 2, 3, 4};
+    Pokemon c;
+    Map map;
+
     /**
      * Creates new form GameMainFrame
      */
     public GameMainFrame(Pokemon c) {
-        this.c= c;
+        this.c = c;
         initComponents();
+        jTabbedPane1.setEnabledAt(2, false);
+        jTabbedPane1.setEnabledAt(3, false);
+        jTabbedPane1.setEnabledAt(4, false);
         avatar.setText("");
-        icon = new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokemons\\"+c.getId()+".png","");
+        icon = new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\pokemons\\" + c.getId() + ".png", "");
         avatar.setIcon(icon);
     }
 
@@ -65,18 +70,18 @@ Map map;
         jPanel15 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
         avatar = new javax.swing.JLabel();
-        jPanel2 = new javax.swing.JPanel();
+        AventuraPanel = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton4 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
+        LojaPanel = new javax.swing.JPanel();
         jTabbedPane2 = new javax.swing.JTabbedPane();
         jPanel6 = new javax.swing.JPanel();
         jPanel7 = new javax.swing.JPanel();
         jPanel8 = new javax.swing.JPanel();
         jPanel9 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
-        jPanel4 = new javax.swing.JPanel();
+        MissaoPanel = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
@@ -84,7 +89,7 @@ Map map;
         jTextArea2 = new javax.swing.JTextArea();
         jLabel12 = new javax.swing.JLabel();
         jLabel13 = new javax.swing.JLabel();
-        jPanel5 = new javax.swing.JPanel();
+        GymPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -276,11 +281,11 @@ Map map;
             }
         });
 
-        javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
-        jPanel2.setLayout(jPanel2Layout);
-        jPanel2Layout.setHorizontalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        javax.swing.GroupLayout AventuraPanelLayout = new javax.swing.GroupLayout(AventuraPanel);
+        AventuraPanel.setLayout(AventuraPanelLayout);
+        AventuraPanelLayout.setHorizontalGroup(
+            AventuraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AventuraPanelLayout.createSequentialGroup()
                 .addGap(52, 52, 52)
                 .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(36, 36, 36)
@@ -289,18 +294,18 @@ Map map;
                 .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
-        jPanel2Layout.setVerticalGroup(
-            jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel2Layout.createSequentialGroup()
+        AventuraPanelLayout.setVerticalGroup(
+            AventuraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(AventuraPanelLayout.createSequentialGroup()
                 .addGap(93, 93, 93)
-                .addGroup(jPanel2Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(AventuraPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
                 .addContainerGap(284, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Aventura", jPanel2);
+        jTabbedPane1.addTab("Aventura", AventuraPanel);
 
         javax.swing.GroupLayout jPanel6Layout = new javax.swing.GroupLayout(jPanel6);
         jPanel6.setLayout(jPanel6Layout);
@@ -367,18 +372,18 @@ Map map;
 
         jTabbedPane2.addTab("Armadura", jPanel10);
 
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout LojaPanelLayout = new javax.swing.GroupLayout(LojaPanel);
+        LojaPanel.setLayout(LojaPanelLayout);
+        LojaPanelLayout.setHorizontalGroup(
+            LojaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jTabbedPane2)
         );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        LojaPanelLayout.setVerticalGroup(
+            LojaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addComponent(jTabbedPane2)
         );
 
-        jTabbedPane1.addTab("Loja", jPanel3);
+        jTabbedPane1.addTab("Loja", LojaPanel);
 
         jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
 
@@ -394,39 +399,39 @@ Map map;
 
         jLabel13.setText("00:00:00");
 
-        javax.swing.GroupLayout jPanel4Layout = new javax.swing.GroupLayout(jPanel4);
-        jPanel4.setLayout(jPanel4Layout);
-        jPanel4Layout.setHorizontalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        javax.swing.GroupLayout MissaoPanelLayout = new javax.swing.GroupLayout(MissaoPanel);
+        MissaoPanel.setLayout(MissaoPanelLayout);
+        MissaoPanelLayout.setHorizontalGroup(
+            MissaoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MissaoPanelLayout.createSequentialGroup()
                 .addGap(48, 48, 48)
                 .addComponent(jButton1)
                 .addGap(20, 20, 20)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createSequentialGroup()
+                .addGroup(MissaoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(MissaoPanelLayout.createSequentialGroup()
                         .addGap(10, 10, 10)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
                         .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addComponent(jLabel11))
                 .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MissaoPanelLayout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
                 .addComponent(jLabel13)
                 .addGap(186, 186, 186))
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel4Layout.createSequentialGroup()
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MissaoPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel12)
                 .addGap(167, 167, 167))
         );
-        jPanel4Layout.setVerticalGroup(
-            jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel4Layout.createSequentialGroup()
+        MissaoPanelLayout.setVerticalGroup(
+            MissaoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+            .addGroup(MissaoPanelLayout.createSequentialGroup()
                 .addGap(8, 8, 8)
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel4Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                .addGroup(MissaoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(MissaoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jButton1))
                     .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -437,20 +442,20 @@ Map map;
                 .addContainerGap(240, Short.MAX_VALUE))
         );
 
-        jTabbedPane1.addTab("Missão", jPanel4);
+        jTabbedPane1.addTab("Missão", MissaoPanel);
 
-        javax.swing.GroupLayout jPanel5Layout = new javax.swing.GroupLayout(jPanel5);
-        jPanel5.setLayout(jPanel5Layout);
-        jPanel5Layout.setHorizontalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        javax.swing.GroupLayout GymPanelLayout = new javax.swing.GroupLayout(GymPanel);
+        GymPanel.setLayout(GymPanelLayout);
+        GymPanelLayout.setHorizontalGroup(
+            GymPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 429, Short.MAX_VALUE)
         );
-        jPanel5Layout.setVerticalGroup(
-            jPanel5Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+        GymPanelLayout.setVerticalGroup(
+            GymPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGap(0, 467, Short.MAX_VALUE)
         );
 
-        jTabbedPane1.addTab("Ginásios", jPanel5);
+        jTabbedPane1.addTab("Ginásios", GymPanel);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -464,6 +469,7 @@ Map map;
         );
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void NameTextFieldActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_NameTextFieldActionPerformed
@@ -471,20 +477,20 @@ Map map;
     }//GEN-LAST:event_NameTextFieldActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        map= new Map(new BackgroundMap(1));
-        map.a=c;
+        map = new Map(new BackgroundMap(1));
+        map.a = c;
         map.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        map= new Map(new BackgroundMap(2));
-        map.a=c;
+        map = new Map(new BackgroundMap(2));
+        map.a = c;
         map.setVisible(true); // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-      map= new Map(new BackgroundMap(3));
-        map.a=c;
+        map = new Map(new BackgroundMap(3));
+        map.a = c;
         map.setVisible(true);  // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -529,8 +535,12 @@ Map map;
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JTextField AtTextField;
+    private javax.swing.JPanel AventuraPanel;
     private javax.swing.JTextField DefTextField;
+    private javax.swing.JPanel GymPanel;
     private javax.swing.JTextField LifeTextField;
+    private javax.swing.JPanel LojaPanel;
+    private javax.swing.JPanel MissaoPanel;
     private javax.swing.JTextField NameTextField;
     private javax.swing.JLabel avatar;
     private javax.swing.JButton jButton1;
@@ -553,10 +563,6 @@ Map map;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
-    private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
-    private javax.swing.JPanel jPanel4;
-    private javax.swing.JPanel jPanel5;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
@@ -570,14 +576,14 @@ Map map;
     private javax.swing.JTextField typeTextField;
     private javax.swing.JTextField winloseTextField;
     // End of variables declaration//GEN-END:variables
-void setData(Pokemon p){
-NameTextField.setText(p.getNome());
-nvTextField.setText(String.valueOf(p.getNivel()));
-AtTextField.setText(String.valueOf(p.getAtaque()));
-DefTextField.setText(String.valueOf(p.getDefesa()));
-LifeTextField.setText(String.valueOf(p.getLife()));
-typeTextField.setText(p.getElemento());
-winloseTextField.setText(String.valueOf(p.getWl()[0])+" / "+String.valueOf(p.getWl()[0]));
-}
+public void setData(Pokemon p) {
+        NameTextField.setText(p.getNome());
+        nvTextField.setText(String.valueOf(p.getNivel()));
+        AtTextField.setText(String.valueOf(p.getAtaque()));
+        DefTextField.setText(String.valueOf(p.getDefesa()));
+        LifeTextField.setText(String.valueOf(p.getLife()));
+        typeTextField.setText(p.getElemento());
+        winloseTextField.setText(String.valueOf(p.getWl()[0]) + " / " + String.valueOf(p.getWl()[1]));
+    }
 
 }

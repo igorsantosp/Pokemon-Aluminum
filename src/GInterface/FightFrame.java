@@ -3,9 +3,10 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package PokemonAluminum;
+package GInterface;
 
-
+import PokemonAluminum.Habilidades;
+import PokemonAluminum.Pokemon;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
 
@@ -14,23 +15,25 @@ import javax.swing.JOptionPane;
  * @author junior
  */
 public class FightFrame extends javax.swing.JFrame {
-Pokemon a,b;
-Habilidades h,h1;
+
+    Pokemon a, b;
+    Habilidades h, h1;
+
     /**
      * Creates new form FightFrame
      */
     public FightFrame(Pokemon a, Pokemon b) {
-        this.a=a;
-        this.b=b;
-    ImageIcon photoa= new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokemons\\"+a.getId()+".png","");
-    ImageIcon photob= new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokemons\\"+b.getId()+".png","");   
-    initComponents();
-    jLabel1.setIcon(photoa);
-    jLabel2.setIcon(photob);
-       jTextArea1.setText("");
-    lifead.setValue(100);
-    lifepl.setValue(100);
-     
+        this.a = a;
+        this.b = b;
+        ImageIcon photoa = new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\pokemons\\" + a.getId() + ".png", "");
+        ImageIcon photob = new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\pokemons\\" + b.getId() + ".png", "");
+        initComponents();
+        jLabel1.setIcon(photoa);
+        jLabel2.setIcon(photob);
+        jTextArea1.setText("");
+        lifead.setValue(100);
+        lifepl.setValue(100);
+
     }
 
     private FightFrame() {
@@ -128,29 +131,30 @@ Habilidades h,h1;
         getContentPane().add(Skill4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 120, 20));
 
         pack();
+        setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void Skill1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Skill1ActionPerformed
-    Skill(0);
-     // TODO add your handling code here:
+        Skill(0);
+        // TODO add your handling code here:
     }//GEN-LAST:event_Skill1ActionPerformed
 
     private void Skill2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Skill2ActionPerformed
-    Skill(1);// TODO add your handling code here:
+        Skill(1);// TODO add your handling code here:
     }//GEN-LAST:event_Skill2ActionPerformed
 
     private void Skill3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Skill3ActionPerformed
-    Skill(2);// TODO add your handling code here:
+        Skill(2);// TODO add your handling code here:
     }//GEN-LAST:event_Skill3ActionPerformed
 
     private void Skill4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Skill4ActionPerformed
-    Skill(3);
+        Skill(3);
 
 // TODO add your handling code here:
     }//GEN-LAST:event_Skill4ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-this.dispose();        // TODO add your handling code here:
+        this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
@@ -204,56 +208,52 @@ this.dispose();        // TODO add your handling code here:
     private javax.swing.JProgressBar lifepl;
     private javax.swing.JPanel plPanel;
     // End of variables declaration//GEN-END:variables
-void setEvent(String s){
-    jTextArea1.setText(jTextArea1.getText()+s);
-}
+public void setEvent(String s) {
+        jTextArea1.setText(jTextArea1.getText() + s);
+    }
 
-void setHabils(String s){
-if(Skill1.getText().equals("")){
-Skill1.setText(s);
-}else{
-    if(Skill2.getText().equals("")){
-    Skill2.setText(s);
-    }else{
-        if(Skill3.getText().equals("")){
+    public void setHabils(String s) {
+        if (Skill1.getText().equals("")) {
+            Skill1.setText(s);
+        } else if (Skill2.getText().equals("")) {
+            Skill2.setText(s);
+        } else if (Skill3.getText().equals("")) {
             Skill3.setText(s);
-        }  else{
+        } else {
             Skill4.setText(s);
         }
     }
-}
-}
-void baixaLife(Pokemon a, int i){
-if(a == this.a){
-lifead.setValue((lifead.getValue()-i));
-    System.out.println("ataque a"+(lifead.getValue()-i));
-}
-if(a == this.b){
-lifepl.setValue(lifepl.getValue()-i);
-    System.out.println("ataque b"+(lifepl.getValue()-i));
-}
-}
 
-void Skill(int i){
-h.usaSkill(a.getHabilidades()[i]); 
-h1.usaSkill(b.getHabilidades()[(int)(Math.random()*3)]);
-        if(a.getLife()<=0){
-     JOptionPane.showMessageDialog(null, "Você morreu");
-     a.setLose(a.getWl()[1]+1);
-     a.reset();
-     b.reset();
-     this.dispose();
-     }else{
-     if(b.getLife()<=0){
-         a.setNivel(a.getNivel()+1);
-          JOptionPane.showMessageDialog(null, "Você Venceu!\n Seu "+a.getNome()+" Upou! Está agora nivel "+a.getNivel());
-         a.setWin(a.getWl()[0]+1);
-         a.reset();
-         b.reset();
-         this.dispose();
-     }
-     }
-}
-    
+    public void baixaLife(Pokemon a, int i) {
+        if (a == this.a) {
+            lifead.setValue((lifead.getValue() - i));
+            System.out.println("ataque a" + (lifead.getValue() - i));
+        }
+        if (a == this.b) {
+            lifepl.setValue(lifepl.getValue() - i);
+            System.out.println("ataque b" + (lifepl.getValue() - i));
+        }
+    }
+
+    public void Skill(int i) {
+        h.usaSkill(a.getHabilidades()[i]);
+        h1.usaSkill(b.getHabilidades()[(int) (Math.random() * 3)]);
+        if (a.getLife() <= 0) {
+            JOptionPane.showMessageDialog(null, "Você morreu");
+            a.setLose(a.getWl()[1] + 1);
+            a.reset();
+            b.reset();
+            a.atualizaCampo();
+            this.dispose();
+        } else if (b.getLife() <= 0) {
+            a.setNivel(a.getNivel() + 1);
+            JOptionPane.showMessageDialog(null, "Você Venceu!\n Seu " + a.getNome() + " Upou! Está agora nivel " + a.getNivel());
+            a.setWin(a.getWl()[0] + 1);
+            a.reset();
+            b.reset();
+            a.atualizaCampo();
+            this.dispose();
+        }
+    }
 
 }

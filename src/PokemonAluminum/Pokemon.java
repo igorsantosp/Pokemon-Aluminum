@@ -5,16 +5,28 @@
  */
 package PokemonAluminum;
 
+import GInterface.GameMainFrame;
+
 /**
  *
  * @author junior
  */
-public class Pokemon {
-    private String  elemento,nome;
-    private int nivel=0, life, xp, ataque, defesa, dano,lifeFixo,id;
-    private int[] atrBase=new int[3];
-    private int[] habilidades= new int[4];
-    private int[] wl= new int[2];
+public class Pokemon extends Monstro {
+
+    private String elemento, nome;
+    private int nivel = 0, life, xp, ataque, defesa, lifeFixo, id;
+    private int[] atrBase = new int[3];
+    private int[] habilidades = new int[4];
+    private int[] wl = new int[2];
+    private GameMainFrame frame;
+
+    public GameMainFrame getFrame() {
+        return frame;
+    }
+
+    public void setFrame(GameMainFrame frame) {
+        this.frame = frame;
+    }
 
     public int[] getWl() {
         return wl;
@@ -26,8 +38,8 @@ public class Pokemon {
 
     public void setLose(int l) {
         this.wl[1] = l;
-    }    
-    
+    }
+
     public int getId() {
         return id;
     }
@@ -100,14 +112,6 @@ public class Pokemon {
         this.defesa = defesa;
     }
 
-    public int getDano() {
-        return dano;
-    }
-
-    public void setDano(int dano) {
-        this.dano = dano;
-    }
-
     public String getNome() {
         return nome;
     }
@@ -123,16 +127,20 @@ public class Pokemon {
     public void setHabilidades(int[] habilidades) {
         this.habilidades = habilidades;
     }
-    
-    void reset(){
-      
-this.ataque= (int) (this.atrBase[0] + (this.atrBase[0]*0.1*this.nivel) ) ;
-this.defesa= (int) (this.atrBase[1] + (this.atrBase[1]*0.1*this.nivel ) );
-this.lifeFixo= (int) (this.atrBase[2] + (this.atrBase[2]*0.1*this.nivel ) );
-this.life= (int) (this.atrBase[2] + (this.atrBase[2]*0.1*this.nivel ) ) ;
 
-    /*this.ataque=atrBase[0];
-    this.defesa=atrBase[1];
-    this.life=atrBase[2];
-    */}
+    @Override
+    public void reset() {
+
+        this.ataque = (int) (this.atrBase[0] + (this.atrBase[0] * 0.1 * this.nivel));
+        this.defesa = (int) (this.atrBase[1] + (this.atrBase[1] * 0.1 * this.nivel));
+        this.lifeFixo = (int) (this.atrBase[2] + (this.atrBase[2] * 0.1 * this.nivel));
+        this.life = (int) (this.atrBase[2] + (this.atrBase[2] * 0.1 * this.nivel));
+
+    }
+
+    @Override
+    public void atualizaCampo() {
+        this.frame.setData(this);
+    }
+
 }
