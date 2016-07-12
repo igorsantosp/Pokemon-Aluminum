@@ -9,6 +9,7 @@ import PokemonAluminum.PokeData;
 import PokemonAluminum.Pokemon;
 import javafx.scene.paint.Color;
 import static javax.swing.BorderFactory.createRaisedBevelBorder;
+import javax.swing.ImageIcon;
 import javax.swing.border.Border;
 
 /**
@@ -27,6 +28,10 @@ public class Choose extends javax.swing.JFrame {
     public Choose() {
         border = createRaisedBevelBorder();
         initComponents();
+        bulbabutton.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokemons\\1.png"));
+        charbutton.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokemons\\2.png"));
+        sqbutton.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokemons\\3.png"));
+        pidbutton.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokemons\\5.png"));
     }
 
     /**
@@ -53,7 +58,6 @@ public class Choose extends javax.swing.JFrame {
         bulbabutton.setSelected(true);
         bulbabutton.setText("Bulbassauro");
         bulbabutton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        bulbabutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pokemons/1.png"))); // NOI18N
         bulbabutton.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 bulbabuttonFocusGained(evt);
@@ -66,7 +70,6 @@ public class Choose extends javax.swing.JFrame {
 
         buttonGroup1.add(charbutton);
         charbutton.setText("Charmander");
-        charbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pokemons/2.png"))); // NOI18N
         charbutton.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 charbuttonFocusGained(evt);
@@ -84,7 +87,6 @@ public class Choose extends javax.swing.JFrame {
 
         buttonGroup1.add(sqbutton);
         sqbutton.setText("Squirtle");
-        sqbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pokemons/3.png"))); // NOI18N
         sqbutton.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 sqbuttonFocusGained(evt);
@@ -105,7 +107,6 @@ public class Choose extends javax.swing.JFrame {
 
         buttonGroup1.add(pidbutton);
         pidbutton.setText("Pidgey");
-        pidbutton.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pokemons/5.png"))); // NOI18N
         pidbutton.addFocusListener(new java.awt.event.FocusAdapter() {
             public void focusGained(java.awt.event.FocusEvent evt) {
                 pidbuttonFocusGained(evt);
