@@ -5,8 +5,15 @@
  */
 package GInterface;
 
+import PokemonAluminum.Controle;
+import PokemonAluminum.Missao;
+import PokemonAluminum.Personagem;
 import PokemonAluminum.Pokemon;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import javax.swing.Timer;
 
 /**
  *
@@ -21,19 +28,27 @@ public class GameMainFrame extends javax.swing.JFrame {
     int[] habil1 = {1, 2, 3, 4};
     Pokemon c;
     Map map;
-
+    int hh, mm, ss;
+    boolean activate=false;
+    Missao mi= new Missao();
+    Personagem p;
+    Controle contr;
     /**
      * Creates new form GameMainFrame
      */
-    public GameMainFrame(Pokemon c) {
-        this.c = c;
+    public GameMainFrame(Personagem p) {
+        this.p = p;
+        c=p.getPoke(0);
+        p.getPoke(0).setFrame(this);
+        contr= new Controle();
         initComponents();
-        jTabbedPane1.setEnabledAt(2, false);
-        jTabbedPane1.setEnabledAt(3, false);
         jTabbedPane1.setEnabledAt(4, false);
         avatar.setText("");
-        icon = new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\pokemons\\" + c.getId() + ".png", "");
+        icon = new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\pokegif\\00" + c.getId() + ".gif", "");
         avatar.setIcon(icon);
+        Timer time = new Timer(1000, ativar);
+        time.start();
+    
     }
 
     private GameMainFrame() {
@@ -67,9 +82,9 @@ public class GameMainFrame extends javax.swing.JFrame {
         jLabel9 = new javax.swing.JLabel();
         typeTextField = new javax.swing.JTextField();
         jLabel10 = new javax.swing.JLabel();
-        jPanel15 = new javax.swing.JPanel();
         jPanel16 = new javax.swing.JPanel();
         avatar = new javax.swing.JLabel();
+        jButton5 = new javax.swing.JButton();
         AventuraPanel = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -82,13 +97,14 @@ public class GameMainFrame extends javax.swing.JFrame {
         jPanel9 = new javax.swing.JPanel();
         jPanel10 = new javax.swing.JPanel();
         MissaoPanel = new javax.swing.JPanel();
-        jComboBox1 = new javax.swing.JComboBox<>();
+        MissaoComboBox = new javax.swing.JComboBox<>();
         jLabel11 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
+        missionButton = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         jTextArea2 = new javax.swing.JTextArea();
         jLabel12 = new javax.swing.JLabel();
-        jLabel13 = new javax.swing.JLabel();
+        tempoRestanteLabel = new javax.swing.JLabel();
+        jButton1 = new javax.swing.JButton();
         GymPanel = new javax.swing.JPanel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
@@ -135,34 +151,21 @@ public class GameMainFrame extends javax.swing.JFrame {
 
         jLabel10.setText("Tipo");
 
-        jPanel15.setToolTipText("");
-
-        javax.swing.GroupLayout jPanel15Layout = new javax.swing.GroupLayout(jPanel15);
-        jPanel15.setLayout(jPanel15Layout);
-        jPanel15Layout.setHorizontalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 110, Short.MAX_VALUE)
-        );
-        jPanel15Layout.setVerticalGroup(
-            jPanel15Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 111, Short.MAX_VALUE)
-        );
-
         jPanel16.setBackground(new java.awt.Color(255, 255, 255));
         jPanel16.setForeground(new java.awt.Color(255, 255, 255));
+        jPanel16.setMaximumSize(new java.awt.Dimension(96, 96));
+        jPanel16.setLayout(new java.awt.GridBagLayout());
 
-        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pokemons/0.png"))); // NOI18N
+        avatar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pokegif/001.gif"))); // NOI18N
+        jPanel16.add(avatar, new java.awt.GridBagConstraints());
 
-        javax.swing.GroupLayout jPanel16Layout = new javax.swing.GroupLayout(jPanel16);
-        jPanel16.setLayout(jPanel16Layout);
-        jPanel16Layout.setHorizontalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(avatar, javax.swing.GroupLayout.Alignment.TRAILING)
-        );
-        jPanel16Layout.setVerticalGroup(
-            jPanel16Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(avatar, javax.swing.GroupLayout.Alignment.TRAILING)
-        );
+        jButton5.setText("Salvar");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -178,38 +181,40 @@ public class GameMainFrame extends javax.swing.JFrame {
                 .addGap(190, 190, 190))
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addGap(33, 33, 33)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                                .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
-                                .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
-                        .addGap(135, 135, 135)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(winloseTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                                .addComponent(nvTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                            .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                    .addComponent(LifeTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                                    .addComponent(DefTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
-                                    .addComponent(AtTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))
-                                .addComponent(typeTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))))
-                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGap(25, 25, 25)
-                            .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                        .addGroup(jPanel1Layout.createSequentialGroup()
-                            .addComponent(jLabel1)
-                            .addGap(143, 143, 143)
-                            .addComponent(NameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))))
-                .addContainerGap(65, Short.MAX_VALUE))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
+                                        .addComponent(jLabel10, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel7, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel8, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel9, javax.swing.GroupLayout.PREFERRED_SIZE, 35, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                                        .addComponent(jLabel3, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                                        .addComponent(jLabel6, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)))
+                                .addGap(135, 135, 135)
+                                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                        .addComponent(winloseTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                                        .addComponent(nvTextField, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))
+                                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                                            .addComponent(LifeTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                                            .addComponent(DefTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)
+                                            .addComponent(AtTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))
+                                        .addComponent(typeTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE))))
+                            .addGroup(jPanel1Layout.createSequentialGroup()
+                                .addComponent(jLabel1)
+                                .addGap(143, 143, 143)
+                                .addComponent(NameTextField, javax.swing.GroupLayout.DEFAULT_SIZE, 161, Short.MAX_VALUE)))
+                        .addContainerGap(65, Short.MAX_VALUE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(jButton5)
+                        .addGap(103, 103, 103))))
         );
 
         jPanel1Layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {AtTextField, DefTextField, LifeTextField, NameTextField, nvTextField, typeTextField, winloseTextField});
@@ -217,11 +222,14 @@ public class GameMainFrame extends javax.swing.JFrame {
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addContainerGap()
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jPanel15, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addContainerGap()
+                        .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createSequentialGroup()
+                        .addGap(42, 42, 42)
+                        .addComponent(jButton5)))
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
                     .addComponent(NameTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
@@ -249,7 +257,7 @@ public class GameMainFrame extends javax.swing.JFrame {
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(typeTextField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel10))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 59, Short.MAX_VALUE)
+                .addGap(43, 43, 43)
                 .addComponent(jLabel5)
                 .addGap(2, 2, 2)
                 .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -385,11 +393,16 @@ public class GameMainFrame extends javax.swing.JFrame {
 
         jTabbedPane1.addTab("Loja", LojaPanel);
 
-        jComboBox1.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
+        MissaoComboBox.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Floresta de Hoen", "Campos de Johto", "Ilhas Laranja", "Parque de Kanto" }));
 
         jLabel11.setText("Selecione a missão");
 
-        jButton1.setText("Ir");
+        missionButton.setText("Ir");
+        missionButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                missionButtonActionPerformed(evt);
+            }
+        });
 
         jTextArea2.setColumns(20);
         jTextArea2.setRows(5);
@@ -397,32 +410,44 @@ public class GameMainFrame extends javax.swing.JFrame {
 
         jLabel12.setText("Tempo restante: ");
 
-        jLabel13.setText("00:00:00");
+        tempoRestanteLabel.setText("00:00:00");
+
+        jButton1.setText("Cancelar");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout MissaoPanelLayout = new javax.swing.GroupLayout(MissaoPanel);
         MissaoPanel.setLayout(MissaoPanelLayout);
         MissaoPanelLayout.setHorizontalGroup(
             MissaoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(MissaoPanelLayout.createSequentialGroup()
-                .addGap(48, 48, 48)
-                .addComponent(jButton1)
-                .addGap(20, 20, 20)
-                .addGroup(MissaoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(MissaoPanelLayout.createSequentialGroup()
-                        .addGap(10, 10, 10)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 78, Short.MAX_VALUE)
-                        .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addComponent(jLabel11))
-                .addContainerGap())
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MissaoPanelLayout.createSequentialGroup()
-                .addGap(0, 0, Short.MAX_VALUE)
-                .addComponent(jLabel13)
-                .addGap(186, 186, 186))
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, MissaoPanelLayout.createSequentialGroup()
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jLabel12)
                 .addGap(167, 167, 167))
+            .addGroup(MissaoPanelLayout.createSequentialGroup()
+                .addGap(48, 48, 48)
+                .addGroup(MissaoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(MissaoPanelLayout.createSequentialGroup()
+                        .addComponent(jButton1)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(tempoRestanteLabel)
+                        .addGap(186, 186, 186))
+                    .addGroup(MissaoPanelLayout.createSequentialGroup()
+                        .addGroup(MissaoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                            .addGroup(MissaoPanelLayout.createSequentialGroup()
+                                .addComponent(missionButton)
+                                .addGap(20, 20, 20)
+                                .addComponent(jLabel11)
+                                .addGap(0, 0, Short.MAX_VALUE))
+                            .addGroup(MissaoPanelLayout.createSequentialGroup()
+                                .addGap(47, 47, 47)
+                                .addComponent(MissaoComboBox, 0, 136, Short.MAX_VALUE)
+                                .addGap(22, 22, 22)
+                                .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addContainerGap())))
         );
         MissaoPanelLayout.setVerticalGroup(
             MissaoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -431,14 +456,17 @@ public class GameMainFrame extends javax.swing.JFrame {
                 .addComponent(jLabel11)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(MissaoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(MissaoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                        .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addComponent(jButton1))
-                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addGroup(MissaoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                        .addComponent(MissaoComboBox, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(missionButton)))
                 .addGap(64, 64, 64)
-                .addComponent(jLabel12)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jLabel13)
+                .addGroup(MissaoPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
+                    .addGroup(MissaoPanelLayout.createSequentialGroup()
+                        .addComponent(jLabel12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                        .addComponent(tempoRestanteLabel))
+                    .addComponent(jButton1))
                 .addContainerGap(240, Short.MAX_VALUE))
         );
 
@@ -498,6 +526,32 @@ public class GameMainFrame extends javax.swing.JFrame {
         // TODO add your handling code here:
     }//GEN-LAST:event_nvTextFieldActionPerformed
 
+    private void missionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_missionButtonActionPerformed
+if(!activate){ 
+  if(MissaoComboBox.getSelectedIndex()==0){
+    tempoRestanteLabel.setText("00:00:10");}
+  if(MissaoComboBox.getSelectedIndex()==1){
+    tempoRestanteLabel.setText("00:00:10");}
+  if(MissaoComboBox.getSelectedIndex()==2){
+    tempoRestanteLabel.setText("00:00:10");}
+  if(MissaoComboBox.getSelectedIndex()==3){
+    tempoRestanteLabel.setText("00:00:10");}
+mi.setMission(MissaoComboBox.getSelectedIndex());
+  activate=true;
+}
+
+// TODO add your handling code here:
+    }//GEN-LAST:event_missionButtonActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+activate=false;
+tempoRestanteLabel.setText("00:00:00");// TODO add your handling code here:
+    }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+        contr.save(p);
+    }//GEN-LAST:event_jButton5ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -540,6 +594,7 @@ public class GameMainFrame extends javax.swing.JFrame {
     private javax.swing.JPanel GymPanel;
     private javax.swing.JTextField LifeTextField;
     private javax.swing.JPanel LojaPanel;
+    private javax.swing.JComboBox<String> MissaoComboBox;
     private javax.swing.JPanel MissaoPanel;
     private javax.swing.JTextField NameTextField;
     private javax.swing.JLabel avatar;
@@ -547,12 +602,11 @@ public class GameMainFrame extends javax.swing.JFrame {
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
-    private javax.swing.JComboBox<String> jComboBox1;
+    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel13;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JLabel jLabel6;
@@ -561,7 +615,6 @@ public class GameMainFrame extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
-    private javax.swing.JPanel jPanel15;
     private javax.swing.JPanel jPanel16;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
@@ -572,7 +625,9 @@ public class GameMainFrame extends javax.swing.JFrame {
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextArea jTextArea2;
+    private javax.swing.JButton missionButton;
     private javax.swing.JTextField nvTextField;
+    private javax.swing.JLabel tempoRestanteLabel;
     private javax.swing.JTextField typeTextField;
     private javax.swing.JTextField winloseTextField;
     // End of variables declaration//GEN-END:variables
@@ -586,4 +641,42 @@ public void setData(Pokemon p) {
         winloseTextField.setText(String.valueOf(p.getWl()[0]) + " / " + String.valueOf(p.getWl()[1]));
     }
 
+void attclock() {
+    String[] timestr= tempoRestanteLabel.getText().split(":");
+    //System.out.println(timestr.length);
+    //System.out.println(timestr[0]+":"+timestr[1]+":"+timestr[2]);
+    hh=Integer.parseInt(timestr[0]);
+    mm=Integer.parseInt(timestr[1]);
+    ss=Integer.parseInt(timestr[2]);
+    if(ss==0){
+    if(mm==0){
+    if(hh==0){
+    JOptionPane.showMessageDialog(null,"Missão concluída! Aumentou de nível");
+    activate=false;
+    mi.calculaResultado(jTextArea2,c);
+    this.setData(c);
+    }else{
+    hh=hh-1;
+    mm=59;
+    ss=59;
+    }
+    }else{
+    mm=mm-1;
+    ss=59;
+    }
+    }else{
+    ss=ss-1;
+    }    
+        
+        tempoRestanteLabel.setText(String.valueOf(hh) + ":" + String.valueOf(mm) + ":" + String.valueOf(ss));
+
+    }
+
+ ActionListener ativar = (new ActionListener() {
+        public void actionPerformed(ActionEvent e) {
+            if(activate){
+            attclock();}
+        }
+
+    });
 }

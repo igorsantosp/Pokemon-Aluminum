@@ -1,3 +1,4 @@
+
 /*
  * To change this license header, choose License Headers in Project Properties.
  * To change this template file, choose Tools | Templates
@@ -5,6 +6,7 @@
  */
 package GInterface;
 
+import PokemonAluminum.Personagem;
 import PokemonAluminum.PokeData;
 import PokemonAluminum.Pokemon;
 import javafx.scene.paint.Color;
@@ -21,17 +23,18 @@ public class Choose extends javax.swing.JFrame {
     Pokemon s;
     PokeData data = new PokeData();
     Border border;
-
+    Personagem p;
     /**
      * Creates new form Choose
      */
     public Choose() {
         border = createRaisedBevelBorder();
+        p=new Personagem();
         initComponents();
-        bulbabutton.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokemons\\1.png"));
-        charbutton.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokemons\\2.png"));
-        sqbutton.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokemons\\3.png"));
-        pidbutton.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokemons\\5.png"));
+        bulbabutton.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokegif\\001.gif"));
+        charbutton.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokegif\\002.gif"));
+        sqbutton.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokegif\\003.gif"));
+        pidbutton.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokegif\\005.gif"));
     }
 
     /**
@@ -143,20 +146,19 @@ public class Choose extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (bulbabutton.isSelected()) {
-            s = data.getPoke(1);
+            p.setPoke( data.getPoke(1));
         }
         if (charbutton.isSelected()) {
-            s = data.getPoke(2);
+            p.setPoke( data.getPoke(2));
         }
         if (sqbutton.isSelected()) {
-            s = data.getPoke(3);
+            p.setPoke( data.getPoke(3));
         }
         if (pidbutton.isSelected()) {
-            s = data.getPoke(5);
+            p.setPoke( data.getPoke(5));
         }
-        GameMainFrame j = new GameMainFrame(s);
-        s.setFrame(j);
-        j.setData(s);
+        GameMainFrame j = new GameMainFrame(p);
+       j.setData(p.getPoke(0));
         j.setVisible(true);
         this.dispose();
 // TODO add your handling code here:

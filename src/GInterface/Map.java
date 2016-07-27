@@ -317,7 +317,6 @@ personagem.repaint();    }//GEN-LAST:event_rightButtonActionPerformed
             do{
             count= (int)Math.round(Math.random()*count);}
             while(count==0 || count==file.listFiles().length);
-            System.out.println(file.toString()+"\\"+count+".png");
             b=data.getPoke(count);
             monst=new ImageIcon(file.toString()+"\\"+count+".png");
             monsterimg.setIcon(monst);
