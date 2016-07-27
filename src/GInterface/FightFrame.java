@@ -25,8 +25,8 @@ public class FightFrame extends javax.swing.JFrame {
     public FightFrame(Pokemon a, Pokemon b) {
         this.a = a;
         this.b = b;
-        ImageIcon photoa = new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\pokemons\\" + a.getId() + ".png", "");
-        ImageIcon photob = new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\pokemons\\" + b.getId() + ".png", "");
+        ImageIcon photoa = new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\pokegif\\00" + a.getId() + ".gif", "");
+        ImageIcon photob = new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\pokegif\\00" + b.getId() + ".gif", "");
         initComponents();
         jLabel1.setIcon(photoa);
         jLabel2.setIcon(photob);
@@ -64,7 +64,7 @@ public class FightFrame extends javax.swing.JFrame {
         Skill3 = new javax.swing.JButton();
         Skill4 = new javax.swing.JButton();
 
-        setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
 
         plPanel.setBackground(new java.awt.Color(255, 255, 255));
@@ -73,6 +73,7 @@ public class FightFrame extends javax.swing.JFrame {
 
         jLabel1.setBackground(new java.awt.Color(204, 204, 255));
         jLabel1.setForeground(new java.awt.Color(204, 204, 255));
+        jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         plPanel.add(jLabel1, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(plPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 0, 100, 90));
@@ -82,6 +83,7 @@ public class FightFrame extends javax.swing.JFrame {
 
         jLabel2.setBackground(new java.awt.Color(204, 204, 255));
         jLabel2.setForeground(new java.awt.Color(204, 204, 255));
+        jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         adPanel.add(jLabel2, java.awt.BorderLayout.CENTER);
 
         getContentPane().add(adPanel, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 0, 110, 90));
@@ -227,11 +229,11 @@ public void setEvent(String s) {
     public void baixaLife(Pokemon a, int i) {
         if (a == this.a) {
             lifead.setValue((lifead.getValue() - i));
-            System.out.println("ataque a" + (lifead.getValue() - i));
+            
         }
         if (a == this.b) {
             lifepl.setValue(lifepl.getValue() - i);
-            System.out.println("ataque b" + (lifepl.getValue() - i));
+           
         }
     }
 
