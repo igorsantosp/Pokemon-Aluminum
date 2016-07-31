@@ -29,11 +29,20 @@ public class Map extends javax.swing.JFrame {
   Habilidades h1;
   FightFrame f1;
   PokeData data = new PokeData();
+  float[] chance,perc;
+  int[] pokeID;
     /**
      * Creates new form Map
      */
     @SuppressWarnings("empty-statement")
-    public Map(BackgroundMap m) {
+    public Map(BackgroundMap m,int[] pokeID, float[] perc) {
+        this.pokeID=pokeID;
+        this.perc=perc;
+        chance= new float[perc.length+1];
+        chance[0]=0;
+        for(int count=0;count<perc.length;count++){
+            chance[count+1]=chance[count]+perc[count];
+        }
         initComponents();
         bg.add(m);
         headerEvento.setText("                      ");
@@ -311,25 +320,33 @@ personagem.repaint();    }//GEN-LAST:event_rightButtonActionPerformed
 
 
     void searchMonster() {
-        if (Math.random() > 0.85) {
-            headerEvento.setText(".!:.!:.Monstro encontrado:.!.:!.");
-            int count = file.listFiles().length;
-            do{
-            count= (int)Math.round(Math.random()*count);}
-            while(count==0 || count==file.listFiles().length);
-            b=data.getPoke(count);
-            monst=new ImageIcon(file.toString()+"\\"+count+".png");
-            monsterimg.setIcon(monst);
-            fightbutton.setVisible(true);
-            leaveButton.setVisible(true);
-            found=true;
-        }else{
-            headerEvento.setText("Você não encontrou nada=/");
-            monst= new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokemons\\0.png");
-            monsterimg.setIcon(monst);
-            fightbutton.setVisible(false);
-            leaveButton.setVisible(false);
-            found=false;
-        }
+        
+    double random=Math.random();
+    found=false;
+    for(int count=0;count<chance.length-1;count++){
+
+	if (random>=chance[count] && random<chance[count+1]){
+	headerEvento.setText(".!:.!:.Monstro encontrado:.!.:!.");
+	b=data.getPoke(pokeID[count]);
+	monst=new ImageIcon(file.toString()+"\\"+pokeID[count]+".png");
+	monsterimg.setIcon(monst);
+	fightbutton.setVisible(true);
+	leaveButton.setVisible(true);
+	found=true;
+	count=chance.length;
+	}
+
+}
+
+if(!found){
+headerEvento.setText("Você não encontrou nada=/");
+monst= new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokemons\\0.png");
+monsterimg.setIcon(monst);
+fightbutton.setVisible(false);
+leaveButton.setVisible(false);
+found=false;
+
+
      }
+    }
 }

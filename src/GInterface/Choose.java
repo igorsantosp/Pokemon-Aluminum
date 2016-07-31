@@ -9,7 +9,6 @@ package GInterface;
 import PokemonAluminum.Personagem;
 import PokemonAluminum.PokeData;
 import PokemonAluminum.Pokemon;
-import javafx.scene.paint.Color;
 import static javax.swing.BorderFactory.createRaisedBevelBorder;
 import javax.swing.ImageIcon;
 import javax.swing.border.Border;

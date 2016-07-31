@@ -326,7 +326,7 @@ public class GameMainFrame extends javax.swing.JFrame {
             .addGap(0, 439, Short.MAX_VALUE)
         );
 
-        jTabbedPane2.addTab("Digivice", jPanel6);
+        jTabbedPane2.addTab("PokeDex", jPanel6);
 
         javax.swing.GroupLayout jPanel7Layout = new javax.swing.GroupLayout(jPanel7);
         jPanel7.setLayout(jPanel7Layout);
@@ -339,7 +339,7 @@ public class GameMainFrame extends javax.swing.JFrame {
             .addGap(0, 439, Short.MAX_VALUE)
         );
 
-        jTabbedPane2.addTab("Arma", jPanel7);
+        jTabbedPane2.addTab("Potion", jPanel7);
 
         javax.swing.GroupLayout jPanel8Layout = new javax.swing.GroupLayout(jPanel8);
         jPanel8.setLayout(jPanel8Layout);
@@ -352,7 +352,7 @@ public class GameMainFrame extends javax.swing.JFrame {
             .addGap(0, 439, Short.MAX_VALUE)
         );
 
-        jTabbedPane2.addTab("Capacete", jPanel8);
+        jTabbedPane2.addTab("Stone", jPanel8);
 
         javax.swing.GroupLayout jPanel9Layout = new javax.swing.GroupLayout(jPanel9);
         jPanel9.setLayout(jPanel9Layout);
@@ -365,7 +365,7 @@ public class GameMainFrame extends javax.swing.JFrame {
             .addGap(0, 439, Short.MAX_VALUE)
         );
 
-        jTabbedPane2.addTab("Escudo", jPanel9);
+        jTabbedPane2.addTab("Pokeball", jPanel9);
 
         javax.swing.GroupLayout jPanel10Layout = new javax.swing.GroupLayout(jPanel10);
         jPanel10.setLayout(jPanel10Layout);
@@ -378,7 +378,7 @@ public class GameMainFrame extends javax.swing.JFrame {
             .addGap(0, 439, Short.MAX_VALUE)
         );
 
-        jTabbedPane2.addTab("Armadura", jPanel10);
+        jTabbedPane2.addTab("Item", jPanel10);
 
         javax.swing.GroupLayout LojaPanelLayout = new javax.swing.GroupLayout(LojaPanel);
         LojaPanel.setLayout(LojaPanelLayout);
@@ -505,19 +505,25 @@ public class GameMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_NameTextFieldActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        map = new Map(new BackgroundMap(1));
+        int[] pokeID= {1,2,3};
+        float[] perc={0.1f,0.03f,0.03f};
+        map = new Map(new BackgroundMap(1),pokeID,perc);
         map.a = c;
         map.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        map = new Map(new BackgroundMap(2));
+        int[] pokeID= {2,3,4};
+        float[] perc={0.05f,0.02f,0.1f};
+        map = new Map(new BackgroundMap(1),pokeID,perc);
         map.a = c;
         map.setVisible(true); // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        map = new Map(new BackgroundMap(3));
+        int[] pokeID= {3,4,5};
+        float[] perc={0.02f,0.02f,0.15f};
+        map = new Map(new BackgroundMap(1),pokeID,perc);
         map.a = c;
         map.setVisible(true);  // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -651,7 +657,7 @@ void attclock() {
     if(ss==0){
     if(mm==0){
     if(hh==0){
-    JOptionPane.showMessageDialog(null,"Missão concluída! Aumentou de nível");
+    JOptionPane.showMessageDialog(null,"Missão concluída!");
     activate=false;
     mi.calculaResultado(jTextArea2,c);
     this.setData(c);
