@@ -8,6 +8,7 @@ package GInterface;
 import PokemonAluminum.Controle;
 import PokemonAluminum.Missao;
 import PokemonAluminum.Personagem;
+import PokemonAluminum.PokeData;
 import PokemonAluminum.Pokemon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -43,8 +44,9 @@ public class GameMainFrame extends javax.swing.JFrame {
         contr= new Controle();
         initComponents();
         jTabbedPane1.setEnabledAt(4, false);
+        evolveButton.setVisible(false);
         avatar.setText("");
-        icon = new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\pokegif\\00" + c.getId() + ".gif", "");
+        icon = new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\pokegif\\" + c.getId() + ".gif", "");
         avatar.setIcon(icon);
         Timer time = new Timer(1000, ativar);
         time.start();
@@ -85,6 +87,7 @@ public class GameMainFrame extends javax.swing.JFrame {
         jPanel16 = new javax.swing.JPanel();
         avatar = new javax.swing.JLabel();
         jButton5 = new javax.swing.JButton();
+        evolveButton = new javax.swing.JButton();
         AventuraPanel = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -157,13 +160,20 @@ public class GameMainFrame extends javax.swing.JFrame {
         jPanel16.setLayout(new java.awt.GridBagLayout());
 
         avatar.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pokegif/001.gif"))); // NOI18N
+        avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pokegif/0.png"))); // NOI18N
         jPanel16.add(avatar, new java.awt.GridBagConstraints());
 
         jButton5.setText("Salvar");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
+            }
+        });
+
+        evolveButton.setText("Evoluir");
+        evolveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                evolveButtonActionPerformed(evt);
             }
         });
 
@@ -212,7 +222,9 @@ public class GameMainFrame extends javax.swing.JFrame {
                         .addContainerGap(65, Short.MAX_VALUE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 110, Short.MAX_VALUE)
+                        .addComponent(evolveButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton5)
                         .addGap(103, 103, 103))))
         );
@@ -228,7 +240,9 @@ public class GameMainFrame extends javax.swing.JFrame {
                         .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(42, 42, 42)
-                        .addComponent(jButton5)))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(jButton5)
+                            .addComponent(evolveButton))))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
@@ -505,25 +519,25 @@ public class GameMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_NameTextFieldActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int[] pokeID= {1,2,3};
-        float[] perc={0.1f,0.03f,0.03f};
+        int[] pokeID= {1,4,7,14};
+        float[] perc={0.1f,0.03f,0.03f,0.02f};
         map = new Map(new BackgroundMap(1),pokeID,perc);
         map.a = c;
         map.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        int[] pokeID= {2,3,4};
-        float[] perc={0.05f,0.02f,0.1f};
-        map = new Map(new BackgroundMap(1),pokeID,perc);
+        int[] pokeID= {4,7,10,11};
+        float[] perc={0.05f,0.02f,0.1f,0.02f};
+        map = new Map(new BackgroundMap(2),pokeID,perc);
         map.a = c;
         map.setVisible(true); // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        int[] pokeID= {3,4,5};
-        float[] perc={0.02f,0.02f,0.15f};
-        map = new Map(new BackgroundMap(1),pokeID,perc);
+        int[] pokeID= {7,10,13,16};
+        float[] perc={0.02f,0.02f,0.02f,0.15f};
+        map = new Map(new BackgroundMap(3),pokeID,perc);
         map.a = c;
         map.setVisible(true);  // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -557,6 +571,19 @@ tempoRestanteLabel.setText("00:00:00");// TODO add your handling code here:
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         contr.save(p);
     }//GEN-LAST:event_jButton5ActionPerformed
+
+    private void evolveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_evolveButtonActionPerformed
+
+        p.setPoke(PokeData.getPoke(c.getEvolutionID()), 0);
+        p.getPoke(0).getOldStatus(c);
+        c=p.getPoke(0);
+        c.reset();
+        this.setData(c);
+        icon = new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\pokegif\\" + c.getId() + ".gif", "");
+        avatar.setIcon(icon);
+        evolveButton.setVisible(false);
+// TODO add your handling code here:
+    }//GEN-LAST:event_evolveButtonActionPerformed
 
     /**
      * @param args the command line arguments
@@ -604,6 +631,7 @@ tempoRestanteLabel.setText("00:00:00");// TODO add your handling code here:
     private javax.swing.JPanel MissaoPanel;
     private javax.swing.JTextField NameTextField;
     private javax.swing.JLabel avatar;
+    private javax.swing.JButton evolveButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
@@ -645,7 +673,9 @@ public void setData(Pokemon p) {
         LifeTextField.setText(String.valueOf(p.getLife()));
         typeTextField.setText(p.getElemento());
         winloseTextField.setText(String.valueOf(p.getWl()[0]) + " / " + String.valueOf(p.getWl()[1]));
-    }
+        if(p.isEvolution())
+            evolveButton.setVisible(true);
+}
 
 void attclock() {
     String[] timestr= tempoRestanteLabel.getText().split(":");

@@ -25,8 +25,8 @@ public class FightFrame extends javax.swing.JFrame {
     public FightFrame(Pokemon a, Pokemon b) {
         this.a = a;
         this.b = b;
-        ImageIcon photoa = new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\pokegif\\00" + a.getId() + ".gif", "");
-        ImageIcon photob = new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\pokegif\\00" + b.getId() + ".gif", "");
+        ImageIcon photoa = new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\pokegif\\" + a.getId() + ".gif", "");
+        ImageIcon photob = new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\pokegif\\" + b.getId() + ".gif", "");
         initComponents();
         jLabel1.setIcon(photoa);
         jLabel2.setIcon(photob);

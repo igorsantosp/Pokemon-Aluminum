@@ -11,83 +11,34 @@ package PokemonAluminum;
  */
 public class PokeData {
 
-    private Pokemon[] poke = new Pokemon[5];
-    private Pokemon bulba = new Pokemon();
-    private int[] attrib1 = {80, 70, 160};
-    private int[] habil1 = {1, 2, 3, 7};
-    private Pokemon charmander = new Pokemon();
-    private int[] attrib2 = {100, 50, 140};
-    private int[] habil2 = {1, 2, 3, 4};
-    private Pokemon squirtle = new Pokemon();
-    private int[] attrib3 = {90, 80, 130};
-    private int[] habil3 = {1, 2, 3, 5};
-    private Pokemon caterpie = new Pokemon();
-    private int[] attrib4 = {40, 30, 150};
-    private int[] habil4 = {1, 2, 3, 7};
-    private Pokemon pidgey = new Pokemon();
-    private int[] attrib5 = {70, 50, 140};
-    private int[] habil5 = {1, 2, 3, 6};
+    private static Pokemon[] poke;
 
     public PokeData() {
-        bulba.setId(1);
-        bulba.setNome("Bulbassauro");
-        bulba.setAtrBase(attrib1);
-        bulba.setAtaque(attrib1[0]);
-        bulba.setDefesa(attrib1[1]);
-        bulba.setLifeFixo(attrib1[2]);
-        bulba.setLife(attrib1[2]);
-        bulba.setHabilidades(habil1);
-        bulba.setElemento("Planta");
-
-        charmander.setId(2);
-        charmander.setNome("Charmander");
-        charmander.setAtrBase(attrib2);
-        charmander.setAtaque(attrib2[0]);
-        charmander.setDefesa(attrib2[1]);
-        charmander.setLifeFixo(attrib2[2]);
-        charmander.setLife(attrib2[2]);
-        charmander.setHabilidades(habil2);
-        charmander.setElemento("Fogo");
-
-        squirtle.setId(3);
-        squirtle.setNome("Squirtle");
-        squirtle.setAtrBase(attrib3);
-        squirtle.setAtaque(attrib3[0]);
-        squirtle.setDefesa(attrib3[1]);
-        squirtle.setLifeFixo(attrib3[2]);
-        squirtle.setLife(attrib3[2]);
-        squirtle.setHabilidades(habil3);
-        squirtle.setElemento("Água");
-
-        caterpie.setId(4);
-        caterpie.setNome("Caterpie");
-        caterpie.setAtrBase(attrib4);
-        caterpie.setAtaque(attrib4[0]);
-        caterpie.setDefesa(attrib4[1]);
-        caterpie.setLifeFixo(attrib4[2]);
-        caterpie.setLife(attrib4[2]);
-        caterpie.setHabilidades(habil4);
-        caterpie.setElemento("Inseto");
-
-        pidgey.setId(5);
-        pidgey.setNome("Pidgey");
-        pidgey.setAtrBase(attrib5);
-        pidgey.setAtaque(attrib5[0]);
-        pidgey.setDefesa(attrib5[1]);
-        pidgey.setLifeFixo(attrib5[2]);
-        pidgey.setLife(attrib5[2]);
-        pidgey.setHabilidades(habil5);
-        pidgey.setElemento("Voador");
-
-        poke[0] = bulba;
-        poke[1] = charmander;
-        poke[2] = squirtle;
-        poke[3] = caterpie;
-        poke[4] = pidgey;
-
+       
+        Pokemon[] list = {
+        new Pokemon(1,"Bulbasaur",80,70,160,2,6,"Planta", 1,2,3,7),
+        new Pokemon(2,"Ivysaur",100,90,200,3,16,"Planta",1,2,3,7),
+        new Pokemon(3,"Venusaur",120,100,250,"Planta",1,2,3,7),
+        new Pokemon(4,"Charmander",100,50,140,5,6,"Fogo",1,2,3,4),
+        new Pokemon(5,"Charmeleon",120,60,170,6,16,"Fogo",1,2,3,4),
+        new Pokemon(6,"Charizard",150,70,180,"Fogo",1,2,3,4),
+        new Pokemon(7,"Squirtle",90,80,130,8,6,"Água",1,2,3,5),
+        new Pokemon(8,"Wartortle",110,100,150,9,16,"Água",1,2,3,5),
+        new Pokemon(9,"Blastoise",130,170,200,"Água",1,2,3,5),
+        new Pokemon(10,"Caterpie",40,30,150,11,6,"Inseto",1,2,3,7),
+        new Pokemon(11,"Metapod",50,90,160,12,16,"Inseto",1,2,3,7),
+        new Pokemon(12,"Butterfree",90,90,180,"Inseto",1,2,3,7),
+        new Pokemon(13,"Weedle",40,20,150,14,6,"Inseto",1,2,3,7),
+        new Pokemon(14,"Kakuna",50,90,160,15,16,"Inseto",1,2,3,7),
+        new Pokemon(15,"Beedrill",100,90,150,"Inseto",1,2,3,7),
+        new Pokemon(16,"Pidgey",70,50,140,17,6,"Voador",1,2,3,6),
+        new Pokemon(17,"Pidgeotto",90,70,160,18,16,"Voador",1,2,3,6),
+        new Pokemon(18,"Pidgeot",130,90,190,"Voador",1,2,3,6),        
+        };
+        poke=list;
     }
 
-    public Pokemon getPoke(int id) {
+    public static Pokemon getPoke(int id) {
         return poke[id - 1];
     }
 

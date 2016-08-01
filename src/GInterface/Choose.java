@@ -30,10 +30,10 @@ public class Choose extends javax.swing.JFrame {
         border = createRaisedBevelBorder();
         p=new Personagem();
         initComponents();
-        bulbabutton.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokegif\\001.gif"));
-        charbutton.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokegif\\002.gif"));
-        sqbutton.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokegif\\003.gif"));
-        pidbutton.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokegif\\005.gif"));
+        bulbabutton.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokegif\\1.gif"));
+        charbutton.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokegif\\4.gif"));
+        sqbutton.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokegif\\7.gif"));
+        pidbutton.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokegif\\16.gif"));
     }
 
     /**
@@ -148,13 +148,13 @@ public class Choose extends javax.swing.JFrame {
             p.setPoke( data.getPoke(1));
         }
         if (charbutton.isSelected()) {
-            p.setPoke( data.getPoke(2));
+            p.setPoke( data.getPoke(4));
         }
         if (sqbutton.isSelected()) {
-            p.setPoke( data.getPoke(3));
+            p.setPoke( data.getPoke(7));
         }
         if (pidbutton.isSelected()) {
-            p.setPoke( data.getPoke(5));
+            p.setPoke( data.getPoke(16));
         }
         GameMainFrame j = new GameMainFrame(p);
        j.setData(p.getPoke(0));

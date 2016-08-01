@@ -34,17 +34,23 @@ pokes= new ArrayList();
     public ArrayList<Pokemon> getPokes() {
         return pokes;
     }
-public Pokemon getPoke(int i) {
+    public Pokemon getPoke(int i) {
 
     return pokes.get(i);
     }
+
     public void setPokes(ArrayList<Pokemon> pokes) {
         this.pokes = pokes;
     }
     public void setPoke(Pokemon e) {
         pokes.add(e);
     }
-
+    
+    public void setPoke(Pokemon e, int i){
+    pokes.remove(i);
+    pokes.add(i, e);
+    }
+    
     public Pokemon[] getMainteam() {
         return mainteam;
     }

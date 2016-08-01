@@ -15,12 +15,71 @@ import java.io.Serializable;
 public class Pokemon extends Monstro implements Serializable {
 
     private String elemento, nome;
-    private int nivel = 0, life, xp, ataque, defesa, lifeFixo, id;
+    private int nivel = 0, life, xp, ataque, defesa, lifeFixo, id, evolutionID,evolutionLevel;
+    private boolean evolution=false;
     private int[] atrBase = new int[3];
     private int[] habilidades = new int[4];
     private int[] wl = new int[2];
     private GameMainFrame frame;
     private int[] bonus= new int[3];
+    
+    public Pokemon(){
+    
+    }
+    
+    public Pokemon(int id, String name,int atq,int def,int hp, String element, int... habil){
+        this.id=id;
+        this.nome=name;
+        this.atrBase[0]=atq;
+        this.atrBase[1]=def;
+        this.atrBase[2]=hp; 
+        this.lifeFixo=hp;
+        System.arraycopy(habil, 0, this.habilidades, 0, habil.length);
+        this.elemento=element;
+        this.reset();
+    }
+    
+    public Pokemon(int id, String name,int atq,int def,int hp,int idEv, int lvEv, String element, int... habil){
+        this.id=id;
+        this.nome=name;
+        this.evolutionID=idEv;
+        this.evolutionLevel=lvEv;
+        this.atrBase[0]=atq;
+        this.atrBase[1]=def;
+        this.atrBase[2]=hp; 
+        this.lifeFixo=hp;
+        System.arraycopy(habil, 0, this.habilidades, 0, habil.length);
+        this.elemento=element;
+        this.reset();
+    }
+
+    public int getEvolutionID() {
+        return evolutionID;
+    }
+
+    public void setEvolutionID(int evolutionID) {
+        this.evolutionID = evolutionID;
+    }
+
+    public int getEvolutionLevel() {
+        return evolutionLevel;
+    }
+
+    public void setEvolutionLevel(int evolutionLevel) {
+        this.evolutionLevel = evolutionLevel;
+    }
+
+    public boolean isEvolution() {
+        return evolution;
+    }
+
+    public void setEvolution(boolean evolution) {
+        this.evolution = evolution;
+    }
+    
+    
+    
+    
     public GameMainFrame getFrame() {
         return frame;
     }
@@ -137,6 +196,17 @@ public class Pokemon extends Monstro implements Serializable {
     public void setLifeBonus(int i){
     bonus[0]=bonus[2]+i;
     }
+
+    public int[] getBonus() {
+        return bonus;
+    }
+
+    public void setBonus(int[] bonus) {
+        this.bonus = bonus;
+    }
+    
+    
+    
     @Override
     public void reset() {
 
@@ -144,7 +214,16 @@ public class Pokemon extends Monstro implements Serializable {
         this.defesa = (int) (this.atrBase[1] + (this.atrBase[1] * 0.1 * this.nivel))+bonus[1];
         this.lifeFixo = (int) (this.atrBase[2] + (this.atrBase[2] * 0.1 * this.nivel))+bonus[2];
         this.life = (int) (this.atrBase[2] + (this.atrBase[2] * 0.1 * this.nivel));
-
+        if(this.nivel==this.evolutionLevel){
+        this.evolution=true;
+        }
+    }
+    
+    public void getOldStatus(Pokemon e){
+    this.bonus=e.getBonus();
+    this.nivel=e.getNivel();
+    this.wl=e.getWl();
+    this.frame=e.getFrame();
     }
 
     @Override
