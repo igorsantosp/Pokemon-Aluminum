@@ -156,8 +156,8 @@ public class Choose extends javax.swing.JFrame {
         if (pidbutton.isSelected()) {
             p.setPoke( PokeData.getPoke(16));
         }
+        p.setId(1);
         GameMainFrame j = new GameMainFrame(p);
-       j.setData(p.getPoke(0));
         j.setVisible(true);
         this.dispose();
 // TODO add your handling code here:

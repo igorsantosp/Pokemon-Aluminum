@@ -87,7 +87,7 @@ public class Click extends javax.swing.JFrame {
     if(f.exists()){
     p2=co.read();
     GameMainFrame g = new GameMainFrame(p2);
-    g.setData(p2.getPoke(0));
+    g.setData();
     g.setVisible(true);
     }else{
     Choose c= new Choose();

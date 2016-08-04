@@ -6,6 +6,7 @@
 package GInterface;
 
 import PokemonAluminum.Personagem;
+import PokemonAluminum.PokeData;
 import PokemonAluminum.Pokemon;
 import javax.swing.ImageIcon;
 
@@ -21,6 +22,7 @@ Personagem p;
      */
     public PokePanel() {
         initComponents();
+    evolveButton.setVisible(false);
     }
 
     /**
@@ -40,6 +42,7 @@ Personagem p;
         jPanel1 = new javax.swing.JPanel();
         PokeAvatar = new javax.swing.JLabel();
         jButton1 = new javax.swing.JButton();
+        evolveButton = new javax.swing.JButton();
 
         setBackground(new java.awt.Color(204, 204, 204));
         setBorder(javax.swing.BorderFactory.createEtchedBorder());
@@ -71,6 +74,13 @@ Personagem p;
             }
         });
 
+        evolveButton.setText("Evolve");
+        evolveButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                evolveButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -90,6 +100,8 @@ Personagem p;
                                 .addComponent(Element, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addComponent(PokeDat))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                        .addComponent(evolveButton)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jButton1)
                         .addContainerGap())))
         );
@@ -112,7 +124,9 @@ Personagem p;
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
                                 .addContainerGap()
-                                .addComponent(jButton1)
+                                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                                    .addComponent(jButton1)
+                                    .addComponent(evolveButton))
                                 .addGap(32, 32, 32)))
                         .addComponent(PokeXp, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
@@ -124,6 +138,24 @@ PokeInfo inf=new PokeInfo(p,e);
 inf.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void evolveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_evolveButtonActionPerformed
+       if(e.getFrame().map!=null){
+        e.getFrame().map.dispose();
+        }
+        p.setPoke(PokeData.getPoke(e.getEvolutionID()), 0);
+        p.getPoke(0).getOldStatus(e);
+        e=p.getPoke(0);
+        e.reset();
+        this.setPokeData(e);
+        e.getFrame().c=e;
+            PokeAvatar.setIcon(new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\pokegif\\" + e.getId() + ".gif", ""));
+            evolveButton.setVisible(false);
+            if(p.getPoke(0).getEvolutionID()==0){
+                p.getPoke(0).setEvolution(false);
+            }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_evolveButtonActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel Element;
@@ -131,6 +163,7 @@ inf.setVisible(true);// TODO add your handling code here:
     private javax.swing.JLabel PokeDat;
     private javax.swing.JLabel PokeElement;
     private javax.swing.JProgressBar PokeXp;
+    private javax.swing.JButton evolveButton;
     private javax.swing.JButton jButton1;
     private javax.swing.JPanel jPanel1;
     // End of variables declaration//GEN-END:variables
@@ -140,5 +173,7 @@ this.PokeAvatar.setIcon(new ImageIcon(System.getProperty("user.dir") + "\\src\\i
 this.PokeDat.setText(e.getNome()+"   Lv:"+e.getNivel());
 this.Element.setIcon(new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\types\\" + e.getElemento() + ".png",""));
 this.PokeXp.setValue((int)100*e.getXp()/e.getXpNext());
+       if(e.isEvolution()){
+            evolveButton.setVisible(true);}
 }
 }

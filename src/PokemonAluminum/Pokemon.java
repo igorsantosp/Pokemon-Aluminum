@@ -246,7 +246,7 @@ public class Pokemon extends Monstro implements Serializable {
 
     @Override
     public void atualizaCampo() {
-        this.frame.setData(this);
+        this.frame.setData();
     }
 
 }

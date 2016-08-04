@@ -63,7 +63,6 @@ ImageIcon icon;
         jLabel10 = new javax.swing.JLabel();
         jPanel16 = new javax.swing.JPanel();
         avatar = new javax.swing.JLabel();
-        evolveButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
@@ -117,13 +116,6 @@ ImageIcon icon;
         avatar.setIcon(new javax.swing.ImageIcon(getClass().getResource("/icons/pokegif/0.png"))); // NOI18N
         jPanel16.add(avatar, new java.awt.GridBagConstraints());
 
-        evolveButton.setText("Evoluir");
-        evolveButton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                evolveButtonActionPerformed(evt);
-            }
-        });
-
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -163,21 +155,14 @@ ImageIcon icon;
                     .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                         .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(jLabel5)
-                            .addComponent(evolveButton))
-                        .addGap(175, 175, 175))))
+                        .addComponent(jLabel5)
+                        .addGap(176, 176, 176))))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addContainerGap()
-                        .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE))
-                    .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(42, 42, 42)
-                        .addComponent(evolveButton)))
+                .addContainerGap()
+                .addComponent(jPanel16, javax.swing.GroupLayout.PREFERRED_SIZE, 96, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 37, Short.MAX_VALUE)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                     .addComponent(jLabel1)
@@ -245,22 +230,6 @@ ImageIcon icon;
         // TODO add your handling code here:
     }//GEN-LAST:event_nvTextFieldActionPerformed
 
-    private void evolveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_evolveButtonActionPerformed
-
-        p.setPoke(PokeData.getPoke(c.getEvolutionID()), 0);
-        p.getPoke(0).getOldStatus(c);
-        c=p.getPoke(0);
-        c.reset();
-        this.setData(c);
-        icon = new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\pokegif\\" + c.getId() + ".gif", "");
-            avatar.setIcon(icon);
-            evolveButton.setVisible(false);
-            if(p.getPoke(0).getEvolutionID()==0){
-                p.getPoke(0).setEvolution(false);
-            }
-            // TODO add your handling code here:
-    }//GEN-LAST:event_evolveButtonActionPerformed
-
     /**
      * @param args the command line arguments
      */
@@ -302,7 +271,6 @@ ImageIcon icon;
     private javax.swing.JTextField LifeTextField;
     private javax.swing.JTextField NameTextField;
     private javax.swing.JLabel avatar;
-    private javax.swing.JButton evolveButton;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel10;
     private javax.swing.JLabel jLabel3;
@@ -327,8 +295,7 @@ public void setData(Pokemon p) {
         LifeTextField.setText(String.valueOf(p.getLife()));
         typeTextField.setText(p.getElemento());
         winloseTextField.setText(String.valueOf(p.getWl()[0]) + " / " + String.valueOf(p.getWl()[1]));
-        if(p.isEvolution())
-            evolveButton.setVisible(true);
+ 
 }
 
 }
