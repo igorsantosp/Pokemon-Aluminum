@@ -51,10 +51,10 @@ private JLabel label;
         }        
             break;
         case 3:
-        if (ran>0.5){
+        if (ran>0){
         a.setText("Você ganhou:\n "+(mission+1)*5+" doláres e 15 de ataque");
         p.setAtaqueBonus(15);
-        p.setNivel(p.getNivel()+1);
+        p.setXp(400);
         p.reset();
         }else{
         a.setText("Você não encontrou nada");

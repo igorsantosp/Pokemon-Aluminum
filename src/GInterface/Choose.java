@@ -145,16 +145,16 @@ public class Choose extends javax.swing.JFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         if (bulbabutton.isSelected()) {
-            p.setPoke( data.getPoke(1));
+            p.setPoke( PokeData.getPoke(1));
         }
         if (charbutton.isSelected()) {
-            p.setPoke( data.getPoke(4));
+            p.setPoke( PokeData.getPoke(4));
         }
         if (sqbutton.isSelected()) {
-            p.setPoke( data.getPoke(7));
+            p.setPoke( PokeData.getPoke(7));
         }
         if (pidbutton.isSelected()) {
-            p.setPoke( data.getPoke(16));
+            p.setPoke( PokeData.getPoke(16));
         }
         GameMainFrame j = new GameMainFrame(p);
        j.setData(p.getPoke(0));

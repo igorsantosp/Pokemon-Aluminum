@@ -16,6 +16,7 @@ public class Pokemon extends Monstro implements Serializable {
 
     private String elemento, nome;
     private int nivel = 0, life, xp, ataque, defesa, lifeFixo, id, evolutionID,evolutionLevel;
+    private int xpNext=50;
     private boolean evolution=false;
     private int[] atrBase = new int[3];
     private int[] habilidades = new int[4];
@@ -53,6 +54,16 @@ public class Pokemon extends Monstro implements Serializable {
         this.reset();
     }
 
+    public int getXpNext() {
+        return xpNext;
+    }
+
+    public void setXpNext(int xpNext) {
+        this.xpNext = xpNext;
+    }
+
+    
+    
     public int getEvolutionID() {
         return evolutionID;
     }
@@ -153,7 +164,8 @@ public class Pokemon extends Monstro implements Serializable {
     }
 
     public void setXp(int xp) {
-        this.xp = xp;
+        if(xp>0)
+        this.xp = this.xp+xp;
     }
 
     public int getAtaque() {
@@ -209,13 +221,19 @@ public class Pokemon extends Monstro implements Serializable {
     
     @Override
     public void reset() {
-
+        while(this.xp>=this.xpNext){
+        this.nivel++;
+        this.xp=this.xp-this.xpNext;
+        this.xpNext=50+this.nivel*10;
+        }
         this.ataque = (int) (this.atrBase[0] + (this.atrBase[0] * 0.1 * this.nivel))+bonus[0];
         this.defesa = (int) (this.atrBase[1] + (this.atrBase[1] * 0.1 * this.nivel))+bonus[1];
         this.lifeFixo = (int) (this.atrBase[2] + (this.atrBase[2] * 0.1 * this.nivel))+bonus[2];
         this.life = (int) (this.atrBase[2] + (this.atrBase[2] * 0.1 * this.nivel));
-        if(this.nivel==this.evolutionLevel){
-        this.evolution=true;
+        if(this.nivel>=this.evolutionLevel && this.evolutionLevel>1){
+            this.evolution=true;
+        }else{
+        this.evolution=false;
         }
     }
     

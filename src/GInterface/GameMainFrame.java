@@ -42,15 +42,15 @@ public class GameMainFrame extends javax.swing.JFrame {
         c=p.getPoke(0);
         p.getPoke(0).setFrame(this);
         contr= new Controle();
+        System.out.println(p.getPoke(0).getEvolutionLevel());
         initComponents();
         jTabbedPane1.setEnabledAt(4, false);
-        evolveButton.setVisible(false);
         avatar.setText("");
         icon = new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\pokegif\\" + c.getId() + ".gif", "");
         avatar.setIcon(icon);
         Timer time = new Timer(1000, ativar);
         time.start();
-    
+        evolveButton.setVisible(false);
     }
 
     private GameMainFrame() {
@@ -71,7 +71,7 @@ public class GameMainFrame extends javax.swing.JFrame {
         jLabel1 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jProgressBar1 = new javax.swing.JProgressBar();
+        xpBar = new javax.swing.JProgressBar();
         jLabel6 = new javax.swing.JLabel();
         NameTextField = new javax.swing.JTextField();
         nvTextField = new javax.swing.JTextField();
@@ -183,7 +183,7 @@ public class GameMainFrame extends javax.swing.JFrame {
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jPanel1Layout.createSequentialGroup()
                 .addContainerGap()
-                .addComponent(jProgressBar1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addComponent(xpBar, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addContainerGap())
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createSequentialGroup()
                 .addGap(0, 0, Short.MAX_VALUE)
@@ -274,7 +274,7 @@ public class GameMainFrame extends javax.swing.JFrame {
                 .addGap(43, 43, 43)
                 .addComponent(jLabel5)
                 .addGap(2, 2, 2)
-                .addComponent(jProgressBar1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(xpBar, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addGap(4, 4, 4))
         );
 
@@ -521,7 +521,7 @@ public class GameMainFrame extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int[] pokeID= {1,4,7,14};
         float[] perc={0.1f,0.03f,0.03f,0.02f};
-        map = new Map(new BackgroundMap(1),pokeID,perc);
+        map = new Map(1,new BackgroundMap(1),pokeID,perc);
         map.a = c;
         map.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -529,7 +529,7 @@ public class GameMainFrame extends javax.swing.JFrame {
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         int[] pokeID= {4,7,10,11};
         float[] perc={0.05f,0.02f,0.1f,0.02f};
-        map = new Map(new BackgroundMap(2),pokeID,perc);
+        map = new Map(5,new BackgroundMap(2),pokeID,perc);
         map.a = c;
         map.setVisible(true); // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
@@ -537,7 +537,7 @@ public class GameMainFrame extends javax.swing.JFrame {
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         int[] pokeID= {7,10,13,16};
         float[] perc={0.02f,0.02f,0.02f,0.15f};
-        map = new Map(new BackgroundMap(3),pokeID,perc);
+        map = new Map(10,new BackgroundMap(3),pokeID,perc);
         map.a = c;
         map.setVisible(true);  // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
@@ -555,7 +555,7 @@ if(!activate){
   if(MissaoComboBox.getSelectedIndex()==2){
     tempoRestanteLabel.setText("00:00:10");}
   if(MissaoComboBox.getSelectedIndex()==3){
-    tempoRestanteLabel.setText("00:00:10");}
+    tempoRestanteLabel.setText("00:00:5");}
 mi.setMission(MissaoComboBox.getSelectedIndex());
   activate=true;
 }
@@ -569,11 +569,12 @@ tempoRestanteLabel.setText("00:00:00");// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        contr.save(p);
+        contr.save(p,this);
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void evolveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_evolveButtonActionPerformed
-
+        if(this.map != null){
+        this.map.dispose();}
         p.setPoke(PokeData.getPoke(c.getEvolutionID()), 0);
         p.getPoke(0).getOldStatus(c);
         c=p.getPoke(0);
@@ -582,6 +583,9 @@ tempoRestanteLabel.setText("00:00:00");// TODO add your handling code here:
         icon = new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\pokegif\\" + c.getId() + ".gif", "");
         avatar.setIcon(icon);
         evolveButton.setVisible(false);
+        if(p.getPoke(0).getEvolutionID()==0){
+        p.getPoke(0).setEvolution(false);
+        }
 // TODO add your handling code here:
     }//GEN-LAST:event_evolveButtonActionPerformed
 
@@ -654,7 +658,6 @@ tempoRestanteLabel.setText("00:00:00");// TODO add your handling code here:
     private javax.swing.JPanel jPanel7;
     private javax.swing.JPanel jPanel8;
     private javax.swing.JPanel jPanel9;
-    private javax.swing.JProgressBar jProgressBar1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTabbedPane jTabbedPane1;
     private javax.swing.JTabbedPane jTabbedPane2;
@@ -664,8 +667,10 @@ tempoRestanteLabel.setText("00:00:00");// TODO add your handling code here:
     private javax.swing.JLabel tempoRestanteLabel;
     private javax.swing.JTextField typeTextField;
     private javax.swing.JTextField winloseTextField;
+    private javax.swing.JProgressBar xpBar;
     // End of variables declaration//GEN-END:variables
 public void setData(Pokemon p) {
+        xpBar.setValue((int)100*p.getXp()/p.getXpNext());
         NameTextField.setText(p.getNome());
         nvTextField.setText(String.valueOf(p.getNivel()));
         AtTextField.setText(String.valueOf(p.getAtaque()));

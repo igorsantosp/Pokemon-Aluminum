@@ -248,10 +248,10 @@ public void setEvent(String s) {
             a.atualizaCampo();
             this.dispose();
         } else if (b.getLife() <= 0) {
-            a.setNivel(a.getNivel() + 1);
-            JOptionPane.showMessageDialog(null, "Você Venceu!\n Seu " + a.getNome() + " Upou! Está agora nivel " + a.getNivel());
+            a.setXp(a.getXpNext()+(int)(((double)b.getNivel()-a.getNivel())*(a.getXpNext()*0.3)));
             a.setWin(a.getWl()[0] + 1);
             a.reset();
+            JOptionPane.showMessageDialog(null, "Você Venceu!\n Seu " + a.getNome() + " Está nivel " + a.getNivel());
             b.reset();
             a.atualizaCampo();
             this.dispose();

@@ -31,11 +31,13 @@ public class Map extends javax.swing.JFrame {
   PokeData data = new PokeData();
   float[] chance,perc;
   int[] pokeID;
+  int lvBase;
     /**
      * Creates new form Map
      */
     @SuppressWarnings("empty-statement")
-    public Map(BackgroundMap m,int[] pokeID, float[] perc) {
+    public Map(int lvBase,BackgroundMap m,int[] pokeID, float[] perc) {
+        this.lvBase=lvBase;
         this.pokeID=pokeID;
         this.perc=perc;
         chance= new float[perc.length+1];
@@ -326,8 +328,9 @@ personagem.repaint();    }//GEN-LAST:event_rightButtonActionPerformed
     for(int count=0;count<chance.length-1;count++){
 
 	if (random>=chance[count] && random<chance[count+1]){
-	headerEvento.setText(".!:.!:.Monstro encontrado:.!.:!.");
 	b=data.getPoke(pokeID[count]);
+        b.setNivel((int)(lvBase+Math.random()*6));
+        headerEvento.setText(b.getNome()+" Lv "+b.getNivel()+" encontrado!");
 	monst=new ImageIcon(file.toString()+"\\"+pokeID[count]+".png");
 	monsterimg.setIcon(monst);
 	fightbutton.setVisible(true);

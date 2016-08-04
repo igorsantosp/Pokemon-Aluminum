@@ -5,6 +5,7 @@
  */
 package PokemonAluminum;
 
+import GInterface.GameMainFrame;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileNotFoundException;
@@ -38,12 +39,14 @@ try{
     
 }
 
-public void save(Personagem p){
+public void save(Personagem p, GameMainFrame f){
   try{
         FileOutputStream out = new FileOutputStream(System.getProperty("user.dir")+"\\user.dat");
         ObjectOutputStream obout= new ObjectOutputStream(out);
         p.getPoke(0).setFrame(null);
-        obout.writeObject(p);} 
+        obout.writeObject(p);
+        p.getPoke(0).setFrame(f);
+  } 
   catch (FileNotFoundException ex) {
             Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);
         } catch (IOException ex) {
