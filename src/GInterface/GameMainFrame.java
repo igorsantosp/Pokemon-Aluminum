@@ -50,8 +50,9 @@ public class GameMainFrame extends javax.swing.JFrame {
            panels[i].p=p;
            panels[i].setPokeData(p.getPoke(i));
            jPanel2.add(panels[i]);
-           
        }
+        idLabel.setText("ID: "+p.getId());
+        this.setData();
         icon = new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\mugshot\\" + p.getId() + ".png", "");
         avatar.setIcon(icon);
         Timer time = new Timer(1000, ativar);
@@ -76,18 +77,14 @@ public class GameMainFrame extends javax.swing.JFrame {
         jPanel1 = new javax.swing.JPanel();
         jPanel2 = new javax.swing.JPanel();
         jButton5 = new javax.swing.JButton();
-        jPanel3 = new javax.swing.JPanel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
-        jLabel9 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
         jPanel4 = new javax.swing.JPanel();
         avatar = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
-        jLabel3 = new javax.swing.JLabel();
+        silverLabel = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         saveButton = new javax.swing.JButton();
-        jLabel4 = new javax.swing.JLabel();
+        idLabel = new javax.swing.JLabel();
+        jButton6 = new javax.swing.JButton();
         AventuraPanel = new javax.swing.JPanel();
         jButton3 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
@@ -126,46 +123,6 @@ public class GameMainFrame extends javax.swing.JFrame {
 
         jButton5.setText("Mudar o Time");
 
-        jPanel3.setBackground(new java.awt.Color(204, 204, 204));
-        jPanel3.setForeground(new java.awt.Color(204, 204, 204));
-
-        jLabel7.setIcon(new javax.swing.ImageIcon("C:\\Users\\Igor\\Desktop\\PokeDats\\Itens\\heal\\antidote.png")); // NOI18N
-        jLabel7.setText("Antidote");
-
-        jLabel8.setIcon(new javax.swing.ImageIcon("C:\\Users\\Igor\\Desktop\\PokeDats\\Itens\\heal\\hyperpotion.png")); // NOI18N
-        jLabel8.setText("HyperPotion");
-
-        jLabel9.setIcon(new javax.swing.ImageIcon("C:\\Users\\Igor\\Desktop\\PokeDats\\Itens\\ball\\pokeball.png")); // NOI18N
-        jLabel9.setText("PokeBall");
-
-        javax.swing.GroupLayout jPanel3Layout = new javax.swing.GroupLayout(jPanel3);
-        jPanel3.setLayout(jPanel3Layout);
-        jPanel3Layout.setHorizontalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jLabel7)
-                .addGap(36, 36, 36)
-                .addComponent(jLabel8)
-                .addGap(33, 33, 33)
-                .addComponent(jLabel9)
-                .addContainerGap(204, Short.MAX_VALUE))
-        );
-        jPanel3Layout.setVerticalGroup(
-            jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jPanel3Layout.createSequentialGroup()
-                .addContainerGap()
-                .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel7)
-                    .addComponent(jLabel8)
-                    .addComponent(jLabel9))
-                .addContainerGap(31, Short.MAX_VALUE))
-        );
-
-        jLabel6.setFont(new java.awt.Font("MS Gothic", 1, 14)); // NOI18N
-        jLabel6.setForeground(new java.awt.Color(153, 153, 153));
-        jLabel6.setText("Inventário");
-
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setForeground(new java.awt.Color(255, 255, 255));
 
@@ -193,7 +150,7 @@ public class GameMainFrame extends javax.swing.JFrame {
         jLabel5.setForeground(new java.awt.Color(153, 153, 153));
         jLabel5.setText("Time Atual");
 
-        jLabel3.setText("Silver: xxx.xx$");
+        silverLabel.setText("Silver: xxx.xx$");
 
         jLabel2.setText("Nome do personagem");
 
@@ -204,7 +161,16 @@ public class GameMainFrame extends javax.swing.JFrame {
             }
         });
 
-        jLabel4.setText("ID:xxx");
+        idLabel.setText("ID:xxx");
+
+        jButton6.setFont(new java.awt.Font("MS Gothic", 1, 18)); // NOI18N
+        jButton6.setForeground(new java.awt.Color(102, 102, 102));
+        jButton6.setText("Inventário");
+        jButton6.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton6ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -216,7 +182,6 @@ public class GameMainFrame extends javax.swing.JFrame {
                         .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, 420, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jButton5))
-                    .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addContainerGap()
                         .addComponent(jPanel4, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -224,18 +189,15 @@ public class GameMainFrame extends javax.swing.JFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                             .addComponent(jLabel5)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                                .addComponent(jLabel3)
+                                .addComponent(silverLabel)
                                 .addComponent(jLabel2)))
+                        .addGap(88, 88, 88)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addGap(88, 88, 88)
-                                .addComponent(saveButton))
-                            .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jLabel4))))
+                            .addComponent(saveButton)
+                            .addComponent(idLabel)))
                     .addGroup(jPanel1Layout.createSequentialGroup()
-                        .addGap(198, 198, 198)
-                        .addComponent(jLabel6)))
+                        .addGap(168, 168, 168)
+                        .addComponent(jButton6)))
                 .addContainerGap())
         );
         jPanel1Layout.setVerticalGroup(
@@ -245,11 +207,11 @@ public class GameMainFrame extends javax.swing.JFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel4)
+                            .addComponent(idLabel)
                             .addComponent(jLabel2))
                         .addGap(6, 6, 6)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel3)
+                            .addComponent(silverLabel)
                             .addComponent(saveButton))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                         .addComponent(jLabel5))
@@ -259,10 +221,8 @@ public class GameMainFrame extends javax.swing.JFrame {
                     .addComponent(jPanel2, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.PREFERRED_SIZE, 480, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton5, javax.swing.GroupLayout.Alignment.TRAILING))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jLabel6)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                .addComponent(jPanel3, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(22, Short.MAX_VALUE))
+                .addComponent(jButton6)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Principal", jPanel1);
@@ -309,7 +269,7 @@ public class GameMainFrame extends javax.swing.JFrame {
                     .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jButton4, javax.swing.GroupLayout.PREFERRED_SIZE, 90, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(534, Short.MAX_VALUE))
+                .addContainerGap(464, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Aventura", AventuraPanel);
@@ -322,7 +282,7 @@ public class GameMainFrame extends javax.swing.JFrame {
         );
         jPanel6Layout.setVerticalGroup(
             jPanel6Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 691, Short.MAX_VALUE)
+            .addGap(0, 621, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("PokeDex", jPanel6);
@@ -335,7 +295,7 @@ public class GameMainFrame extends javax.swing.JFrame {
         );
         jPanel7Layout.setVerticalGroup(
             jPanel7Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 691, Short.MAX_VALUE)
+            .addGap(0, 621, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Potion", jPanel7);
@@ -348,7 +308,7 @@ public class GameMainFrame extends javax.swing.JFrame {
         );
         jPanel8Layout.setVerticalGroup(
             jPanel8Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 691, Short.MAX_VALUE)
+            .addGap(0, 621, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Stone", jPanel8);
@@ -361,7 +321,7 @@ public class GameMainFrame extends javax.swing.JFrame {
         );
         jPanel9Layout.setVerticalGroup(
             jPanel9Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 691, Short.MAX_VALUE)
+            .addGap(0, 621, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Pokeball", jPanel9);
@@ -374,7 +334,7 @@ public class GameMainFrame extends javax.swing.JFrame {
         );
         jPanel10Layout.setVerticalGroup(
             jPanel10Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 691, Short.MAX_VALUE)
+            .addGap(0, 621, Short.MAX_VALUE)
         );
 
         jTabbedPane2.addTab("Item", jPanel10);
@@ -383,7 +343,7 @@ public class GameMainFrame extends javax.swing.JFrame {
         LojaPanel.setLayout(LojaPanelLayout);
         LojaPanelLayout.setHorizontalGroup(
             LojaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jTabbedPane2, javax.swing.GroupLayout.DEFAULT_SIZE, 545, Short.MAX_VALUE)
+            .addComponent(jTabbedPane2)
         );
         LojaPanelLayout.setVerticalGroup(
             LojaPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -466,7 +426,7 @@ public class GameMainFrame extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(tempoRestanteLabel))
                     .addComponent(jButton1))
-                .addContainerGap(496, Short.MAX_VALUE))
+                .addContainerGap(426, Short.MAX_VALUE))
         );
 
         jTabbedPane1.addTab("Missão", MissaoPanel);
@@ -479,7 +439,7 @@ public class GameMainFrame extends javax.swing.JFrame {
         );
         GymPanelLayout.setVerticalGroup(
             GymPanelLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 717, Short.MAX_VALUE)
+            .addGap(0, 647, Short.MAX_VALUE)
         );
 
         jTabbedPane1.addTab("Ginásios", GymPanel);
@@ -502,7 +462,7 @@ public class GameMainFrame extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int[] pokeID= {1,4,7,14};
         float[] perc={0.1f,0.03f,0.03f,0.02f};
-        map = new Map(1,new BackgroundMap(1),pokeID,perc);
+        map = new Map(1,new BackgroundMap(6),pokeID,perc);
         map.a = c;
         map.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
@@ -526,11 +486,11 @@ public class GameMainFrame extends javax.swing.JFrame {
     private void missionButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_missionButtonActionPerformed
 if(!activate){ 
   if(MissaoComboBox.getSelectedIndex()==0){
-    tempoRestanteLabel.setText("00:00:10");}
+    tempoRestanteLabel.setText("00:00:5");}
   if(MissaoComboBox.getSelectedIndex()==1){
-    tempoRestanteLabel.setText("00:00:10");}
+    tempoRestanteLabel.setText("00:00:5");}
   if(MissaoComboBox.getSelectedIndex()==2){
-    tempoRestanteLabel.setText("00:00:10");}
+    tempoRestanteLabel.setText("00:00:5");}
   if(MissaoComboBox.getSelectedIndex()==3){
     tempoRestanteLabel.setText("00:00:5");}
 mi.setMission(MissaoComboBox.getSelectedIndex());
@@ -546,8 +506,14 @@ tempoRestanteLabel.setText("00:00:00");// TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void saveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_saveButtonActionPerformed
-        // contr.save(p,this);
+contr = new Controle();
+contr.save(p, this);// contr.save(p,this);
     }//GEN-LAST:event_saveButtonActionPerformed
+
+    private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
+Inventory inv= new Inventory(p);
+inv.setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_jButton6ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -591,25 +557,20 @@ tempoRestanteLabel.setText("00:00:00");// TODO add your handling code here:
     private javax.swing.JComboBox<String> MissaoComboBox;
     private javax.swing.JPanel MissaoPanel;
     private javax.swing.JLabel avatar;
+    private javax.swing.JLabel idLabel;
     private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
+    private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
     private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
-    private javax.swing.JLabel jLabel9;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
     private javax.swing.JPanel jPanel2;
-    private javax.swing.JPanel jPanel3;
     private javax.swing.JPanel jPanel4;
     private javax.swing.JPanel jPanel6;
     private javax.swing.JPanel jPanel7;
@@ -621,6 +582,7 @@ tempoRestanteLabel.setText("00:00:00");// TODO add your handling code here:
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JButton missionButton;
     private javax.swing.JButton saveButton;
+    private javax.swing.JLabel silverLabel;
     private javax.swing.JLabel tempoRestanteLabel;
     // End of variables declaration//GEN-END:variables
 /*public void setData(Pokemon p) {
@@ -637,7 +599,8 @@ tempoRestanteLabel.setText("00:00:00");// TODO add your handling code here:
 }*/
 
     public void setData(){
-    for(int count=0;panels[count]!=null;count++){
+        silverLabel.setText("Silver: "+p.getSilver()+"$");
+        for(int count=0;panels[count]!=null;count++){
     panels[count].setPokeData(p.getPoke(count));
     
     }
@@ -655,7 +618,7 @@ void attclock() {
     if(hh==0){
     JOptionPane.showMessageDialog(null,"Missão concluída!");
     activate=false;
-    mi.calculaResultado(jTextArea2,c);
+    mi.calculaResultado(jTextArea2,p);
     this.setData();
     }else{
     hh=hh-1;

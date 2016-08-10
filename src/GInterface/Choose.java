@@ -6,11 +6,14 @@
  */
 package GInterface;
 
+import PokemonAluminum.ItemData;
 import PokemonAluminum.Personagem;
 import PokemonAluminum.PokeData;
 import PokemonAluminum.Pokemon;
 import static javax.swing.BorderFactory.createRaisedBevelBorder;
 import javax.swing.ImageIcon;
+import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 import javax.swing.border.Border;
 
 /**
@@ -34,6 +37,7 @@ public class Choose extends javax.swing.JFrame {
         charbutton.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokegif\\4.gif"));
         sqbutton.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokegif\\7.gif"));
         pidbutton.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokegif\\16.gif"));
+        JOptionPane.showMessageDialog(this, "                                       Bem vindo ao Pokemon Aluminum! \nSua jornada começa agora! Selecione a seguir o seu pokemon inicial", "Laboratório do Professor Carvalho", INFORMATION_MESSAGE, new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\mugshot\\oak.png",""));
     }
 
     /**
@@ -157,6 +161,23 @@ public class Choose extends javax.swing.JFrame {
             p.setPoke( PokeData.getPoke(16));
         }
         p.setId(1);
+        p.setSilver(1000);
+        p.addNewItem(ItemData.getItem(1));
+        p.addNewItem(ItemData.getItem(1));
+        p.addNewItem(ItemData.getItem(1));
+        p.addNewItem(ItemData.getItem(7));
+        p.addNewItem(ItemData.getItem(2));
+        p.addNewItem(ItemData.getItem(3));
+        p.addNewItem(ItemData.getItem(3));
+        p.addNewItem(ItemData.getItem(4));
+        p.addNewItem(ItemData.getItem(5));
+        p.addNewItem(ItemData.getItem(5));
+        p.addNewItem(ItemData.getItem(6));
+        p.addNewItem(ItemData.getItem(6));
+        p.addNewItem(ItemData.getItem(6));
+        p.addNewItem(ItemData.getItem(6));
+        p.addNewItem(ItemData.getItem(6));
+        p.addNewItem(ItemData.getItem(8));
         GameMainFrame j = new GameMainFrame(p);
         j.setVisible(true);
         this.dispose();

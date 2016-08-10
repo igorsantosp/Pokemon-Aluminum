@@ -14,14 +14,14 @@ import java.util.ArrayList;
  */
 public class Personagem implements java.io.Serializable, java.lang.Cloneable{
 private ArrayList <Pokemon> pokes;
-private Pokemon[] mainteam = new Pokemon[4];
-private Item[] itens;
+private ArrayList<Item> itens;
 private int silver;
 private int id;
 private String nome;
 
 public Personagem(){
 pokes= new ArrayList();
+itens=new ArrayList();
 }
 
     public ArrayList<Pokemon> getPokes() {
@@ -43,22 +43,32 @@ pokes= new ArrayList();
     pokes.remove(i);
     pokes.add(i, e);
     }
-    
-    public Pokemon[] getMainteam() {
-        return mainteam;
-    }
 
-    public void setMainteam(Pokemon[] mainteam) {
-        this.mainteam = mainteam;
-    }
-
-    public Item[] getItens() {
+    public ArrayList<Item> getItens() {
         return itens;
     }
 
-    public void setItens(Item[] itens) {
+    public void setItens(ArrayList<Item> itens) {
         this.itens = itens;
     }
+    
+    
+    public Item getItem(int position) {
+        return itens.get(position);
+    }
+
+    public void addNewItem(Item i) {
+        if(this.itens.contains(i)){
+        this.itens.get(this.itens.indexOf(i)).add1();
+        }else{
+        this.itens.add(i);
+        }
+    }
+    public void addNewItem(int position,Item i) {
+        this.itens.add(position,i);
+    }
+    
+    
 
     public int getSilver() {
         return silver;

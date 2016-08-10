@@ -15,47 +15,51 @@ import javax.swing.JTextArea;
 public class Missao {
 private    int mission;
 private    boolean activate;
-private Pokemon p;
+private Personagem p;
 private JLabel label;
 
- public  void calculaResultado(JTextArea a, Pokemon p){
+ public  void calculaResultado(JTextArea a, Personagem p){
         this.p=p;
         double ran= Math.random();
         switch(mission){
         
         case 0:
-        if (ran>0.5){
+        if (ran>0.1){
         a.setText("Você ganhou: \n "+(mission+1)*5+" doláres e uma pokebola");
-        p.setNivel(p.getNivel()+1);
-        p.reset();
+        p.setSilver(p.getSilver()+(mission+1)*5);
+        p.getPoke(0).setXp(100);
+        p.getPoke(0).reset();
         }else{
         a.setText("Você não encontrou nada");
         }    
             
             break;
         case 1:
-        if (ran>0.5){
+        if (ran>0.1){
         a.setText("Você ganhou:\n "+(mission+1)*5+" doláres e uma greatball");
-        p.setNivel(p.getNivel()+1);
-        p.reset();
+        p.setSilver(p.getSilver()+(mission+1)*5);
+        p.getPoke(0).setXp(200);
+        p.getPoke(0).reset();
         }else{
         a.setText("Você não encontrou nada");
         }        
             break;
         case 2:
-        if (ran>0.5){
+        if (ran>0.1){
         a.setText("Você ganhou:\n "+(mission+1)*5+" doláres e uma masterball");
-        p.setNivel(p.getNivel()+1);
-        p.reset();}else{
+        p.setSilver(p.getSilver()+(mission+1)*5);
+        p.getPoke(0).setXp(300);
+        p.getPoke(0).reset();}else{
         a.setText("Você não encontrou nada");
         }        
             break;
         case 3:
-        if (ran>0){
+        if (ran>0.1){
         a.setText("Você ganhou:\n "+(mission+1)*5+" doláres e 15 de ataque");
-        p.setAtaqueBonus(15);
-        p.setXp(400);
-        p.reset();
+        p.setSilver(p.getSilver()+(mission+1)*5);
+        p.getPoke(0).setAtaqueBonus(15);
+        p.getPoke(0).setXp(400);
+        p.getPoke(0).reset();
         }else{
         a.setText("Você não encontrou nada");
         }        

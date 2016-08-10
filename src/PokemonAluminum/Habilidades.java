@@ -138,7 +138,7 @@ public class Habilidades {
     }
 
     public void brasa(Pokemon a, Pokemon b) {
-        dmg = (int) ((a.getAtaque() - b.getDefesa()) * 1.5);
+        dmg = (int) ((a.getAtaque() - b.getDefesa()) * 1.5*checkElement("Fogo",b.getElemento()));
         if (dmg > 0) {
             b.setLife(b.getLife() - dmg);
             f.setEvent(a.getNome() + " usou brasa com: " + dmg + " de dano\n");
@@ -149,7 +149,7 @@ public class Habilidades {
     }
 
     public void bolhas(Pokemon a, Pokemon b) {
-        dmg = (int) ((a.getAtaque() - b.getDefesa()) * 1.5);
+        dmg = (int) ((a.getAtaque() - b.getDefesa()) * 1.5*checkElement("Água",b.getElemento()));
         if (dmg > 0) {
             b.setLife(b.getLife() - dmg);
             f.setEvent(a.getNome() + " usou bolhas com: " + dmg + " de dano\n");
@@ -161,7 +161,7 @@ public class Habilidades {
 
     public void rajada(Pokemon a, Pokemon b) {
 
-        dmg = (int) ((a.getAtaque() - b.getDefesa()) * 1.5);
+        dmg = (int) ((a.getAtaque() - b.getDefesa()) * 1.5*checkElement("Voador",b.getElemento()));
         if (dmg > 0) {
             b.setLife(b.getLife() - dmg);
             f.setEvent(a.getNome() + " usou rajada com: " + dmg + " de dano\n");
@@ -173,7 +173,7 @@ public class Habilidades {
 
     public void folhaNavalha(Pokemon a, Pokemon b) {
 
-        dmg = (int) ((a.getAtaque() - b.getDefesa()) * 1.5);
+        dmg = (int) ((a.getAtaque() - b.getDefesa()) * 1.5*checkElement("Planta",b.getElemento()));
         if (dmg > 0) {
             b.setLife(b.getLife() - dmg);
             f.setEvent(a.getNome() + " usou folha navalha com: " + dmg + " de dano\n");
@@ -181,5 +181,21 @@ public class Habilidades {
         } else {
             f.setEvent(a.getNome() + " usou folha navalha, e falhou!\n");
         }
+    }
+    
+    public float checkElement(String a, String b){
+    if(a.equals("Fogo") && b.equals("Planta")){
+    return 2;
+    }
+    if(a.equals("Planta") && b.equals("Água")){
+    return 2;
+    }    
+    if(a.equals("Água") && b.equals("Fogo")){
+    return 2;
+    }
+    if(a.equals("Voador") && b.equals("Inseto")){
+    return 2;
+    }
+    return 1;
     }
 }

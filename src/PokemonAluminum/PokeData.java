@@ -16,24 +16,26 @@ public class PokeData {
     public PokeData() {
        
         Pokemon[] list = {
-        new Pokemon(1,"Bulbasaur",80,70,160,2,6,"Planta", 1,2,3,7),
-        new Pokemon(2,"Ivysaur",100,90,200,3,16,"Planta",1,2,3,7),
-        new Pokemon(3,"Venusaur",120,100,250,"Planta",1,2,3,7),
-        new Pokemon(4,"Charmander",100,50,140,5,6,"Fogo",1,2,3,4),
-        new Pokemon(5,"Charmeleon",120,60,170,6,16,"Fogo",1,2,3,4),
-        new Pokemon(6,"Charizard",150,70,180,"Fogo",1,2,3,4),
-        new Pokemon(7,"Squirtle",90,80,130,8,6,"Água",1,2,3,5),
-        new Pokemon(8,"Wartortle",110,100,150,9,16,"Água",1,2,3,5),
-        new Pokemon(9,"Blastoise",130,170,200,"Água",1,2,3,5),
-        new Pokemon(10,"Caterpie",40,30,150,11,6,"Inseto",1,2,3,7),
-        new Pokemon(11,"Metapod",50,90,160,12,16,"Inseto",1,2,3,7),
-        new Pokemon(12,"Butterfree",90,90,180,"Inseto",1,2,3,7),
-        new Pokemon(13,"Weedle",40,20,150,14,6,"Inseto",1,2,3,7),
-        new Pokemon(14,"Kakuna",50,90,160,15,16,"Inseto",1,2,3,7),
-        new Pokemon(15,"Beedrill",100,90,150,"Inseto",1,2,3,7),
-        new Pokemon(16,"Pidgey",70,50,140,17,6,"Voador",1,2,3,6),
-        new Pokemon(17,"Pidgeotto",90,70,160,18,16,"Voador",1,2,3,6),
-        new Pokemon(18,"Pidgeot",130,90,190,"Voador",1,2,3,6),        
+                 //ID, NOME    ,at,df,hp,evID,evLv,Tipo,[ID Habilidade];
+        new Pokemon(1,"Bulbasaur",45,40,75,2,6,"Planta", 1,11,3,7),
+        new Pokemon(2,"Ivysaur",55,45,100,3,16,"Planta/Venenoso",11,13,3,7),
+                  //ID, NOME    ,at,df,hp,,Tipo,[ID Habilidade];
+        new Pokemon(3,"Venusaur",75,65,110,"Planta/Venenoso",11,13,3,14),
+        new Pokemon(4,"Charmander",55,35,70,5,6,"Fogo",1,2,3,4),
+        new Pokemon(5,"Charmeleon",70,40,90,6,16,"Fogo",1,3,15,4),
+        new Pokemon(6,"Charizard",90,60,100,"Fogo/Voador",1,15,16,17),
+        new Pokemon(7,"Squirtle",50,45,65,8,6,"Água",1,2,3,5),
+        new Pokemon(8,"Wartortle",60,50,90,9,16,"Água",1,19,3,5),
+        new Pokemon(9,"Blastoise",75,70,105,"Água",1,19,20,5),
+        new Pokemon(10,"Caterpie",30,30,90,11,6,"Inseto",1,2,3,8),
+        new Pokemon(11,"Metapod",30,75,85,12,16,"Inseto",1,10,3,8),
+        new Pokemon(12,"Butterfree",55,75,90,"Inseto/Voador",1,11,12,8),
+        new Pokemon(13,"Weedle",30,30,90,14,6,"Inseto",1,2,10,8),
+        new Pokemon(14,"Kakuna",30,75,85,15,16,"Inseto",1,10,3,8),
+        new Pokemon(15,"Beedrill",60,70,90,"Inseto/Voador",1,2,3,9),
+        new Pokemon(16,"Pidgey",50,40,70,17,6,"Normal/Voador",1,2,3,6),
+        new Pokemon(17,"Pidgeotto",60,50,90,18,16,"Normal/Voador",1,17,3,6),
+        new Pokemon(18,"Pidgeot",80,70,100,"Normal/Voador",1,17,18,6),        
         };
         poke=list;
     }

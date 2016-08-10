@@ -12,12 +12,32 @@ import javax.swing.ImageIcon;
  * @author Igor
  */
 public class Item implements java.io.Serializable{
-private String nome;
-private String tipo;
-private int id;
-private ImageIcon icon;
-private int cost;
+private String name;
+private String type;
+private int id, cost,number=0;
 
+public Item(int id,String n,int cost){
+this.id=id;
+this.name=n;
+this.cost=cost;
+this.number=1;
+}
+    
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
+    }
+
+    public void add1(){
+        this.number+=+1;
+    }
+    public void addn(int i){
+        this.number+=+i;
+    }
     public int getCost() {
         return cost;
     }
@@ -27,29 +47,24 @@ private int cost;
     }
 
     public ImageIcon getIcon() {
-        return icon;
-    }
-
-    public void setIcon(ImageIcon icon) {
-        this.icon = icon;
+        return new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\items\\"+this.name+".png","");
     }
 
 
-
-    public String getNome() {
-        return nome;
+    public String getName() {
+        return name;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setName(String name) {
+        this.name = name;
     }
 
-    public String getTipo() {
-        return tipo;
+    public String getType() {
+        return type;
     }
 
-    public void setTipo(String tipo) {
-        this.tipo = tipo;
+    public void setType(String type) {
+        this.type = type;
     }
 
     public int getId() {

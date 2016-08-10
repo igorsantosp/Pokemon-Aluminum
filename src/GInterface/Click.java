@@ -7,7 +7,9 @@ package GInterface;
 
 
 import PokemonAluminum.Controle;
+import PokemonAluminum.ItemData;
 import PokemonAluminum.Personagem;
+import PokemonAluminum.SkillDataBase;
 import java.io.File;
 
 
@@ -25,6 +27,8 @@ public class Click extends javax.swing.JFrame {
         idLabel.setVisible(false);
         idTextField.setVisible(false);
         enterButton.setVisible(false);
+        SkillDataBase.criaSkillDatabase();
+        ItemData.CriaItens();
     }
 
     /**
@@ -81,6 +85,7 @@ public class Click extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+
     Personagem p2;
     Controle co = new Controle();
     File f = new File(System.getProperty("user.dir")+"\\user.dat");

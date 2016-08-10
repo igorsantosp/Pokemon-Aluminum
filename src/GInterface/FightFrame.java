@@ -5,6 +5,7 @@
  */
 package GInterface;
 
+import PokemonAluminum.Habil;
 import PokemonAluminum.Habilidades;
 import PokemonAluminum.Pokemon;
 import javax.swing.ImageIcon;
@@ -17,7 +18,7 @@ import javax.swing.JOptionPane;
 public class FightFrame extends javax.swing.JFrame {
 
     Pokemon a, b;
-    Habilidades h, h1;
+    //Habilidades h, h1;
 
     /**
      * Creates new form FightFrame
@@ -33,7 +34,9 @@ public class FightFrame extends javax.swing.JFrame {
         jTextArea1.setText("");
         lifead.setValue(100);
         lifepl.setValue(100);
-
+        for(int i=0;i<4;i++){
+        setHabils(a.getHabilidades()[i].getNome());
+        }
     }
 
     private FightFrame() {
@@ -137,21 +140,26 @@ public class FightFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void Skill1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Skill1ActionPerformed
-        Skill(0);
+        ataque(a,a.getHabilidades()[0],b);
+        ataque(b,b.getHabilidades()[(int)Math.round(Math.random()*3)],a);
         // TODO add your handling code here:
     }//GEN-LAST:event_Skill1ActionPerformed
 
     private void Skill2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Skill2ActionPerformed
-        Skill(1);// TODO add your handling code here:
+        ataque(a,a.getHabilidades()[1],b);
+        ataque(b,b.getHabilidades()[(int)Math.round(Math.random()*3)],a);
+// TODO add your handling code here:
     }//GEN-LAST:event_Skill2ActionPerformed
 
     private void Skill3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Skill3ActionPerformed
-        Skill(2);// TODO add your handling code here:
+        ataque(a,a.getHabilidades()[2],b);
+        ataque(b,b.getHabilidades()[(int)Math.round(Math.random()*3)],a);
+// TODO add your handling code here:
     }//GEN-LAST:event_Skill3ActionPerformed
 
     private void Skill4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Skill4ActionPerformed
-        Skill(3);
-
+        ataque(a,a.getHabilidades()[3],b);
+        ataque(b,b.getHabilidades()[(int)Math.round(Math.random()*3)],a);
 // TODO add your handling code here:
     }//GEN-LAST:event_Skill4ActionPerformed
 
@@ -211,7 +219,7 @@ public class FightFrame extends javax.swing.JFrame {
     private javax.swing.JPanel plPanel;
     // End of variables declaration//GEN-END:variables
 public void setEvent(String s) {
-        jTextArea1.setText(jTextArea1.getText() + s);
+        jTextArea1.setText(jTextArea1.getText() + s+"\n");
     }
 
     public void setHabils(String s) {
@@ -237,9 +245,9 @@ public void setEvent(String s) {
         }
     }
 
-    public void Skill(int i) {
+   /* public void Skill(int i) {
         h.usaSkill(a.getHabilidades()[i]);
-        h1.usaSkill(b.getHabilidades()[(int) (Math.random() * 3)]);
+        h1.usaSkill(b.getHabilidades()[(int)Math.round(int)Math.round(Math.random() * 3)]);
         if (a.getLife() <= 0) {
             JOptionPane.showMessageDialog(null, "Você morreu");
             a.setLose(a.getWl()[1] + 1);
@@ -248,7 +256,7 @@ public void setEvent(String s) {
             a.atualizaCampo();
             this.dispose();
         } else if (b.getLife() <= 0) {
-            a.setXp(a.getXpNext()+(int)(((double)b.getNivel()-a.getNivel())*(a.getXpNext()*0.3)));
+            a.setXp(a.getXpNext()+(int)Math.round(((double)b.getNivel()-a.getNivel())*(a.getXpNext()*0.3)));
             a.setWin(a.getWl()[0] + 1);
             a.reset();
             JOptionPane.showMessageDialog(null, "Você Venceu!\n Seu " + a.getNome() + " Está nivel " + a.getNivel());
@@ -256,6 +264,135 @@ public void setEvent(String s) {
             a.atualizaCampo();
             this.dispose();
         }
-    }
+    }*/
+    
+    public void ataque(Pokemon e1,Habil h, Pokemon e2) {
+    String evento="";
+    int dmg=0,debuffDmg=0;
+	if(e2.getTurnos()!=0){		
 
+		if(e2.getDebuff().equals("Poison")){
+                    debuffDmg=e2.getLife() - (int)Math.round(e2.getLifeFixo()*0.1);
+                    e2.setLife(debuffDmg);				
+                }
+
+		if(e2.getDebuff().equals("Burn")){
+		debuffDmg=e2.getLife() - (int)Math.round(e2.getLifeFixo()*0.1);
+                e2.setLife(debuffDmg);
+                }
+
+		if(e2.getDebuff().equals("Ataque-")){
+		e2.setAtaque(e2.getAtaque() - (int)Math.round(e2.getAtrBase()[0]*0.1));				
+		}
+		if(e2.getDebuff().equals("Defesa-")){
+		e2.setDefesa(e2.getDefesa() - (int)Math.round(e2.getAtrBase()[1]*0.1));				
+		}
+
+		e2.setTurnos(e2.getTurnos()-1);
+		if(e2.getTurnos()==0){
+		e2.setDebuff("");	
+		}
+		
+	}
+
+	if(! (e1.getDebuff().equals("Blindness") || e1.getDebuff().equals("Paralysis") || e1.getDebuff().equals("Stun") || e1.getDebuff().equals("Sleep")) ){
+	 evento+= e1.getNome()+" usou "+ h.getNome();
+	if(h.getTipo().contains("Ataque")){
+        dmg = Math.round ((e1.getAtaque() - e2.getDefesa()) * h.getMultiplicador()*checkElement(h.getElemento(),e2.getElemento()));
+	        if (dmg > 0) {
+        	    e2.setLife(e2.getLife() - dmg);
+            	if(checkElement(h.getElemento(),e2.getElemento())==2){
+			evento+=" \n e foi SUPER efetivo!";
+		}
+                       evento+=" com: " + dmg + " de dano";
+                       System.out.println("Ataque A:"+e1.getAtaque());
+                       System.out.println("Defesa B:"+e2.getDefesa());
+                       System.out.println("dmg:"+dmg);
+                       System.out.println("Dano pela função:"+(e1.getAtaque() - e2.getDefesa()) * h.getMultiplicador()*checkElement(h.getElemento(),e2.getElemento()));
+                       this.baixaLife(e1, (dmg * 100 / e2.getLifeFixo()));
+        	} else {
+            evento+= " e falhou!";
+        	}}
+		
+	if(h.getTipo().contains("Debuff")){
+		if(Math.random()<=h.getChance()){
+			e2.setDebuff(h.getEfeito());
+			e2.setTurnos(h.getTurnos());
+			evento+="\n"+e2.getNome()+" foi afetado por "+h.getEfeito();
+		}		
+		else{
+			evento+=", "+h.getEfeito()+" falhou";
+		}
+	}
+	
+		if(h.getTipo().contains("Buff")){
+			if(Math.random()<=h.getChance()){
+				if(h.getEfeito().equals("Ataque+")){
+				 e1.setAtaque((int)Math.round(e1.getAtaque()+e1.getAtrBase()[0]*h.getMultiplicador()));
+				 evento+="\n ataque aumentado com sucesso!";					
+				}
+				if(h.getEfeito().equals("Defesa+")){
+				 e1.setDefesa((int)Math.round(e1.getDefesa()+e1.getAtrBase()[1]*h.getMultiplicador()));
+				evento+="\n defesa aumentada com sucesso!";					
+				}
+				if(h.getEfeito().equals("Life+")){
+				 e1.setLife((int)Math.round(e1.getLife()+e1.getAtrBase()[2]*(h.getMultiplicador()-1)));
+				evento+=String.valueOf((int)Math.round(e1.getAtrBase()[2]*(h.getMultiplicador()-1)))+"\n de hp recuperados";					
+				}													
+			}	
+
+			else{
+			evento+=" efeito especial falhou";
+			}	
+		}
+
+	this.setEvent(evento);
+	attLifes();}
+else{
+	evento+="\n"+e1.getNome()+" Está afetado por "+e1.getDebuff()+" e perdeu a vez";
+	this.setEvent(evento);
+}
+        
+        if (this.a.getLife() <= 0) {
+            this.a.setLose();
+            JOptionPane.showMessageDialog(null, "Você morreu");
+            this.a.reset();
+            this.b.reset();
+            this.a.atualizaCampo();
+            this.dispose();
+        } else if (this.b.getLife() <= 0) {
+            this.a.setXp(e1.getXpNext()+(int)Math.round(((double)e2.getNivel()-e1.getNivel())*(e1.getXpNext()*0.3)));
+            this.a.setWin();
+            this.a.reset();
+            this.b.reset(); 
+            this.a.atualizaCampo();
+            JOptionPane.showMessageDialog(null, "Você Venceu!\n Seu " + e1.getNome() + " Está nivel " + e1.getNivel());
+            this.dispose();
+        }/*if(this.a.getLife() <= 0 || this.b.getLife() <= 0){
+            this.dispose();
+            this.a.reset();
+            e1.atualizaCampo();
+            this.b.reset();
+        }*/
+    }
+public void attLifes(){
+lifead.setValue((int)Math.round(b.getLife()*100/b.getLifeFixo()));
+lifepl.setValue((int)Math.round(a.getLife()*100/a.getLifeFixo()));
+}
+
+public float checkElement(String a, String b){
+    if(a.equals("Fogo") && b.equals("Planta")){
+    return 2;
+    }
+    if(a.equals("Planta") && b.equals("Água")){
+    return 2;
+    }    
+    if(a.equals("Água") && b.equals("Fogo")){
+    return 2;
+    }
+    if(a.equals("Voador") && b.equals("Inseto")){
+    return 2;
+    }
+    return 1;
+    }
 }

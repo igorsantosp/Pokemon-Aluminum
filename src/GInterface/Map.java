@@ -150,7 +150,7 @@ public class Map extends javax.swing.JFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addComponent(eventoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 65, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 77, Short.MAX_VALUE)
                 .addComponent(leftButton)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
@@ -164,7 +164,7 @@ public class Map extends javax.swing.JFrame {
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(bg, javax.swing.GroupLayout.PREFERRED_SIZE, 300, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addComponent(bg, javax.swing.GroupLayout.DEFAULT_SIZE, 345, Short.MAX_VALUE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(layout.createSequentialGroup()
@@ -175,7 +175,7 @@ public class Map extends javax.swing.JFrame {
                             .addComponent(leftButton)
                             .addComponent(rightButton)))
                     .addComponent(eventoPanel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                .addContainerGap())
         );
 
         pack();
@@ -257,17 +257,14 @@ personagem.repaint();    }//GEN-LAST:event_rightButtonActionPerformed
     }//GEN-LAST:event_leaveButtonActionPerformed
 
     private void fightbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fightbuttonActionPerformed
-
+        b.reset();
         f1= new FightFrame(a, b);
-        h= new Habilidades(f1);
+       /* h= new Habilidades(f1);
         h1= new Habilidades(f1);
         h.setAd(b);
         h.setPl(a);
         h1.setAd(a);
-        h1.setPl(b);
-        f1.h=h;
-        f1.h1=h1;
-        h.setButtonsName(a.getHabilidades());
+        h1.setPl(b);*/
         f1.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_fightbuttonActionPerformed
 

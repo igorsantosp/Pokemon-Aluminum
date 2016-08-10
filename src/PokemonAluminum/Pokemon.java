@@ -14,16 +14,16 @@ import java.io.Serializable;
  */
 public class Pokemon extends Monstro implements Serializable {
 
-    private String elemento, nome;
+    private String elemento, nome,debuff="";
     private int nivel = 0, life, xp, ataque, defesa, lifeFixo, id, evolutionID,evolutionLevel;
-    private int xpNext=50;
+    private int xpNext=50,turnos;
     private boolean evolution=false;
     private int[] atrBase = new int[3];
-    private int[] habilidades = new int[4];
+    private Habil[] habilidades = new Habil[4];
     private int[] wl = new int[2];
     private GameMainFrame frame;
     private int[] bonus= new int[3];
-    
+    SkillDataBase Skills= new SkillDataBase();
     public Pokemon(){
     
     }
@@ -32,10 +32,12 @@ public class Pokemon extends Monstro implements Serializable {
         this.id=id;
         this.nome=name;
         this.atrBase[0]=atq;
-        this.atrBase[1]=def;
-        this.atrBase[2]=hp; 
-        this.lifeFixo=hp;
-        System.arraycopy(habil, 0, this.habilidades, 0, habil.length);
+        this.atrBase[1]=Math.round(def*1.2f);
+        this.atrBase[2]=Math.round(hp*1.5f);; 
+        this.lifeFixo=this.atrBase[2];
+        for(int i=0;i<habil.length;i++){
+        this.habilidades[i]=Skills.getHabilidade(habil[i]);
+        }
         this.elemento=element;
         this.reset();
     }
@@ -46,10 +48,12 @@ public class Pokemon extends Monstro implements Serializable {
         this.evolutionID=idEv;
         this.evolutionLevel=lvEv;
         this.atrBase[0]=atq;
-        this.atrBase[1]=def;
-        this.atrBase[2]=hp; 
-        this.lifeFixo=hp;
-        System.arraycopy(habil, 0, this.habilidades, 0, habil.length);
+        this.atrBase[1]=Math.round(def*1.2f);
+        this.atrBase[2]=Math.round(hp*1.5f);; 
+        this.lifeFixo=this.atrBase[2];
+        for(int i=0;i<habil.length;i++){
+        this.habilidades[i]=Skills.getHabilidade(habil[i]);
+        }
         this.elemento=element;
         this.reset();
     }
@@ -87,8 +91,22 @@ public class Pokemon extends Monstro implements Serializable {
     public void setEvolution(boolean evolution) {
         this.evolution = evolution;
     }
-    
-    
+
+    public String getDebuff() {
+        return debuff;
+    }
+
+    public void setDebuff(String debuff) {
+        this.debuff = debuff;
+    }
+
+    public int getTurnos() {
+        return turnos;
+    }
+
+    public void setTurnos(int turnos) {
+        this.turnos = turnos;
+    }
     
     
     public GameMainFrame getFrame() {
@@ -103,12 +121,12 @@ public class Pokemon extends Monstro implements Serializable {
         return wl;
     }
 
-    public void setWin(int w) {
-        this.wl[0] = w;
+    public void setWin() {
+        this.wl[0] += 1;
     }
 
-    public void setLose(int l) {
-        this.wl[1] = l;
+    public void setLose() {
+        this.wl[1] += 1;
     }
 
     public int getId() {
@@ -192,11 +210,11 @@ public class Pokemon extends Monstro implements Serializable {
         this.nome = nome;
     }
 
-    public int[] getHabilidades() {
+    public Habil[] getHabilidades() {
         return habilidades;
     }
 
-    public void setHabilidades(int[] habilidades) {
+    public void setHabilidades(Habil[] habilidades) {
         this.habilidades = habilidades;
     }
     public void setAtaqueBonus(int i){
@@ -226,9 +244,9 @@ public class Pokemon extends Monstro implements Serializable {
         this.xp=this.xp-this.xpNext;
         this.xpNext=50+this.nivel*10;
         }
-        this.ataque = (int) (this.atrBase[0] + (this.atrBase[0] * 0.1 * this.nivel))+bonus[0];
-        this.defesa = (int) (this.atrBase[1] + (this.atrBase[1] * 0.1 * this.nivel))+bonus[1];
-        this.lifeFixo = (int) (this.atrBase[2] + (this.atrBase[2] * 0.1 * this.nivel))+bonus[2];
+        this.ataque = (int) (this.atrBase[0] + (this.atrBase[0] * 0.05 * this.nivel))+bonus[0];
+        this.defesa = (int) (this.atrBase[1] + (this.atrBase[1] * 0.05 * this.nivel))+bonus[1];
+        this.lifeFixo = (int) (this.atrBase[2] + (this.atrBase[2] * 0.05 * this.nivel))+bonus[2];
         this.life = (int) (this.atrBase[2] + (this.atrBase[2] * 0.1 * this.nivel));
         if(this.nivel>=this.evolutionLevel && this.evolutionLevel>1){
             this.evolution=true;

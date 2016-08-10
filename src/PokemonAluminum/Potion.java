@@ -13,25 +13,21 @@ public class Potion extends Item {
 private String effect;
 private int qt;
 
-public Potion(){
-super.setTipo("Potion");
+public Potion(int id,String n,int cost,String ef,int qt){
+super(id,n,cost);
+super.setType("Potion");
+this.effect=ef;
+this.qt=qt;
 }
 
     public String getEffect() {
         return effect;
     }
-
-    public void setEffect(String effect) {
-        this.effect = effect;
-    }
-
+    
     public int getQt() {
         return qt;
     }
 
-    public void setQt(int qt) {
-        this.qt = qt;
-    }
-
+    
 
 }
