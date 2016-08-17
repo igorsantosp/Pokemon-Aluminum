@@ -9,7 +9,7 @@ package PokemonAluminum;
  *
  * @author Igor
  */
-public class Habil {
+public class Habil implements java.io.Serializable {
     int id, turnos;
     String nome, tipo, elemento, efeito; 
     float multiplicador,chance;
@@ -21,7 +21,17 @@ public class Habil {
         this.elemento=elemento;
         this.multiplicador=multiplicador;
     }
-    //Buff || Debuff
+    //Buff || Debuff COM Multiplicador
+    public Habil(int id, String nome,String tipo,int turnos, String efeito,float chance, float multiplicador){
+        this.id=id;
+        this.nome=nome;
+        this.tipo=tipo;
+        this.turnos=turnos;
+        this.efeito=efeito;
+        this.chance=chance;
+        this.multiplicador= multiplicador;
+    }
+    //Buff || Debuff sem multiplicador
     public Habil(int id, String nome,String tipo,int turnos, String efeito,float chance){
         this.id=id;
         this.nome=nome;

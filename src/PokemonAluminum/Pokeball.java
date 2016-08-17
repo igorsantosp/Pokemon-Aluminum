@@ -15,7 +15,7 @@ private float chance;
 
 public Pokeball(int id,String n,int cost,float chance){
 super(id,n,cost);
-super.setType("Potion");
+super.setType("Pokeball");
 this.chance=chance;
 }
 

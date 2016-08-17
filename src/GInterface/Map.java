@@ -2,10 +2,15 @@ package GInterface;
 
 
 
-import PokemonAluminum.Habilidades;
+
+import PokemonAluminum.Personagem;
 import PokemonAluminum.PokeData;
 import PokemonAluminum.Pokemon;
+import java.awt.Component;
+import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.io.File;
+import javafx.scene.input.KeyCode;
 import javax.swing.ImageIcon;
 
 /*
@@ -24,9 +29,8 @@ public class Map extends javax.swing.JFrame {
     short n;
     File file = new File(System.getProperty("user.dir")+"\\src\\icons\\pokemons");
     boolean found;
-    Pokemon a,b;
-   Habilidades h;
-  Habilidades h1;
+    Pokemon b;
+    Personagem p;
   FightFrame f1;
   PokeData data = new PokeData();
   float[] chance,perc;
@@ -36,7 +40,8 @@ public class Map extends javax.swing.JFrame {
      * Creates new form Map
      */
     @SuppressWarnings("empty-statement")
-    public Map(int lvBase,BackgroundMap m,int[] pokeID, float[] perc) {
+    public Map(Personagem p,int lvBase,BackgroundMap m,int[] pokeID, float[] perc) {
+        this.p=p;
         this.lvBase=lvBase;
         this.pokeID=pokeID;
         this.perc=perc;
@@ -51,8 +56,17 @@ public class Map extends javax.swing.JFrame {
         monsterimg.setText("                ");
         fightbutton.setVisible(false);
         leaveButton.setVisible(false);
-   	i = new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\character\\down0.png", "");
+   	i = new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\character\\"+p.getCharType()+"down0.png", "");
         personagem.setIcon(i);
+        Component[] comp= this.getComponents();
+        for (Component comp1 : comp) {
+            comp1.addKeyListener(new java.awt.event.KeyAdapter() {
+                @Override
+                public void keyPressed(java.awt.event.KeyEvent evt) {
+                    formKeyPressed(evt);
+                }
+            });
+        }
     }
 
     private Map() {
@@ -83,6 +97,11 @@ public class Map extends javax.swing.JFrame {
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         setBackground(new java.awt.Color(213, 213, 253));
         setResizable(false);
+        addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyPressed(java.awt.event.KeyEvent evt) {
+                formKeyPressed(evt);
+            }
+        });
 
         upButton.setText("▲");
         upButton.addActionListener(new java.awt.event.ActionListener() {
@@ -183,68 +202,45 @@ public class Map extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void upButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_upButtonActionPerformed
-
+        move("up",0,-10);/*
         n = (short) Math.abs(n - 1);
         i = new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\character\\up" + String.valueOf(n) + ".png", "");
         personagem.setIcon(i);
         personagem.setLocation((int) personagem.getLocation().getX(), (int) personagem.getLocation().getY() - 10);
-        searchMonster();
-       if(found){
-               leftButton.setEnabled(false);
-               rightButton.setEnabled(false);
-               upButton.setEnabled(false);
-               downButton.setEnabled(false);
-       }
+      */  searchMonster();
+   
 personagem.repaint();    }//GEN-LAST:event_upButtonActionPerformed
 
     private void downButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_downButtonActionPerformed
         // TODO add your handling code here:
-
-        n = (short) Math.abs(n - 1);
+        move("down",0,10);
+        /*n = (short) Math.abs(n - 1);
         i = new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\character\\down"  + String.valueOf(n) + ".png", "");
         personagem.setIcon(i);
         personagem.setLocation((int) personagem.getLocation().getX(), (int) personagem.getLocation().getY() + 10);
-
+*/
         searchMonster();
-         if(found){
-               leftButton.setEnabled(false);
-               rightButton.setEnabled(false);
-               upButton.setEnabled(false);
-               downButton.setEnabled(false);
-       }
-
+   
     }//GEN-LAST:event_downButtonActionPerformed
 
     private void leftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftButtonActionPerformed
-
-        n = (short) Math.abs(n - 1);
+        move("left",-10,0);
+  /*      n = (short) Math.abs(n - 1);
         i = new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\character\\left" + String.valueOf(n) + ".png", "");
         personagem.setIcon(i);
         personagem.setLocation((int) personagem.getLocation().getX() - 10, (int) personagem.getLocation().getY());
-
+*/
         searchMonster();
-        if(found){
-               leftButton.setEnabled(false);
-               rightButton.setEnabled(false);
-               upButton.setEnabled(false);
-               downButton.setEnabled(false);
-       }
 personagem.repaint();    }//GEN-LAST:event_leftButtonActionPerformed
 
     private void rightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightButtonActionPerformed
-
-        n = (short) Math.abs(n - 1);
+        move("right",10,0);
+  /*      n = (short) Math.abs(n - 1);
         i = new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\character\\right" + String.valueOf(n) + ".png", "");
         personagem.setIcon(i);
         personagem.setLocation((int) personagem.getLocation().getX() + 10, (int) personagem.getLocation().getY());
-
+*/
         searchMonster();
-        if(found){
-               leftButton.setEnabled(false);
-               rightButton.setEnabled(false);
-               upButton.setEnabled(false);
-               downButton.setEnabled(false);
-       }
 personagem.repaint();    }//GEN-LAST:event_rightButtonActionPerformed
 
     private void leaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaveButtonActionPerformed
@@ -258,15 +254,27 @@ personagem.repaint();    }//GEN-LAST:event_rightButtonActionPerformed
 
     private void fightbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_fightbuttonActionPerformed
         b.reset();
-        f1= new FightFrame(a, b);
-       /* h= new Habilidades(f1);
-        h1= new Habilidades(f1);
-        h.setAd(b);
-        h.setPl(a);
-        h1.setAd(a);
-        h1.setPl(b);*/
+        f1= new FightFrame(p, b);
         f1.setVisible(true);        // TODO add your handling code here:
     }//GEN-LAST:event_fightbuttonActionPerformed
+
+    private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
+ int keyCode = evt.getKeyCode();
+    switch( keyCode ) { 
+        case KeyEvent.VK_UP:
+            move("up",0,-10); 
+            break;
+        case KeyEvent.VK_DOWN:
+            move("down",0,10);
+            break;
+        case KeyEvent.VK_LEFT:
+            move("left",-10,0);
+            break;
+        case KeyEvent.VK_RIGHT :
+            move("right",10,0);
+            break;
+     }        // TODO add your handling code here:
+    }//GEN-LAST:event_formKeyPressed
 
     /**
      * @param args the command line arguments
@@ -332,6 +340,10 @@ personagem.repaint();    }//GEN-LAST:event_rightButtonActionPerformed
 	monsterimg.setIcon(monst);
 	fightbutton.setVisible(true);
 	leaveButton.setVisible(true);
+        leftButton.setEnabled(false);
+        rightButton.setEnabled(false);
+        upButton.setEnabled(false);              
+        downButton.setEnabled(false);
 	found=true;
 	count=chance.length;
 	}
@@ -344,9 +356,27 @@ monst= new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokemons\\0.p
 monsterimg.setIcon(monst);
 fightbutton.setVisible(false);
 leaveButton.setVisible(false);
+leftButton.setEnabled(true);
+rightButton.setEnabled(true);
+upButton.setEnabled(true);
+downButton.setEnabled(true);
 found=false;
-
-
      }
     }
+
+public void move(String direction,int nx, int ny){
+int x=(int)personagem.getLocation().getX();
+int y=(int)personagem.getLocation().getY();
+x+=nx;
+y+=ny;
+if(n<2){
+n+=1;
+}
+else{
+n=0;
+}
+personagem.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\character\\"+p.getCharType()+direction+n+".png",""));
+personagem.setLocation(x, y);
+}    
+
 }

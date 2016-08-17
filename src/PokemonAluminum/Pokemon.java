@@ -21,9 +21,9 @@ public class Pokemon extends Monstro implements Serializable {
     private int[] atrBase = new int[3];
     private Habil[] habilidades = new Habil[4];
     private int[] wl = new int[2];
-    private GameMainFrame frame;
+    private transient GameMainFrame frame;
     private int[] bonus= new int[3];
-    SkillDataBase Skills= new SkillDataBase();
+    
     public Pokemon(){
     
     }
@@ -36,7 +36,7 @@ public class Pokemon extends Monstro implements Serializable {
         this.atrBase[2]=Math.round(hp*1.5f);; 
         this.lifeFixo=this.atrBase[2];
         for(int i=0;i<habil.length;i++){
-        this.habilidades[i]=Skills.getHabilidade(habil[i]);
+        this.habilidades[i]=SkillDataBase.getHabilidade(habil[i]);
         }
         this.elemento=element;
         this.reset();
@@ -52,7 +52,7 @@ public class Pokemon extends Monstro implements Serializable {
         this.atrBase[2]=Math.round(hp*1.5f);; 
         this.lifeFixo=this.atrBase[2];
         for(int i=0;i<habil.length;i++){
-        this.habilidades[i]=Skills.getHabilidade(habil[i]);
+        this.habilidades[i]=SkillDataBase.getHabilidade(habil[i]);
         }
         this.elemento=element;
         this.reset();

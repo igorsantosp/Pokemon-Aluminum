@@ -353,8 +353,6 @@ public void setData(Pokemon p) {
     grid.gridx=4;
     grid.gridy=count+2;
     hPanel.add(hPowerLabels[count-1],grid);
-        System.out.println("Quantidade de habilidade: "+p.getHabilidades().length);
-        System.out.println("Contador count: "+count);
         if(count==(p.getHabilidades().length-1)){
         break;
         }

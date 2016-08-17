@@ -23,11 +23,9 @@ import javax.swing.Timer;
 public class GameMainFrame extends javax.swing.JFrame {
 
     ImageIcon icon;
-//Pokemon charmander = new Pokemon();
-//Pokemon bulba = new Pokemon();
-    int[] attrb1 = {100, 50, 80};
-    int[] habil1 = {1, 2, 3, 4};
-    Pokemon c;
+
+   
+   
     Map map;
     int hh, mm, ss;
     boolean activate=false;
@@ -40,20 +38,15 @@ public class GameMainFrame extends javax.swing.JFrame {
      */
     public GameMainFrame(Personagem p) {
         this.p = p;
-        c=p.getPoke(0);
-        p.getPoke(0).setFrame(this);
+        for(int i=0;i<p.getPokes().size();i++){
+        p.getPoke(i).setFrame(this);
+        }
         contr= new Controle();
         initComponents();
         avatar.setText("");
-        for(int i=0;i<p.getPokes().size();i++){
-           panels[i]= new PokePanel();
-           panels[i].p=p;
-           panels[i].setPokeData(p.getPoke(i));
-           jPanel2.add(panels[i]);
-       }
         idLabel.setText("ID: "+p.getId());
         this.setData();
-        icon = new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\mugshot\\" + p.getId() + ".png", "");
+        icon = new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\mugshot\\" + p.getCharType() + ".png", "");
         avatar.setIcon(icon);
         Timer time = new Timer(1000, ativar);
         time.start();
@@ -122,6 +115,11 @@ public class GameMainFrame extends javax.swing.JFrame {
         jPanel2.setLayout(new java.awt.FlowLayout(java.awt.FlowLayout.LEFT, 0, 0));
 
         jButton5.setText("Mudar o Time");
+        jButton5.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton5ActionPerformed(evt);
+            }
+        });
 
         jPanel4.setBackground(new java.awt.Color(255, 255, 255));
         jPanel4.setForeground(new java.awt.Color(255, 255, 255));
@@ -462,24 +460,21 @@ public class GameMainFrame extends javax.swing.JFrame {
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int[] pokeID= {1,4,7,14};
         float[] perc={0.1f,0.03f,0.03f,0.02f};
-        map = new Map(1,new BackgroundMap(6),pokeID,perc);
-        map.a = c;
+        map = new Map(p,1,new BackgroundMap(6),pokeID,perc);
         map.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         int[] pokeID= {4,7,10,11};
         float[] perc={0.05f,0.02f,0.1f,0.02f};
-        map = new Map(5,new BackgroundMap(2),pokeID,perc);
-        map.a = c;
+        map = new Map(p,5,new BackgroundMap(2),pokeID,perc);
         map.setVisible(true); // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
         int[] pokeID= {7,10,13,16};
         float[] perc={0.02f,0.02f,0.02f,0.15f};
-        map = new Map(10,new BackgroundMap(3),pokeID,perc);
-        map.a = c;
+        map = new Map(p,10,new BackgroundMap(3),pokeID,perc);
         map.setVisible(true);  // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
@@ -514,6 +509,11 @@ contr.save(p, this);// contr.save(p,this);
 Inventory inv= new Inventory(p);
 inv.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
+ ChangeTeam ct = new ChangeTeam(p); 
+ ct.setVisible(true);// TODO add your handling code here:
+    }//GEN-LAST:event_jButton5ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -600,10 +600,15 @@ inv.setVisible(true);// TODO add your handling code here:
 
     public void setData(){
         silverLabel.setText("Silver: "+p.getSilver()+"$");
-        for(int count=0;panels[count]!=null;count++){
-    panels[count].setPokeData(p.getPoke(count));
+        this.jPanel2.removeAll();
+         for(int i=0;i<p.getPokes().size()&& i<4;i++){
+           panels[i]= new PokePanel();
+           panels[i].p=p;
+           panels[i].setPokeData(p.getPoke(i));
+           jPanel2.add(panels[i]);
+       }
     
-    }
+    
     }
     
 void attclock() {

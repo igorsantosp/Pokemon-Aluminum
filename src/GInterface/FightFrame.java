@@ -6,10 +6,15 @@
 package GInterface;
 
 import PokemonAluminum.Habil;
-import PokemonAluminum.Habilidades;
+import PokemonAluminum.Item;
+import PokemonAluminum.Personagem;
+import PokemonAluminum.Pokeball;
 import PokemonAluminum.Pokemon;
+import PokemonAluminum.Potion;
+import java.util.ArrayList;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
+import static javax.swing.JOptionPane.INFORMATION_MESSAGE;
 
 /**
  *
@@ -18,25 +23,23 @@ import javax.swing.JOptionPane;
 public class FightFrame extends javax.swing.JFrame {
 
     Pokemon a, b;
+    Personagem p;
     //Habilidades h, h1;
 
     /**
      * Creates new form FightFrame
      */
-    public FightFrame(Pokemon a, Pokemon b) {
-        this.a = a;
+    public FightFrame(Personagem p, Pokemon b) {
+        this.a =p.getPoke(0);
         this.b = b;
-        ImageIcon photoa = new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\pokegif\\" + a.getId() + ".gif", "");
+        this.p=p;
         ImageIcon photob = new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\pokegif\\" + b.getId() + ".gif", "");
         initComponents();
-        jLabel1.setIcon(photoa);
         jLabel2.setIcon(photob);
         jTextArea1.setText("");
         lifead.setValue(100);
         lifepl.setValue(100);
-        for(int i=0;i<4;i++){
-        setHabils(a.getHabilidades()[i].getNome());
-        }
+        this.setData();
     }
 
     private FightFrame() {
@@ -66,6 +69,10 @@ public class FightFrame extends javax.swing.JFrame {
         Skill2 = new javax.swing.JButton();
         Skill3 = new javax.swing.JButton();
         Skill4 = new javax.swing.JButton();
+        jScrollPane2 = new javax.swing.JScrollPane();
+        jPanel1 = new javax.swing.JPanel();
+        jButton2 = new javax.swing.JButton();
+        jButton3 = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
         getContentPane().setLayout(new org.netbeans.lib.awtextra.AbsoluteLayout());
@@ -97,13 +104,13 @@ public class FightFrame extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(130, 400, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 360, -1, -1));
 
         jTextArea1.setColumns(20);
         jTextArea1.setRows(5);
         jScrollPane1.setViewportView(jTextArea1);
 
-        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 284, 330, -1));
+        getContentPane().add(jScrollPane1, new org.netbeans.lib.awtextra.AbsoluteConstraints(9, 267, 330, 90));
         getContentPane().add(lifepl, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, 100, -1));
         getContentPane().add(lifead, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 110, 100, -1));
 
@@ -135,19 +142,39 @@ public class FightFrame extends javax.swing.JFrame {
         });
         getContentPane().add(Skill4, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 230, 120, 20));
 
+        jScrollPane2.setViewportView(jPanel1);
+
+        getContentPane().add(jScrollPane2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 390, 330, 150));
+
+        jButton2.setText("Itens");
+        jButton2.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton2ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton2, new org.netbeans.lib.awtextra.AbsoluteConstraints(10, 360, -1, -1));
+
+        jButton3.setText("Pokes");
+        jButton3.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton3ActionPerformed(evt);
+            }
+        });
+        getContentPane().add(jButton3, new org.netbeans.lib.awtextra.AbsoluteConstraints(150, 360, -1, -1));
+
         pack();
         setLocationRelativeTo(null);
     }// </editor-fold>//GEN-END:initComponents
 
     private void Skill1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Skill1ActionPerformed
-        ataque(a,a.getHabilidades()[0],b);
-        ataque(b,b.getHabilidades()[(int)Math.round(Math.random()*3)],a);
+        ataque(this.a,a.getHabilidades()[0],this.b);
+        ataque(this.b,b.getHabilidades()[(int)Math.round(Math.random()*3)],this.a);
         // TODO add your handling code here:
     }//GEN-LAST:event_Skill1ActionPerformed
 
     private void Skill2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Skill2ActionPerformed
-        ataque(a,a.getHabilidades()[1],b);
-        ataque(b,b.getHabilidades()[(int)Math.round(Math.random()*3)],a);
+        ataque(this.a,a.getHabilidades()[1],this.b);
+        ataque(this.b,b.getHabilidades()[(int)Math.round(Math.random()*3)],this.a);
 // TODO add your handling code here:
     }//GEN-LAST:event_Skill2ActionPerformed
 
@@ -166,6 +193,14 @@ public class FightFrame extends javax.swing.JFrame {
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         this.dispose();        // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
+
+    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    this.atualizaItens();        // TODO add your handling code here:
+    }//GEN-LAST:event_jButton2ActionPerformed
+
+    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
+    this.atualizaPokes();// TODO add your handling code here:
+    }//GEN-LAST:event_jButton3ActionPerformed
 
     /**
      * @param args the command line arguments
@@ -210,9 +245,13 @@ public class FightFrame extends javax.swing.JFrame {
     private javax.swing.JPanel adPanel;
     private javax.swing.ButtonGroup buttonGroup1;
     private javax.swing.JButton jButton1;
+    private javax.swing.JButton jButton2;
+    private javax.swing.JButton jButton3;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
+    private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JTextArea jTextArea1;
     private javax.swing.JProgressBar lifead;
     private javax.swing.JProgressBar lifepl;
@@ -222,18 +261,27 @@ public void setEvent(String s) {
         jTextArea1.setText(jTextArea1.getText() + s+"\n");
     }
 
-    public void setHabils(String s) {
-        if (Skill1.getText().equals("")) {
-            Skill1.setText(s);
-        } else if (Skill2.getText().equals("")) {
-            Skill2.setText(s);
-        } else if (Skill3.getText().equals("")) {
-            Skill3.setText(s);
-        } else {
-            Skill4.setText(s);
+    public void setHabils() {
+        for(int i=0;i<4;i++){
+             String s= a.getHabilidades()[i].getNome();
+        
+            if (Skill1.getText().equals("")) {
+                Skill1.setText(s);
+            } else if (Skill2.getText().equals("")) {
+                Skill2.setText(s);
+            } else if (Skill3.getText().equals("")) {
+                Skill3.setText(s);
+            } else {
+                Skill4.setText(s);
+            }
         }
     }
-
+    public void setData(){
+        jLabel1.setIcon(new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\pokegif\\" + a.getId() + ".gif", ""));
+        this.setHabils();
+        this.attLifes();
+        this.jTextArea1.setText("");
+    }
     public void baixaLife(Pokemon a, int i) {
         if (a == this.a) {
             lifead.setValue((lifead.getValue() - i));
@@ -305,14 +353,18 @@ public void setEvent(String s) {
 			evento+=" \n e foi SUPER efetivo!";
 		}
                        evento+=" com: " + dmg + " de dano";
-                       System.out.println("Ataque A:"+e1.getAtaque());
+                                          this.baixaLife(e1, (dmg * 100 / e2.getLifeFixo()));
+        	} else {
+            evento+= " e falhou!";
+        	}
+                
+                // DEBBUG
+                     if(e1==this.a){ 
+                         System.out.println("Ataque A:"+e1.getAtaque());
                        System.out.println("Defesa B:"+e2.getDefesa());
                        System.out.println("dmg:"+dmg);
                        System.out.println("Dano pela função:"+(e1.getAtaque() - e2.getDefesa()) * h.getMultiplicador()*checkElement(h.getElemento(),e2.getElemento()));
-                       this.baixaLife(e1, (dmg * 100 / e2.getLifeFixo()));
-        	} else {
-            evento+= " e falhou!";
-        	}}
+                     }}
 		
 	if(h.getTipo().contains("Debuff")){
 		if(Math.random()<=h.getChance()){
@@ -328,9 +380,18 @@ public void setEvent(String s) {
 		if(h.getTipo().contains("Buff")){
 			if(Math.random()<=h.getChance()){
 				if(h.getEfeito().equals("Ataque+")){
+                                   
+                                    System.out.println("Ataque anterior:"+e1.getAtaque());
+                                    System.out.println("Novo ataque:"+Math.round(e1.getAtaque()+(float)e1.getAtrBase()[0]*h.getMultiplicador()));
 				 e1.setAtaque((int)Math.round(e1.getAtaque()+e1.getAtrBase()[0]*h.getMultiplicador()));
+                                    System.out.println("getatrbbase[0]:"+e1.getAtrBase()[0]);
+                                    System.out.println("Multiplicador:"+h.getMultiplicador());
+                                    System.out.println("Multiplicador*getATrbase"+e1.getAtrBase()[0]*h.getMultiplicador());
+                                    
+                                   
 				 evento+="\n ataque aumentado com sucesso!";					
-				}
+				
+                                }
 				if(h.getEfeito().equals("Defesa+")){
 				 e1.setDefesa((int)Math.round(e1.getDefesa()+e1.getAtrBase()[1]*h.getMultiplicador()));
 				evento+="\n defesa aumentada com sucesso!";					
@@ -395,4 +456,58 @@ public float checkElement(String a, String b){
     }
     return 1;
     }
+public void useItem(Item i){
+    if(i.getType().equals("Potion")){
+    this.a.setLife(Math.round(this.a.getLife()+((Potion) i).getQt()));
+    attLifes();
+    }else if(i.getType().equals("Pokeball")){
+    if(Math.random()<((Pokeball) i).getChance()){
+    jLabel2.setIcon(new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\items\\" + i.getName() + ".png", ""));
+    this.setEvent(b.getNome()+" Selvagem Capturado!");
+    JOptionPane.showMessageDialog(this, b.getNome()+" Selvagem Capturado!", "Parabéns", INFORMATION_MESSAGE, new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokegif\\"+b.getId()+".gif",""));
+    b.setFrame(a.getFrame());
+    p.setPoke(b);
+    p.getPoke(0).getFrame().setData();
+    this.dispose();
+    }
+    
+    }
+    
+    
+       
+}
+
+public void atualizaItens(){
+     jPanel1.removeAll();
+    int size=p.getItens().size();
+    ItemPanel[] ip= new ItemPanel[size];
+        for(int i=0;i<size;i++){
+        ip[i]= new ItemPanel(p.getItens().get(i));
+        ip[i].setData();
+        jPanel1.add(ip[i]);
+        }
+        jPanel1.revalidate();
+}
+public void atualizaPokes(){
+    
+    if(p.getPokes().size()>1){
+        jPanel1.removeAll();
+        MiniPokePanel[] pp= new MiniPokePanel[3];
+        for(int i=1;i<p.getPokes().size()&&i<4;i++){
+        pp[i-1]= new MiniPokePanel(p.getPokes().get(i));
+        pp[i-1].setData();
+        jPanel1.add(pp[i-1]);
+        jPanel1.revalidate();
+    }}
+    else{
+    JOptionPane.showMessageDialog(this, "Você não tem outros pokemons");
+    }
+
+}
+    @Override
+public void dispose(){
+super.dispose();
+a.getFrame().map.searchMonster();
+}
+
 }

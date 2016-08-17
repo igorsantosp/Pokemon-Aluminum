@@ -10,6 +10,7 @@ import PokemonAluminum.ItemData;
 import PokemonAluminum.Personagem;
 import PokemonAluminum.PokeData;
 import PokemonAluminum.Pokemon;
+import java.awt.Color;
 import static javax.swing.BorderFactory.createRaisedBevelBorder;
 import javax.swing.ImageIcon;
 import javax.swing.JOptionPane;
@@ -37,6 +38,8 @@ public class Choose extends javax.swing.JFrame {
         charbutton.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokegif\\4.gif"));
         sqbutton.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokegif\\7.gif"));
         pidbutton.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokegif\\16.gif"));
+        boybutton.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\trainers\\b.png"));
+        girlbutton.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\trainers\\g.png"));
         JOptionPane.showMessageDialog(this, "                                       Bem vindo ao Pokemon Aluminum! \nSua jornada começa agora! Selecione a seguir o seu pokemon inicial", "Laboratório do Professor Carvalho", INFORMATION_MESSAGE, new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\mugshot\\oak.png",""));
     }
 
@@ -50,11 +53,14 @@ public class Choose extends javax.swing.JFrame {
     private void initComponents() {
 
         buttonGroup1 = new javax.swing.ButtonGroup();
+        buttonGroup2 = new javax.swing.ButtonGroup();
         bulbabutton = new javax.swing.JRadioButton();
         charbutton = new javax.swing.JRadioButton();
         sqbutton = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
         pidbutton = new javax.swing.JRadioButton();
+        boybutton = new javax.swing.JRadioButton();
+        girlbutton = new javax.swing.JRadioButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -72,7 +78,7 @@ public class Choose extends javax.swing.JFrame {
                 bulbabuttonFocusLost(evt);
             }
         });
-        getContentPane().add(bulbabutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 110, -1, -1));
+        getContentPane().add(bulbabutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, -1, -1));
 
         buttonGroup1.add(charbutton);
         charbutton.setText("Charmander");
@@ -89,7 +95,7 @@ public class Choose extends javax.swing.JFrame {
                 charbuttonActionPerformed(evt);
             }
         });
-        getContentPane().add(charbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 110, -1, -1));
+        getContentPane().add(charbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, -1, -1));
 
         buttonGroup1.add(sqbutton);
         sqbutton.setText("Squirtle");
@@ -101,7 +107,7 @@ public class Choose extends javax.swing.JFrame {
                 sqbuttonFocusLost(evt);
             }
         });
-        getContentPane().add(sqbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 110, 160, -1));
+        getContentPane().add(sqbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, 160, -1));
 
         jButton1.setText("Escolher");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -109,7 +115,7 @@ public class Choose extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 240, -1, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, -1, -1));
 
         buttonGroup1.add(pidbutton);
         pidbutton.setText("Pidgey");
@@ -137,7 +143,39 @@ public class Choose extends javax.swing.JFrame {
                 pidbuttonActionPerformed(evt);
             }
         });
-        getContentPane().add(pidbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 110, 180, -1));
+        getContentPane().add(pidbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 170, 180, -1));
+
+        buttonGroup2.add(boybutton);
+        boybutton.setSelected(true);
+        boybutton.setText("Boy");
+        boybutton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        boybutton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        boybutton.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        boybutton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        boybutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                boybuttonMouseClicked(evt);
+            }
+        });
+        boybutton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                boybuttonActionPerformed(evt);
+            }
+        });
+        getContentPane().add(boybutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, -1, -1));
+
+        buttonGroup2.add(girlbutton);
+        girlbutton.setText("Girl");
+        girlbutton.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
+        girlbutton.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        girlbutton.setVerticalAlignment(javax.swing.SwingConstants.BOTTOM);
+        girlbutton.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        girlbutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                girlbuttonMouseClicked(evt);
+            }
+        });
+        getContentPane().add(girlbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 50, -1, -1));
 
         pack();
         setLocationRelativeTo(null);
@@ -151,14 +189,26 @@ public class Choose extends javax.swing.JFrame {
         if (bulbabutton.isSelected()) {
             p.setPoke( PokeData.getPoke(1));
         }
-        if (charbutton.isSelected()) {
-            p.setPoke( PokeData.getPoke(4));
+        else {
+            if (charbutton.isSelected()) {
+                p.setPoke( PokeData.getPoke(4));
+            }
+            else{ 
+                if (sqbutton.isSelected()) {
+                     p.setPoke( PokeData.getPoke(7));
+                }
+            else {
+                    if (pidbutton.isSelected()) {
+                         p.setPoke( PokeData.getPoke(16));
+                    }
+                }
+            }
         }
-        if (sqbutton.isSelected()) {
-            p.setPoke( PokeData.getPoke(7));
+        if(boybutton.isSelected()){
+        p.setCharType('b');
         }
-        if (pidbutton.isSelected()) {
-            p.setPoke( PokeData.getPoke(16));
+        else{
+        p.setCharType('g');
         }
         p.setId(1);
         p.setSilver(1000);
@@ -242,6 +292,32 @@ public class Choose extends javax.swing.JFrame {
         bulbabutton.setBorder(null);// TODO add your handling code here:
     }//GEN-LAST:event_bulbabuttonFocusLost
 
+    private void boybuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boybuttonActionPerformed
+        // TODO add your handling code here:
+    }//GEN-LAST:event_boybuttonActionPerformed
+
+    private void boybuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_boybuttonMouseClicked
+    if(boybutton.getBorder()== border){
+        
+    }else{
+    boybutton.setBorder(border);
+    boybutton.setForeground(Color.white);
+    girlbutton.setBorder(null);
+    girlbutton.setForeground(null);
+    }        // TODO add your handling code here:
+    }//GEN-LAST:event_boybuttonMouseClicked
+
+    private void girlbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_girlbuttonMouseClicked
+    if(girlbutton.getBorder()== border){
+        
+    }else{
+    girlbutton.setBorder(border);
+    girlbutton.setForeground(Color.white);
+    boybutton.setBorder(null);
+    boybutton.setForeground(null);
+    }    // TODO add your handling code here:
+    }//GEN-LAST:event_girlbuttonMouseClicked
+
     /**
      * @param args the command line arguments
      */
@@ -278,9 +354,12 @@ public class Choose extends javax.swing.JFrame {
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JRadioButton boybutton;
     private javax.swing.JRadioButton bulbabutton;
     private javax.swing.ButtonGroup buttonGroup1;
+    private javax.swing.ButtonGroup buttonGroup2;
     private javax.swing.JRadioButton charbutton;
+    private javax.swing.JRadioButton girlbutton;
     private javax.swing.JButton jButton1;
     private javax.swing.JRadioButton pidbutton;
     private javax.swing.JRadioButton sqbutton;

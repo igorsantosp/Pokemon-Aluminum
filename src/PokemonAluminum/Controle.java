@@ -43,9 +43,13 @@ public void save(Personagem p, GameMainFrame f){
   try{
         FileOutputStream out = new FileOutputStream(System.getProperty("user.dir")+"\\user.dat");
         ObjectOutputStream obout= new ObjectOutputStream(out);
-        p.getPoke(0).setFrame(null);
+        /*for(int i=0;i<p.getPokes().size();i++){
+        p.getPoke(i).setFrame(null);
+        }*/
         obout.writeObject(p);
-        p.getPoke(0).setFrame(f);
+        /*for(int i=0;i<p.getPokes().size();i++){
+        p.getPoke(i).setFrame(f);
+        }*/
   } 
   catch (FileNotFoundException ex) {
             Logger.getLogger(Controle.class.getName()).log(Level.SEVERE, null, ex);

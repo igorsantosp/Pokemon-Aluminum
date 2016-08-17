@@ -103,19 +103,19 @@ inf.setVisible(true);// TODO add your handling code here:
 
     private void evolveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_evolveButtonActionPerformed
        if(e.getFrame().map!=null){
-        e.getFrame().map.dispose();
+            e.getFrame().map.dispose();
         }
-        p.setPoke(PokeData.getPoke(e.getEvolutionID()), 0);
-        p.getPoke(0).getOldStatus(e);
-        e=p.getPoke(0);
+        int ind= p.getPokes().indexOf(e);
+        p.setPoke(PokeData.getPoke(e.getEvolutionID()), ind);
+        p.getPoke(ind).getOldStatus(e);
+        e=p.getPoke(ind);
         e.reset();
         this.setPokeData(e);
-        e.getFrame().c=e;
-            PokeAvatar.setIcon(new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\pokegif\\" + e.getId() + ".gif", ""));
-            evolveButton.setVisible(false);
-            if(p.getPoke(0).getEvolutionID()==0){
-                p.getPoke(0).setEvolution(false);
-            }
+        PokeAvatar.setIcon(new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\pokegif\\" + e.getId() + ".gif", ""));
+        evolveButton.setVisible(false);
+        if(p.getPoke(ind).getEvolutionID()==0){
+            p.getPoke(ind).setEvolution(false);
+        }
         // TODO add your handling code here:
     }//GEN-LAST:event_evolveButtonActionPerformed
 
@@ -133,19 +133,19 @@ inf.setVisible(true);// TODO add your handling code here:
     // End of variables declaration//GEN-END:variables
 void setPokeData(Pokemon e){
     this.e=e;
-this.PokeAvatar.setIcon(new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\pokegif\\" + e.getId() + ".gif", ""));
-this.PokeDat.setText(e.getNome()+"   Lv:"+e.getNivel());
-if(e.getElemento().contains("/")){
-String[] el=e.getElemento().split("/");
-this.Element.setIcon(new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\types\\" + el[0] + ".png",""));
-this.Element1.setVisible(true);
-this.Element1.setIcon(new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\types\\" + el[1] + ".png",""));
-}
-else{
-this.Element.setIcon(new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\types\\" + e.getElemento() + ".png",""));
-this.Element1.setVisible(false);
-}
-this.PokeXp.setValue((int)100*e.getXp()/e.getXpNext());
+    this.PokeAvatar.setIcon(new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\pokegif\\" + e.getId() + ".gif", ""));
+    this.PokeDat.setText(e.getNome()+"   Lv:"+e.getNivel());
+    if(e.getElemento().contains("/")){
+        String[] el=e.getElemento().split("/");
+        this.Element.setIcon(new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\types\\" + el[0] + ".png",""));
+        this.Element1.setVisible(true);
+        this.Element1.setIcon(new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\types\\" + el[1] + ".png",""));
+    }
+    else{
+        this.Element.setIcon(new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\types\\" + e.getElemento() + ".png",""));
+        this.Element1.setVisible(false);
+    }
+    this.PokeXp.setValue((int)100*e.getXp()/e.getXpNext());
        if(e.isEvolution()){
             evolveButton.setVisible(true);}
 }

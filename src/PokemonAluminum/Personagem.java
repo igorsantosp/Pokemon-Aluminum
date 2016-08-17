@@ -18,6 +18,7 @@ private ArrayList<Item> itens;
 private int silver;
 private int id;
 private String nome;
+private char charType;
 
 public Personagem(){
 pokes= new ArrayList();
@@ -66,6 +67,14 @@ itens=new ArrayList();
     }
     public void addNewItem(int position,Item i) {
         this.itens.add(position,i);
+    }
+
+    public char getCharType() {
+        return charType;
+    }
+
+    public void setCharType(char charType) {
+        this.charType = charType;
     }
     
     
