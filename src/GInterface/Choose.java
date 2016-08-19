@@ -61,6 +61,8 @@ public class Choose extends javax.swing.JFrame {
         pidbutton = new javax.swing.JRadioButton();
         boybutton = new javax.swing.JRadioButton();
         girlbutton = new javax.swing.JRadioButton();
+        nickTextField = new javax.swing.JTextField();
+        jLabel1 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         setResizable(false);
@@ -176,6 +178,10 @@ public class Choose extends javax.swing.JFrame {
             }
         });
         getContentPane().add(girlbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 50, -1, -1));
+        getContentPane().add(nickTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 226, 140, -1));
+
+        jLabel1.setText("Seu Nome:");
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, -1, 20));
 
         pack();
         setLocationRelativeTo(null);
@@ -186,6 +192,10 @@ public class Choose extends javax.swing.JFrame {
     }//GEN-LAST:event_charbuttonActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        if(nickTextField.getText().equals("")){
+        JOptionPane.showMessageDialog(this, "Seu Nick não foi digitado");
+        }else{
+        
         if (bulbabutton.isSelected()) {
             p.setPoke( PokeData.getPoke(1));
         }
@@ -228,9 +238,11 @@ public class Choose extends javax.swing.JFrame {
         p.addNewItem(ItemData.getItem(6));
         p.addNewItem(ItemData.getItem(6));
         p.addNewItem(ItemData.getItem(8));
+        p.setNome(nickTextField.getText());
         GameMainFrame j = new GameMainFrame(p);
         j.setVisible(true);
         this.dispose();
+    }
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -361,6 +373,8 @@ public class Choose extends javax.swing.JFrame {
     private javax.swing.JRadioButton charbutton;
     private javax.swing.JRadioButton girlbutton;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
+    private javax.swing.JTextField nickTextField;
     private javax.swing.JRadioButton pidbutton;
     private javax.swing.JRadioButton sqbutton;
     // End of variables declaration//GEN-END:variables

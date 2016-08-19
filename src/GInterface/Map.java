@@ -60,6 +60,7 @@ public class Map extends javax.swing.JFrame {
         personagem.setIcon(i);
         Component[] comp= this.getComponents();
         for (Component comp1 : comp) {
+            comp1.setFocusable(true);
             comp1.addKeyListener(new java.awt.event.KeyAdapter() {
                 @Override
                 public void keyPressed(java.awt.event.KeyEvent evt) {
@@ -260,18 +261,23 @@ personagem.repaint();    }//GEN-LAST:event_rightButtonActionPerformed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
  int keyCode = evt.getKeyCode();
-    switch( keyCode ) { 
+        System.out.println("hi");   
+ switch( keyCode ) { 
         case KeyEvent.VK_UP:
-            move("up",0,-10); 
+            move("up",0,-10);
+            searchMonster();
             break;
         case KeyEvent.VK_DOWN:
             move("down",0,10);
+            searchMonster();
             break;
         case KeyEvent.VK_LEFT:
             move("left",-10,0);
+            searchMonster();
             break;
         case KeyEvent.VK_RIGHT :
             move("right",10,0);
+            searchMonster();
             break;
      }        // TODO add your handling code here:
     }//GEN-LAST:event_formKeyPressed
@@ -378,5 +384,7 @@ n=0;
 personagem.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\character\\"+p.getCharType()+direction+n+".png",""));
 personagem.setLocation(x, y);
 }    
-
+public void setPersonagemIcon(String var){
+personagem.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\character\\"+var+".png",""));
+}
 }

@@ -85,10 +85,13 @@ this.setBorder(javax.swing.BorderFactory.createMatteBorder(1, 1, 1, 1, new java.
     private void formMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_formMouseClicked
 try{if(this.getParent().getParent().getParent().getParent().getParent().getParent().getParent() instanceof FightFrame){
 FightFrame ff =(FightFrame)this.getParent().getParent().getParent().getParent().getParent().getParent().getParent();
+i.setNumber(i.getNumber()-1);
 ff.useItem(this.i);
 }}catch(NullPointerException ex){
 
-}       
+}
+this.setData();
+
     }//GEN-LAST:event_formMouseClicked
     
                                      

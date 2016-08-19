@@ -8,6 +8,7 @@ package GInterface;
 import PokemonAluminum.Pokemon;
 import java.awt.Color;
 import java.awt.Container;
+import java.awt.event.MouseListener;
 import static javax.swing.BorderFactory.createRaisedBevelBorder;
 import javax.swing.ImageIcon;
 
@@ -159,6 +160,9 @@ public void setData(){
 this.PokeIcon.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokegif\\"+e.getId()+".gif",""));
 this.PokeName.setText(e.getNome());
 this.PokeLevel.setText(String.valueOf(e.getNivel()));
+if(e.getLife()<=0){
+this.setDefeated();
+}
 }
 
     void setPokeUnclicked() {
@@ -169,4 +173,12 @@ this.PokeLevel.setText(String.valueOf(e.getNivel()));
     void setPokeClicked() {
         this.setBackground(Color.white);
     }
+public void setDefeated(){
+    MouseListener[] ms= this.getMouseListeners();
+    for(MouseListener mouse : ms){
+        this.removeMouseListener(mouse);
+    }
+    this.setBackground(Color.gray);
+    this.setForeground(Color.gray);
+}
 }

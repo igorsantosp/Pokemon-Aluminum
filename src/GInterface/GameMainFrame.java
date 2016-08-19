@@ -45,6 +45,7 @@ public class GameMainFrame extends javax.swing.JFrame {
         initComponents();
         avatar.setText("");
         idLabel.setText("ID: "+p.getId());
+        nameLabel.setText(p.getNome());
         this.setData();
         icon = new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\mugshot\\" + p.getCharType() + ".png", "");
         avatar.setIcon(icon);
@@ -74,7 +75,7 @@ public class GameMainFrame extends javax.swing.JFrame {
         avatar = new javax.swing.JLabel();
         jLabel5 = new javax.swing.JLabel();
         silverLabel = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
+        nameLabel = new javax.swing.JLabel();
         saveButton = new javax.swing.JButton();
         idLabel = new javax.swing.JLabel();
         jButton6 = new javax.swing.JButton();
@@ -150,7 +151,7 @@ public class GameMainFrame extends javax.swing.JFrame {
 
         silverLabel.setText("Silver: xxx.xx$");
 
-        jLabel2.setText("Nome do personagem");
+        nameLabel.setText("Nome do personagem");
 
         saveButton.setText("Salvar");
         saveButton.addActionListener(new java.awt.event.ActionListener() {
@@ -188,7 +189,7 @@ public class GameMainFrame extends javax.swing.JFrame {
                             .addComponent(jLabel5)
                             .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                 .addComponent(silverLabel)
-                                .addComponent(jLabel2)))
+                                .addComponent(nameLabel)))
                         .addGap(88, 88, 88)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(saveButton)
@@ -206,7 +207,7 @@ public class GameMainFrame extends javax.swing.JFrame {
                         .addGap(28, 28, 28)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(idLabel)
-                            .addComponent(jLabel2))
+                            .addComponent(nameLabel))
                         .addGap(6, 6, 6)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(silverLabel)
@@ -566,7 +567,6 @@ inv.setVisible(true);// TODO add your handling code here:
     private javax.swing.JButton jButton6;
     private javax.swing.JLabel jLabel11;
     private javax.swing.JLabel jLabel12;
-    private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel5;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jPanel10;
@@ -581,6 +581,7 @@ inv.setVisible(true);// TODO add your handling code here:
     private javax.swing.JTabbedPane jTabbedPane2;
     private javax.swing.JTextArea jTextArea2;
     private javax.swing.JButton missionButton;
+    private javax.swing.JLabel nameLabel;
     private javax.swing.JButton saveButton;
     private javax.swing.JLabel silverLabel;
     private javax.swing.JLabel tempoRestanteLabel;

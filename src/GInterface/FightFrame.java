@@ -24,6 +24,7 @@ public class FightFrame extends javax.swing.JFrame {
 
     Pokemon a, b;
     Personagem p;
+    MiniPokePanel[] mpp;
     //Habilidades h, h1;
 
     /**
@@ -33,6 +34,12 @@ public class FightFrame extends javax.swing.JFrame {
         this.a =p.getPoke(0);
         this.b = b;
         this.p=p;
+        if(p.getPokes().size()>4){
+        mpp= new MiniPokePanel[3];
+        }
+        else{
+        mpp= new MiniPokePanel[p.getPokes().size()-1];
+        }
         ImageIcon photob = new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\pokegif\\" + b.getId() + ".gif", "");
         initComponents();
         jLabel2.setIcon(photob);
@@ -415,20 +422,38 @@ else{
 }
         
         if (this.a.getLife() <= 0) {
+            boolean dead=true;
             this.a.setLose();
+            for(int count=0;count<3 && count<mpp.length;count++){
+            if(mpp[count].e.getLife()>0){
+            this.a= mpp[count].e;
+            this.setData();
+            atualizaPokes();
+            dead=false;
+            }
+            }
+            if(dead){
             JOptionPane.showMessageDialog(null, "Você morreu");
             this.a.reset();
+            for(int count=0;count<4 && count<mpp.length;count++ ){
+            mpp[count].e.reset();
+            }
             this.b.reset();
             this.a.atualizaCampo();
             this.dispose();
+            a.getFrame().map.setPersonagemIcon(p.getCharType()+"losePoke");}
         } else if (this.b.getLife() <= 0) {
             this.a.setXp(e1.getXpNext()+(int)Math.round(((double)e2.getNivel()-e1.getNivel())*(e1.getXpNext()*0.3)));
             this.a.setWin();
             this.a.reset();
+            for(int count=0;count<4 && count<mpp.length;count++ ){
+            mpp[count].e.reset();
+            }
             this.b.reset(); 
             this.a.atualizaCampo();
             JOptionPane.showMessageDialog(null, "Você Venceu!\n Seu " + e1.getNome() + " Está nivel " + e1.getNivel());
             this.dispose();
+            
         }/*if(this.a.getLife() <= 0 || this.b.getLife() <= 0){
             this.dispose();
             this.a.reset();
@@ -469,10 +494,14 @@ public void useItem(Item i){
     p.setPoke(b);
     p.getPoke(0).getFrame().setData();
     this.dispose();
+    a.getFrame().map.setPersonagemIcon(p.getCharType()+"winPoke");
     }
     
     }
-    
+    if(i.getNumber()==0){
+        p.getItens().remove(i);
+        atualizaItens();
+    }
     
        
 }
@@ -481,24 +510,41 @@ public void atualizaItens(){
      jPanel1.removeAll();
     int size=p.getItens().size();
     ItemPanel[] ip= new ItemPanel[size];
-        for(int i=0;i<size;i++){
-        ip[i]= new ItemPanel(p.getItens().get(i));
-        ip[i].setData();
-        jPanel1.add(ip[i]);
+        for(int count=0;count<size;count++){
+        ip[count]= new ItemPanel(p.getItens().get(count));
+        ip[count].setData();
+        jPanel1.add(ip[count]);
+        }
+        
+        for(int count=0;count<size;count++){
+        if(p.getItens().get(count).getNumber()==0){
+            ip[count].removeAll();
+            p.getItens().remove(count);
+            size=size-1;
+        }
         }
         jPanel1.revalidate();
+        
 }
 public void atualizaPokes(){
-    
+    int remover=0;
     if(p.getPokes().size()>1){
         jPanel1.removeAll();
         MiniPokePanel[] pp= new MiniPokePanel[3];
-        for(int i=1;i<p.getPokes().size()&&i<4;i++){
-        pp[i-1]= new MiniPokePanel(p.getPokes().get(i));
-        pp[i-1].setData();
-        jPanel1.add(pp[i-1]);
-        jPanel1.revalidate();
-    }}
+        for(int i=0;i<p.getPokes().size()&&i<4;i++){
+        if(this.a!=p.getPokes().get(i)){
+        pp[i-remover]= new MiniPokePanel(p.getPokes().get(i));
+        mpp[i-remover]= new MiniPokePanel(p.getPokes().get(i)); 
+        pp[i-remover].setData();
+        jPanel1.add(pp[i-remover]);
+        jPanel1.revalidate();}
+        else{
+        remover=1;
+        }
+    }
+        System.out.println("mpp size"+mpp.length);
+        System.out.println("mppfirstPokeName"+mpp[0].getName());
+    }
     else{
     JOptionPane.showMessageDialog(this, "Você não tem outros pokemons");
     }
