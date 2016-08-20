@@ -269,19 +269,12 @@ public void setEvent(String s) {
     }
 
     public void setHabils() {
-        for(int i=0;i<4;i++){
-             String s= a.getHabilidades()[i].getNome();
+       
+    Skill1.setText(a.getHabilidades()[0].getNome());
+    Skill2.setText(a.getHabilidades()[1].getNome());
+    Skill3.setText(a.getHabilidades()[2].getNome());
+    Skill4.setText(a.getHabilidades()[3].getNome());        
         
-            if (Skill1.getText().equals("")) {
-                Skill1.setText(s);
-            } else if (Skill2.getText().equals("")) {
-                Skill2.setText(s);
-            } else if (Skill3.getText().equals("")) {
-                Skill3.setText(s);
-            } else {
-                Skill4.setText(s);
-            }
-        }
     }
     public void setData(){
         jLabel1.setIcon(new ImageIcon(System.getProperty("user.dir") + "\\src\\icons\\pokegif\\" + a.getId() + ".gif", ""));
@@ -424,6 +417,7 @@ else{
         if (this.a.getLife() <= 0) {
             boolean dead=true;
             this.a.setLose();
+            this.atualizaPokes();
             for(int count=0;count<3 && count<mpp.length;count++){
             if(mpp[count].e.getLife()>0){
             this.a= mpp[count].e;
@@ -434,9 +428,8 @@ else{
             }
             if(dead){
             JOptionPane.showMessageDialog(null, "Você morreu");
-            this.a.reset();
-            for(int count=0;count<4 && count<mpp.length;count++ ){
-            mpp[count].e.reset();
+            for(int count=0;count<4 && count<p.getPokes().size();count++ ){
+            p.getPokes().get(count).reset();
             }
             this.b.reset();
             this.a.atualizaCampo();
@@ -445,9 +438,8 @@ else{
         } else if (this.b.getLife() <= 0) {
             this.a.setXp(e1.getXpNext()+(int)Math.round(((double)e2.getNivel()-e1.getNivel())*(e1.getXpNext()*0.3)));
             this.a.setWin();
-            this.a.reset();
-            for(int count=0;count<4 && count<mpp.length;count++ ){
-            mpp[count].e.reset();
+            for(int count=0;count<4 && count<p.getPokes().size();count++ ){
+            p.getPokes().get(count).reset();
             }
             this.b.reset(); 
             this.a.atualizaCampo();
@@ -542,8 +534,8 @@ public void atualizaPokes(){
         remover=1;
         }
     }
-        System.out.println("mpp size"+mpp.length);
-        System.out.println("mppfirstPokeName"+mpp[0].getName());
+        //System.out.println("mpp size"+mpp.length);
+        //System.out.println("mppfirstPokeName"+mpp[0].getName());
     }
     else{
     JOptionPane.showMessageDialog(this, "Você não tem outros pokemons");

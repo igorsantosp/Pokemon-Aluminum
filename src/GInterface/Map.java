@@ -260,8 +260,7 @@ personagem.repaint();    }//GEN-LAST:event_rightButtonActionPerformed
     }//GEN-LAST:event_fightbuttonActionPerformed
 
     private void formKeyPressed(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_formKeyPressed
- int keyCode = evt.getKeyCode();
-        System.out.println("hi");   
+ int keyCode = evt.getKeyCode();   
  switch( keyCode ) { 
         case KeyEvent.VK_UP:
             move("up",0,-10);
