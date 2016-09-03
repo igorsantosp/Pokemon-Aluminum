@@ -159,6 +159,7 @@ ArrayList<Pokemon> tempArray;
     private void confirmButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_confirmButtonActionPerformed
     p.setPokes(tempArray);
     p.getPoke(0).getFrame().setData();
+    p.getPoke(0).getFrame().focus();
     this.dispose();// TODO add your handling code here:
     }//GEN-LAST:event_confirmButtonActionPerformed
 

@@ -8,7 +8,6 @@ package GInterface;
 import PokemonAluminum.Controle;
 import PokemonAluminum.Missao;
 import PokemonAluminum.Personagem;
-import PokemonAluminum.PokeData;
 import PokemonAluminum.Pokemon;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -642,6 +641,10 @@ void attclock() {
         tempoRestanteLabel.setText(String.valueOf(hh) + ":" + String.valueOf(mm) + ":" + String.valueOf(ss));
 
     }
+public void focus(){
+this.jPanel2.requestFocus();
+this.jPanel2.revalidate();
+}
 
  ActionListener ativar = (new ActionListener() {
         public void actionPerformed(ActionEvent e) {

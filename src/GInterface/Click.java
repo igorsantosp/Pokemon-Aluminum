@@ -98,6 +98,7 @@ public class Click extends javax.swing.JFrame {
     Choose c= new Choose();
     c.setVisible(true);
     }        
+    this.dispose();
             // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 

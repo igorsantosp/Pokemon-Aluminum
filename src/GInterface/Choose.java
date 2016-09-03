@@ -37,7 +37,6 @@ public class Choose extends javax.swing.JFrame {
         bulbabutton.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokegif\\1.gif"));
         charbutton.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokegif\\4.gif"));
         sqbutton.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokegif\\7.gif"));
-        pidbutton.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokegif\\16.gif"));
         boybutton.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\trainers\\b.png"));
         girlbutton.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\trainers\\g.png"));
         JOptionPane.showMessageDialog(this, "                                       Bem vindo ao Pokemon Aluminum! \nSua jornada começa agora! Selecione a seguir o seu pokemon inicial", "Laboratório do Professor Carvalho", INFORMATION_MESSAGE, new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\mugshot\\oak.png",""));
@@ -58,7 +57,6 @@ public class Choose extends javax.swing.JFrame {
         charbutton = new javax.swing.JRadioButton();
         sqbutton = new javax.swing.JRadioButton();
         jButton1 = new javax.swing.JButton();
-        pidbutton = new javax.swing.JRadioButton();
         boybutton = new javax.swing.JRadioButton();
         girlbutton = new javax.swing.JRadioButton();
         nickTextField = new javax.swing.JTextField();
@@ -72,24 +70,18 @@ public class Choose extends javax.swing.JFrame {
         bulbabutton.setSelected(true);
         bulbabutton.setText("Bulbassauro");
         bulbabutton.setHorizontalTextPosition(javax.swing.SwingConstants.RIGHT);
-        bulbabutton.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                bulbabuttonFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                bulbabuttonFocusLost(evt);
+        bulbabutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                bulbabuttonMouseClicked(evt);
             }
         });
-        getContentPane().add(bulbabutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(0, 170, -1, -1));
+        getContentPane().add(bulbabutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(50, 170, -1, -1));
 
         buttonGroup1.add(charbutton);
         charbutton.setText("Charmander");
-        charbutton.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                charbuttonFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                charbuttonFocusLost(evt);
+        charbutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                charbuttonMouseClicked(evt);
             }
         });
         charbutton.addActionListener(new java.awt.event.ActionListener() {
@@ -97,19 +89,16 @@ public class Choose extends javax.swing.JFrame {
                 charbuttonActionPerformed(evt);
             }
         });
-        getContentPane().add(charbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 170, -1, -1));
+        getContentPane().add(charbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(260, 170, -1, -1));
 
         buttonGroup1.add(sqbutton);
         sqbutton.setText("Squirtle");
-        sqbutton.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                sqbuttonFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                sqbuttonFocusLost(evt);
+        sqbutton.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                sqbuttonMouseClicked(evt);
             }
         });
-        getContentPane().add(sqbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(380, 170, 160, -1));
+        getContentPane().add(sqbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(470, 170, 160, -1));
 
         jButton1.setText("Escolher");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -117,35 +106,7 @@ public class Choose extends javax.swing.JFrame {
                 jButton1ActionPerformed(evt);
             }
         });
-        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(340, 260, -1, -1));
-
-        buttonGroup1.add(pidbutton);
-        pidbutton.setText("Pidgey");
-        pidbutton.addFocusListener(new java.awt.event.FocusAdapter() {
-            public void focusGained(java.awt.event.FocusEvent evt) {
-                pidbuttonFocusGained(evt);
-            }
-            public void focusLost(java.awt.event.FocusEvent evt) {
-                pidbuttonFocusLost(evt);
-            }
-        });
-        pidbutton.addMouseListener(new java.awt.event.MouseAdapter() {
-            public void mouseClicked(java.awt.event.MouseEvent evt) {
-                pidbuttonMouseClicked(evt);
-            }
-            public void mouseEntered(java.awt.event.MouseEvent evt) {
-                pidbuttonMouseEntered(evt);
-            }
-            public void mouseReleased(java.awt.event.MouseEvent evt) {
-                pidbuttonMouseReleased(evt);
-            }
-        });
-        pidbutton.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                pidbuttonActionPerformed(evt);
-            }
-        });
-        getContentPane().add(pidbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(570, 170, 180, -1));
+        getContentPane().add(jButton1, new org.netbeans.lib.awtextra.AbsoluteConstraints(280, 260, -1, -1));
 
         buttonGroup2.add(boybutton);
         boybutton.setSelected(true);
@@ -164,7 +125,7 @@ public class Choose extends javax.swing.JFrame {
                 boybuttonActionPerformed(evt);
             }
         });
-        getContentPane().add(boybutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(230, 50, -1, -1));
+        getContentPane().add(boybutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 50, -1, -1));
 
         buttonGroup2.add(girlbutton);
         girlbutton.setText("Girl");
@@ -177,11 +138,11 @@ public class Choose extends javax.swing.JFrame {
                 girlbuttonMouseClicked(evt);
             }
         });
-        getContentPane().add(girlbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(430, 50, -1, -1));
-        getContentPane().add(nickTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(310, 226, 140, -1));
+        getContentPane().add(girlbutton, new org.netbeans.lib.awtextra.AbsoluteConstraints(400, 50, -1, -1));
+        getContentPane().add(nickTextField, new org.netbeans.lib.awtextra.AbsoluteConstraints(250, 230, 140, -1));
 
         jLabel1.setText("Seu Nome:");
-        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(240, 230, -1, 20));
+        getContentPane().add(jLabel1, new org.netbeans.lib.awtextra.AbsoluteConstraints(180, 230, -1, 20));
 
         pack();
         setLocationRelativeTo(null);
@@ -206,11 +167,6 @@ public class Choose extends javax.swing.JFrame {
             else{ 
                 if (sqbutton.isSelected()) {
                      p.setPoke( PokeData.getPoke(7));
-                }
-            else {
-                    if (pidbutton.isSelected()) {
-                         p.setPoke( PokeData.getPoke(16));
-                    }
                 }
             }
         }
@@ -246,64 +202,6 @@ public class Choose extends javax.swing.JFrame {
 // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
-    private void pidbuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_pidbuttonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pidbuttonActionPerformed
-
-    private void pidbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pidbuttonMouseClicked
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_pidbuttonMouseClicked
-
-    private void pidbuttonMouseReleased(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pidbuttonMouseReleased
-
-// TODO add your handling code here:
-    }//GEN-LAST:event_pidbuttonMouseReleased
-
-    private void pidbuttonMouseEntered(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_pidbuttonMouseEntered
-        // TODO add your handling code here:
-    }//GEN-LAST:event_pidbuttonMouseEntered
-
-    private void pidbuttonFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pidbuttonFocusGained
-        pidbutton.setForeground(java.awt.Color.white);
-        pidbutton.setBorder(border);// TODO add your handling code here:
-    }//GEN-LAST:event_pidbuttonFocusGained
-
-    private void pidbuttonFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_pidbuttonFocusLost
-        pidbutton.setForeground(java.awt.Color.black);
-        pidbutton.setBorder(null);// TODO add your handling code here:
-    }//GEN-LAST:event_pidbuttonFocusLost
-
-    private void sqbuttonFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_sqbuttonFocusGained
-        sqbutton.setForeground(java.awt.Color.white);
-        sqbutton.setBorder(border);// TODO add your handling code here:
-    }//GEN-LAST:event_sqbuttonFocusGained
-
-    private void sqbuttonFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_sqbuttonFocusLost
-        sqbutton.setForeground(java.awt.Color.black);
-        sqbutton.setBorder(null);// TODO add your handling code here:
-    }//GEN-LAST:event_sqbuttonFocusLost
-
-    private void charbuttonFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_charbuttonFocusGained
-        charbutton.setForeground(java.awt.Color.white);
-        charbutton.setBorder(border);// TODO add your handling code here:
-    }//GEN-LAST:event_charbuttonFocusGained
-
-    private void charbuttonFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_charbuttonFocusLost
-        charbutton.setForeground(java.awt.Color.black);
-        charbutton.setBorder(null);// TODO add your handling code here:
-    }//GEN-LAST:event_charbuttonFocusLost
-
-    private void bulbabuttonFocusGained(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_bulbabuttonFocusGained
-        bulbabutton.setForeground(java.awt.Color.white);
-        bulbabutton.setBorder(border);// TODO add your handling code here:
-    }//GEN-LAST:event_bulbabuttonFocusGained
-
-    private void bulbabuttonFocusLost(java.awt.event.FocusEvent evt) {//GEN-FIRST:event_bulbabuttonFocusLost
-        bulbabutton.setForeground(java.awt.Color.black);
-        bulbabutton.setBorder(null);// TODO add your handling code here:
-    }//GEN-LAST:event_bulbabuttonFocusLost
-
     private void boybuttonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_boybuttonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_boybuttonActionPerformed
@@ -329,6 +227,47 @@ public class Choose extends javax.swing.JFrame {
     boybutton.setForeground(null);
     }    // TODO add your handling code here:
     }//GEN-LAST:event_girlbuttonMouseClicked
+
+    private void bulbabuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_bulbabuttonMouseClicked
+    if(bulbabutton.getBorder()== border){
+        
+    }else{
+    bulbabutton.setBorder(border);
+    bulbabutton.setForeground(Color.white);
+    charbutton.setBorder(null);
+    charbutton.setForeground(null);
+    sqbutton.setBorder(null);
+    sqbutton.setForeground(null);
+    }    // TODO add your handling code here:
+    }//GEN-LAST:event_bulbabuttonMouseClicked
+
+    private void charbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_charbuttonMouseClicked
+    if(charbutton.getBorder()== border){
+        
+    }else{
+    charbutton.setBorder(border);
+    charbutton.setForeground(Color.white);
+    bulbabutton.setBorder(null);
+    bulbabutton.setForeground(null);
+    sqbutton.setBorder(null);
+    sqbutton.setForeground(null);
+    }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_charbuttonMouseClicked
+
+    private void sqbuttonMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_sqbuttonMouseClicked
+    if(sqbutton.getBorder()== border){
+        
+    }else{
+    sqbutton.setBorder(border);
+    sqbutton.setForeground(Color.white);
+    charbutton.setBorder(null);
+    charbutton.setForeground(null);
+    bulbabutton.setBorder(null);
+    bulbabutton.setForeground(null);
+    }
+        // TODO add your handling code here:
+    }//GEN-LAST:event_sqbuttonMouseClicked
 
     /**
      * @param args the command line arguments
@@ -375,7 +314,6 @@ public class Choose extends javax.swing.JFrame {
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JTextField nickTextField;
-    private javax.swing.JRadioButton pidbutton;
     private javax.swing.JRadioButton sqbutton;
     // End of variables declaration//GEN-END:variables
 }
