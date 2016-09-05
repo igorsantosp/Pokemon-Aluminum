@@ -12,6 +12,7 @@ import java.awt.event.KeyEvent;
 import java.io.File;
 import javafx.scene.input.KeyCode;
 import javax.swing.ImageIcon;
+import javax.tools.JavaFileManager.Location;
 
 /*
  * To change this license header, choose License Headers in Project Properties.
@@ -26,16 +27,18 @@ public class Map extends javax.swing.JFrame {
 
     ImageIcon i,monst;
 //    BackgroundMap m = new BackgroundMap();
-    short n;
-    File file = new File(System.getProperty("user.dir")+"\\src\\icons\\pokemons");
-    boolean found;
-    Pokemon b;
-    Personagem p;
+  short n;
+  File file = new File(System.getProperty("user.dir")+"\\src\\icons\\pokemons");
+  boolean found;
+  Pokemon b;
+  Personagem p;
   FightFrame f1;
   PokeData data = new PokeData();
   float[] chance,perc;
   int[] pokeID;
   int lvBase;
+  int[] nwalk={180,270,50,100};
+  boolean up, down, right, left, borderUp=false, borderDown=false, borderRight=false, borderLeft=false;
     /**
      * Creates new form Map
      */
@@ -208,7 +211,7 @@ public class Map extends javax.swing.JFrame {
         i = new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\character\\up" + String.valueOf(n) + ".png", "");
         personagem.setIcon(i);
         personagem.setLocation((int) personagem.getLocation().getX(), (int) personagem.getLocation().getY() - 10);
-      */  searchMonster();
+      */  
    
 personagem.repaint();    }//GEN-LAST:event_upButtonActionPerformed
 
@@ -220,8 +223,7 @@ personagem.repaint();    }//GEN-LAST:event_upButtonActionPerformed
         personagem.setIcon(i);
         personagem.setLocation((int) personagem.getLocation().getX(), (int) personagem.getLocation().getY() + 10);
 */
-        searchMonster();
-   
+         
     }//GEN-LAST:event_downButtonActionPerformed
 
     private void leftButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leftButtonActionPerformed
@@ -231,7 +233,6 @@ personagem.repaint();    }//GEN-LAST:event_upButtonActionPerformed
         personagem.setIcon(i);
         personagem.setLocation((int) personagem.getLocation().getX() - 10, (int) personagem.getLocation().getY());
 */
-        searchMonster();
 personagem.repaint();    }//GEN-LAST:event_leftButtonActionPerformed
 
     private void rightButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_rightButtonActionPerformed
@@ -241,15 +242,14 @@ personagem.repaint();    }//GEN-LAST:event_leftButtonActionPerformed
         personagem.setIcon(i);
         personagem.setLocation((int) personagem.getLocation().getX() + 10, (int) personagem.getLocation().getY());
 */
-        searchMonster();
 personagem.repaint();    }//GEN-LAST:event_rightButtonActionPerformed
 
     private void leaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_leaveButtonActionPerformed
 
-               leftButton.setEnabled(true);
-               rightButton.setEnabled(true);
-               upButton.setEnabled(true);
-               downButton.setEnabled(true);
+               leftButton.setEnabled(left);
+               rightButton.setEnabled(right);
+               upButton.setEnabled(up);
+               downButton.setEnabled(down);
               // TODO add your handling code here:
     }//GEN-LAST:event_leaveButtonActionPerformed
 
@@ -264,19 +264,15 @@ personagem.repaint();    }//GEN-LAST:event_rightButtonActionPerformed
  switch( keyCode ) { 
         case KeyEvent.VK_UP:
             move("up",0,-10);
-            searchMonster();
             break;
         case KeyEvent.VK_DOWN:
             move("down",0,10);
-            searchMonster();
             break;
         case KeyEvent.VK_LEFT:
             move("left",-10,0);
-            searchMonster();
             break;
         case KeyEvent.VK_RIGHT :
             move("right",10,0);
-            searchMonster();
             break;
      }        // TODO add your handling code here:
     }//GEN-LAST:event_formKeyPressed
@@ -332,7 +328,10 @@ personagem.repaint();    }//GEN-LAST:event_rightButtonActionPerformed
 
 
     void searchMonster() {
-        
+       up=upButton.isEnabled();
+       down=downButton.isEnabled();
+       left=leftButton.isEnabled();
+       right=rightButton.isEnabled();
     double random=Math.random();
     found=false;
     for(int count=0;count<chance.length-1;count++){
@@ -361,10 +360,10 @@ monst= new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\pokemons\\0.p
 monsterimg.setIcon(monst);
 fightbutton.setVisible(false);
 leaveButton.setVisible(false);
-leftButton.setEnabled(true);
-rightButton.setEnabled(true);
-upButton.setEnabled(true);
-downButton.setEnabled(true);
+leftButton.setEnabled(left);
+rightButton.setEnabled(right);
+upButton.setEnabled(up);
+downButton.setEnabled(down);
 found=false;
      }
     }
@@ -372,17 +371,101 @@ found=false;
 public void move(String direction,int nx, int ny){
 int x=(int)personagem.getLocation().getX();
 int y=(int)personagem.getLocation().getY();
-x+=nx;
-y+=ny;
-if(n<2){
-n+=1;
+System.out.println(x+","+y);
+ x+=nx;
+ y+=ny;
+ boolean border=false;
+ 
+ for(int t=0;t<nwalk.length-3;t+=4){
+    if(//x>=nwalk[t]&& x<=nwalk[t+1] && y>=nwalk[t+2] &&y<=nwalk[t+3]
+       Math.abs(x-nwalk[t])  ==10  && y>=nwalk[t+2] &&y<=nwalk[t+3]  || 
+       Math.abs(x-nwalk[t+1])==10  && y>=nwalk[t+2] &&y<=nwalk[t+3]  ||
+       Math.abs(y-nwalk[t+2])==10  && x>=nwalk[t]   &&x<=nwalk[t+1]  ||
+       Math.abs(y-nwalk[t+3])==10  && x>=nwalk[t]   &&x<=nwalk[t+1]  ){
+        System.out.println("área não andável");
+        border=true;
+        if(nwalk[t]-x==10){
+         rightButton.setEnabled(false);
+         borderRight=true;
+         borderLeft=false;
+         borderDown=false;
+         borderUp=false;
+        }
+        else{
+            if(nwalk[t+1]-x==-10){
+            leftButton.setEnabled(false);
+            borderLeft=true;
+            borderUp=false;
+            borderRight=false;
+            borderDown=false;
+            
+            }
+            else{
+            if(Math.abs(y-nwalk[t+2])==10){
+            downButton.setEnabled(false);
+            borderDown=true;
+            borderUp=false;
+            borderLeft=false;
+            borderRight=false;
+            }
+            else{
+            upButton.setEnabled(false);
+            borderUp=true;
+            borderDown=false;
+            borderRight=false;
+            borderLeft=false;
+            }
+            }
+        }
+    }else{
+    borderUp=false;
+    borderLeft=false;
+    borderRight=false;
+    borderDown=false;
+    }
+    }
+ 
+if(y<=-150){
+    upButton.setEnabled(false);
 }
 else{
-n=0;
-}
-personagem.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\character\\"+p.getCharType()+direction+n+".png",""));
-personagem.setLocation(x, y);
+    if(!borderUp){
+    upButton.setEnabled(true);
+    }}
+if(y>=150){
+    downButton.setEnabled(false);
+    }
+else{
+    if(!borderDown){
+    downButton.setEnabled(true);}
+    }
+if(x<0){
+    leftButton.setEnabled(false);
+    }
+else{
+    if(!borderLeft){
+    leftButton.setEnabled(true);
+    }}
+if(x>670){
+    rightButton.setEnabled(false);
+    }
+else{
+    if(!borderRight){
+    rightButton.setEnabled(true);
+    }}
+    if(n<2){
+        n+=1;
+    }
+    else{
+        n=0;
+    }
+   
+    personagem.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\character\\"+p.getCharType()+direction+n+".png",""));
+    personagem.setLocation(x, y);
+    this.searchMonster();
+    
 }    
+
 public void setPersonagemIcon(String var){
 personagem.setIcon(new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\character\\"+var+".png",""));
 }
