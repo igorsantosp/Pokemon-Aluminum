@@ -37,7 +37,10 @@ public class Map extends javax.swing.JFrame {
   float[] chance,perc;
   int[] pokeID;
   int lvBase;
-  int[] nwalk={180,270,50,100};
+  //int[] nwalk={180,270,50,100};
+  int[] nwalk;
+//int[] nwalk={190,270, 50,90, -10,150, -140,-10, 190,680, -140,-10, 180,680, 120,150, -10,20, 120,150};
+//va
   boolean up, down, right, left, borderUp=false, borderDown=false, borderRight=false, borderLeft=false;
     /**
      * Creates new form Map
@@ -375,7 +378,10 @@ System.out.println(x+","+y);
  x+=nx;
  y+=ny;
  boolean border=false;
- 
+ borderUp=false;
+ borderLeft=false;
+ borderDown=false;
+ borderRight=false;
  for(int t=0;t<nwalk.length-3;t+=4){
     if(//x>=nwalk[t]&& x<=nwalk[t+1] && y>=nwalk[t+2] &&y<=nwalk[t+3]
        Math.abs(x-nwalk[t])  ==10  && y>=nwalk[t+2] &&y<=nwalk[t+3]  || 
@@ -418,10 +424,10 @@ System.out.println(x+","+y);
             }
         }
     }else{
-    borderUp=false;
-    borderLeft=false;
-    borderRight=false;
-    borderDown=false;
+    borderUp=borderUp||false;
+    borderLeft=borderLeft||false;
+    borderRight=borderRight||false;
+    borderDown=borderDown||false;
     }
     }
  

@@ -461,6 +461,8 @@ public class GameMainFrame extends javax.swing.JFrame {
         int[] pokeID= {1,4,7,14};
         float[] perc={0.1f,0.03f,0.03f,0.02f};
         map = new Map(p,1,new BackgroundMap(6),pokeID,perc);
+        int[] nwalk={190,270, 50,90, -10,150, -140,-10, 190,680, -140,-10, 180,680, 120,150, -10,20, 120,150};
+        map.nwalk=nwalk;
         map.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
@@ -468,6 +470,8 @@ public class GameMainFrame extends javax.swing.JFrame {
         int[] pokeID= {4,7,10,11};
         float[] perc={0.05f,0.02f,0.1f,0.02f};
         map = new Map(p,5,new BackgroundMap(2),pokeID,perc);
+        int[] nwalk={0,0,-150,-150};
+        map.nwalk=nwalk;
         map.setVisible(true); // TODO add your handling code here:
     }//GEN-LAST:event_jButton3ActionPerformed
 
@@ -475,6 +479,8 @@ public class GameMainFrame extends javax.swing.JFrame {
         int[] pokeID= {7,10,13,16};
         float[] perc={0.02f,0.02f,0.02f,0.15f};
         map = new Map(p,10,new BackgroundMap(3),pokeID,perc);
+        int[] nwalk={50,190, -150,-20, 400,550, -150,-120};
+        map.nwalk=nwalk;
         map.setVisible(true);  // TODO add your handling code here:
     }//GEN-LAST:event_jButton4ActionPerformed
 
