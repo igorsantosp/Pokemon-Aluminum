@@ -22,7 +22,7 @@ Personagem p;
      * Creates new form PokePanel
      */
     public PokePanel() {
-        initComponents();
+    initComponents();
     evolveButton.setVisible(false);
     }
 

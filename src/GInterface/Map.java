@@ -60,8 +60,6 @@ public class Map extends javax.swing.JFrame {
         bg.add(m);
         headerEvento.setText("                      ");
         monsterimg.setText("                ");
-        fightbutton.setVisible(false);
-        leaveButton.setVisible(false);
    	i = new ImageIcon(System.getProperty("user.dir")+"\\src\\icons\\character\\"+p.getCharType()+"down0.png", "");
         personagem.setIcon(i);
         Component[] comp= this.getComponents();
@@ -74,6 +72,20 @@ public class Map extends javax.swing.JFrame {
                 }
             });
         }
+        Component[] comp2= eventoPanel.getComponents();
+        for (Component comp1 : comp2) {
+            comp1.setFocusable(true);
+            comp1.addKeyListener(new java.awt.event.KeyAdapter() {
+                @Override
+                public void keyPressed(java.awt.event.KeyEvent evt) {
+                    formKeyPressed(evt);
+                }
+            });
+        }
+        
+        
+        fightbutton.setVisible(false);
+        leaveButton.setVisible(false);
     }
 
     private Map() {
@@ -266,16 +278,20 @@ personagem.repaint();    }//GEN-LAST:event_rightButtonActionPerformed
  int keyCode = evt.getKeyCode();   
  switch( keyCode ) { 
         case KeyEvent.VK_UP:
-            move("up",0,-10);
+            if(upButton.isEnabled()){
+            move("up",0,-10);}
             break;
         case KeyEvent.VK_DOWN:
-            move("down",0,10);
+            if(downButton.isEnabled()){
+            move("down",0,10);}
             break;
         case KeyEvent.VK_LEFT:
-            move("left",-10,0);
+            if(leftButton.isEnabled()){
+            move("left",-10,0);}
             break;
         case KeyEvent.VK_RIGHT :
-            move("right",10,0);
+            if(rightButton.isEnabled()){
+            move("right",10,0);}
             break;
      }        // TODO add your handling code here:
     }//GEN-LAST:event_formKeyPressed
@@ -374,7 +390,7 @@ found=false;
 public void move(String direction,int nx, int ny){
 int x=(int)personagem.getLocation().getX();
 int y=(int)personagem.getLocation().getY();
-System.out.println(x+","+y);
+//System.out.println(x+","+y);
  x+=nx;
  y+=ny;
  boolean border=false;
@@ -388,7 +404,7 @@ System.out.println(x+","+y);
        Math.abs(x-nwalk[t+1])==10  && y>=nwalk[t+2] &&y<=nwalk[t+3]  ||
        Math.abs(y-nwalk[t+2])==10  && x>=nwalk[t]   &&x<=nwalk[t+1]  ||
        Math.abs(y-nwalk[t+3])==10  && x>=nwalk[t]   &&x<=nwalk[t+1]  ){
-        System.out.println("área não andável");
+        //System.out.println("área não andável");
         border=true;
         if(nwalk[t]-x==10){
          rightButton.setEnabled(false);

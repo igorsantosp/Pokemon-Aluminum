@@ -37,6 +37,20 @@ Habil[] lista={
     new Habil(18,"Furacão","Ataque/Debuff","Voador",1.7f,2,"Stun",0.3f),
     new Habil(19,"Jato D'Água","Ataque","Água",1.7f),
     new Habil(20,"Hydro Bomba","Ataque/Debuff","Água",1.7f,2,"Stun",0.2f),
+    new Habil(21,"Mordida","Ataque","Noturno",1.5f),
+    new Habil(22,"Hyper Raio","Ataque","Normal",1.7f),
+    new Habil(23,"Hyper Presa","Ataque","Normal",1.6f),
+    new Habil(24,"Bicada","Ataque","Voador",1.3f),
+    new Habil(25,"Mordida Venenosa","Ataque/Debuff","Venenoso",1.3f,2,"Poison",0.4f),
+    new Habil(26,"Espinhos Venenosos","Ataque/Debuff","Venenoso",1.5f,2,"Poison",0.4f),
+    new Habil(27,"Enrolar","Ataque/Debuff","Normal",1.2f,2,"Paralysis",0.4f),
+    new Habil(28,"Relâmpago","Ataque/Debuff","Elétrico",1.3f,1,"Stun",0.2f),
+    new Habil(29,"Descarga","Ataque/Debuff","Elétrico",1.2f,2,"Paralysis",0.3f),
+    new Habil(30,"Choque do trovão","Ataque","Elétrico",1.5f),
+    new Habil(31,"Tempestado de Raios","Ataque","Elétrico",1.6f),
+    new Habil(32,"Bomba Magnética","Ataque","Elétrico",1.6f),
+    new Habil(33,"Cauda de Ferro","Ataque","Metal",1.4f),
+    
 };
 habil=lista;
 }

@@ -22,9 +22,6 @@ import javax.swing.Timer;
 public class GameMainFrame extends javax.swing.JFrame {
 
     ImageIcon icon;
-
-   
-   
     Map map;
     int hh, mm, ss;
     boolean activate=false;
@@ -458,17 +455,17 @@ public class GameMainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-        int[] pokeID= {1,4,7,14};
-        float[] perc={0.1f,0.03f,0.03f,0.02f};
+        int[] pokeID= {1,4,7,14,21,19};
+        float[] perc={0.06f,0.03f,0.03f,0.02f,0.03f,0.03f};
         map = new Map(p,1,new BackgroundMap(6),pokeID,perc);
-        int[] nwalk={190,270, 50,90, -10,150, -140,-10, 190,680, -140,-10, 180,680, 120,150, -10,20, 120,150};
+        int[] nwalk={190,270, 50,90, -10,150, -140,-20, 190,680, -140,-10, 180,680, 120,150, -10,20, 120,150};
         map.nwalk=nwalk;
         map.setVisible(true);// TODO add your handling code here:
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        int[] pokeID= {4,7,10,11};
-        float[] perc={0.05f,0.02f,0.1f,0.02f};
+        int[] pokeID= {4,7,10,11,23};
+        float[] perc={0.05f,0.02f,0.1f,0.02f,0.02f};
         map = new Map(p,5,new BackgroundMap(2),pokeID,perc);
         int[] nwalk={0,0,-150,-150};
         map.nwalk=nwalk;
@@ -476,8 +473,8 @@ public class GameMainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        int[] pokeID= {7,10,13,16};
-        float[] perc={0.02f,0.02f,0.02f,0.15f};
+        int[] pokeID= {7,10,13,16,11,25};
+        float[] perc={0.02f,0.02f,0.02f,0.15f,0.02f,0.01f};
         map = new Map(p,10,new BackgroundMap(3),pokeID,perc);
         int[] nwalk={50,190, -150,-20, 400,550, -150,-120};
         map.nwalk=nwalk;

@@ -211,7 +211,7 @@ ArrayList<Pokemon> tempArray;
 
 public void setPoke(Pokemon e){
 int position= tempArray.indexOf(e);
-    System.out.println(position);
+    //System.out.println(position);
 if (position<4){
     if(teamSelect==false){
         e1=e;
@@ -284,9 +284,9 @@ e2=null;
 teamSelect=false;
 storageSelect=false;
 }
-for(int contador=0;contador<tempArray.size();contador++){
+/*for(int contador=0;contador<tempArray.size();contador++){
     System.out.println(contador+" "+tempArray.get(contador).getNome()+ " "+tempArray.get(contador).getNivel());
-}
+}*/
 
 }
 
