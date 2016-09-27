@@ -359,6 +359,7 @@ public void setEvent(String s) {
         	}
                 
                 // DEBBUG
+                
                      if(e1==this.a){ 
                          System.out.println("Ataque A:"+e1.getAtaque());
                        System.out.println("Defesa B:"+e2.getDefesa());
@@ -380,13 +381,14 @@ public void setEvent(String s) {
 		if(h.getTipo().contains("Buff")){
 			if(Math.random()<=h.getChance()){
 				if(h.getEfeito().equals("Ataque+")){
-                                   
+                                    // DEBUG
                                     System.out.println("Ataque anterior:"+e1.getAtaque());
                                     System.out.println("Novo ataque:"+Math.round(e1.getAtaque()+(float)e1.getAtrBase()[0]*h.getMultiplicador()));
 				 e1.setAtaque((int)Math.round(e1.getAtaque()+e1.getAtrBase()[0]*h.getMultiplicador()));
                                     System.out.println("getatrbbase[0]:"+e1.getAtrBase()[0]);
                                     System.out.println("Multiplicador:"+h.getMultiplicador());
                                     System.out.println("Multiplicador*getATrbase"+e1.getAtrBase()[0]*h.getMultiplicador());
+                                    
                                     
                                    
 				 evento+="\n ataque aumentado com sucesso!";					
@@ -433,6 +435,8 @@ else{
             }
             this.b.reset();
             this.a.atualizaCampo();
+            a.getFrame().map.move("up",0 , -10);
+            a.getFrame().map.move("up",0 , 10);
             this.dispose();
             a.getFrame().map.setPersonagemIcon(p.getCharType()+"losePoke");}
         } else if (this.b.getLife() <= 0) {
@@ -444,6 +448,8 @@ else{
             this.b.reset(); 
             this.a.atualizaCampo();
             JOptionPane.showMessageDialog(null, "Você Venceu!\n Seu " + e1.getNome() + " Está nivel " + e1.getNivel());
+            a.getFrame().map.move("up",0 , -10);
+            a.getFrame().map.move("up",0 , 10);
             this.dispose();
             
         }/*if(this.a.getLife() <= 0 || this.b.getLife() <= 0){
@@ -486,6 +492,8 @@ public void useItem(Item i){
     p.setPoke(b);
     p.getPoke(0).getFrame().setData();
     this.dispose();
+    a.getFrame().map.move("up",0 , -10);
+    a.getFrame().map.move("up",0 , 10);
     a.getFrame().map.setPersonagemIcon(p.getCharType()+"winPoke");
     }
     

@@ -25,8 +25,9 @@ private JLabel label;
         
         case 0:
         if (ran>0.1){
-        a.setText("Você ganhou: \n "+(mission+1)*5+" doláres e uma pokebola");
+        a.setText("Você ganhou: \n "+(mission+1)*5+" silver e uma pokebola");
         p.setSilver(p.getSilver()+(mission+1)*5);
+        p.addNewItem(ItemData.getItem(1));
         p.getPoke(0).setXp(100);
         p.getPoke(0).reset();
         }else{
@@ -36,8 +37,9 @@ private JLabel label;
             break;
         case 1:
         if (ran>0.1){
-        a.setText("Você ganhou:\n "+(mission+1)*5+" doláres e uma greatball");
+        a.setText("Você ganhou:\n "+(mission+1)*5+" Silver e uma greatball");
         p.setSilver(p.getSilver()+(mission+1)*5);
+        p.addNewItem(ItemData.getItem(2));
         p.getPoke(0).setXp(200);
         p.getPoke(0).reset();
         }else{
@@ -46,8 +48,9 @@ private JLabel label;
             break;
         case 2:
         if (ran>0.1){
-        a.setText("Você ganhou:\n "+(mission+1)*5+" doláres e uma masterball");
+        a.setText("Você ganhou:\n "+(mission+1)*5+" silver e uma masterball");
         p.setSilver(p.getSilver()+(mission+1)*5);
+        p.addNewItem(ItemData.getItem(4));
         p.getPoke(0).setXp(300);
         p.getPoke(0).reset();}else{
         a.setText("Você não encontrou nada");
@@ -55,7 +58,7 @@ private JLabel label;
             break;
         case 3:
         if (ran>0.1){
-        a.setText("Você ganhou:\n "+(mission+1)*5+" doláres e 15 de ataque");
+        a.setText("Você ganhou:\n "+(mission+1)*5+" silver e 15 de ataque");
         p.setSilver(p.getSilver()+(mission+1)*5);
         p.getPoke(0).setAtaqueBonus(15);
         p.getPoke(0).setXp(400);

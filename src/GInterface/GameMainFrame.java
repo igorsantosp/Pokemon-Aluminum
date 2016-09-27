@@ -47,7 +47,9 @@ public class GameMainFrame extends javax.swing.JFrame {
         avatar.setIcon(icon);
         Timer time = new Timer(1000, ativar);
         time.start();
-        //evolveButton.setVisible(false);
+        jTabbedPane1.setEnabledAt(4, false);
+        jTabbedPane1.setEnabledAt(2, false);
+        
     }
 
     private GameMainFrame() {
@@ -486,9 +488,9 @@ if(!activate){
   if(MissaoComboBox.getSelectedIndex()==0){
     tempoRestanteLabel.setText("00:00:5");}
   if(MissaoComboBox.getSelectedIndex()==1){
-    tempoRestanteLabel.setText("00:00:5");}
+    tempoRestanteLabel.setText("00:00:10");}
   if(MissaoComboBox.getSelectedIndex()==2){
-    tempoRestanteLabel.setText("00:00:5");}
+    tempoRestanteLabel.setText("00:00:15");}
   if(MissaoComboBox.getSelectedIndex()==3){
     tempoRestanteLabel.setText("00:00:5");}
 mi.setMission(MissaoComboBox.getSelectedIndex());

@@ -37,10 +37,9 @@ public class Map extends javax.swing.JFrame {
   float[] chance,perc;
   int[] pokeID;
   int lvBase;
-  //int[] nwalk={180,270,50,100};
   int[] nwalk;
 //int[] nwalk={190,270, 50,90, -10,150, -140,-10, 190,680, -140,-10, 180,680, 120,150, -10,20, 120,150};
-//va
+
   boolean up, down, right, left, borderUp=false, borderDown=false, borderRight=false, borderLeft=false;
     /**
      * Creates new form Map
